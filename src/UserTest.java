@@ -1,6 +1,9 @@
 import org.junit.Test;
 import org.testng.Assert;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
