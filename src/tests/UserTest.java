@@ -1,3 +1,7 @@
+package tests;
+
+import gps.EnumGenders;
+import gps.User;
 import org.junit.Test;
 import org.testng.Assert;
 
@@ -10,7 +14,7 @@ class UserTest {
 
     @Test
     public void getName() {
-        User user = new User("Filipe", "a123@isec.pt", "Male", 20, 0);
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
         Assert.assertEquals("Filipe", user.getName());
     }
 

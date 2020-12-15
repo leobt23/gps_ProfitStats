@@ -1,3 +1,6 @@
+package tests;
+
+import gps.Time;
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 

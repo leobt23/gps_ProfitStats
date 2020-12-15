@@ -1,10 +1,11 @@
 package gps;
 
 public class User {
-    String name, email, gender;
+    String name, email;
+    EnumGenders gender;
     int age, totalBets;
 
-    public User(String name, String email, String gender, int age, int totalBets) {
+    public User(String name, String email, EnumGenders gender, int age, int totalBets) {
         this.name = name;
         this.email = email;
         this.gender = gender;
@@ -28,11 +29,11 @@ public class User {
         this.email = email;
     }
 
-    public String getGender() {
+    public EnumGenders getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(EnumGenders gender) {
         this.gender = gender;
     }
 
