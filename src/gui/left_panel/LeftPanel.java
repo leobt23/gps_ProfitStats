@@ -1,5 +1,6 @@
 package gui.left_panel;
 
+import gui.resources.Images;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
@@ -8,7 +9,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import gui.resources.Images;
 
 public class LeftPanel extends Pane {
 
