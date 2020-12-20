@@ -2,23 +2,29 @@ package tests;
 
 import logic.data.EnumGenders;
 import logic.data.User;
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserTest {
 
     @Test
     public void getName() {
-        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 22, 0);
-        Assert.assertEquals("Filipe", user.getName());
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        assertEquals("Filipe", user.getName());
     }
 
-   // @org.testng.annotations.Test
+    @org.junit.jupiter.api.Test
     void setName() {
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        user.setName("Leonardo");
+        assertEquals("Leonardo", user.getName());
     }
 
     @org.junit.jupiter.api.Test
     void getEmail() {
+
     }
 
     @org.junit.jupiter.api.Test
@@ -35,6 +41,8 @@ class UserTest {
 
     @org.junit.jupiter.api.Test
     void getAge() {
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        assertTrue(user.getAge() > 0);
     }
 
     @org.junit.jupiter.api.Test

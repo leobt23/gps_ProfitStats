@@ -6,13 +6,13 @@ public class Time {
     int year, month, week, day, hour, minute, seconds;
 
     public Time(int year, int month, int week, int day, int hour, int minute, int seconds) {
-        this.year = year;
-        this.month = month;
-        this.week = week;
-        this.day = day;
-        this.hour = hour;
-        this.minute = minute;
-        this.seconds = seconds;
+        setYear(year);
+        setMonth(month);
+        setWeek(week);
+        setDay(day);
+        setHour(hour);
+        setMinute(minute);
+        setSeconds(seconds);
     }
 
     public String getCurrentDate(){
@@ -50,11 +50,21 @@ public class Time {
     }
 
     public void setYear(int year) {
+        if(year > 0)
         this.year = year;
+        else{
+            System.out.println(" *** Ano Invalido ***");
+            this.year = 2020;
+        }
     }
 
     public void setMonth(int month) {
+        if(month < 12 && month > 0)
         this.month = month;
+        else{
+            System.out.println(" *** Mes Invalido ***");
+            this.month = 01;
+        }
     }
 
     public void setWeek(int week) {
@@ -62,24 +72,44 @@ public class Time {
     }
 
     public void setDay(int day) {
+        if(day > 0 && day < 30)
         this.day = day;
+        else{
+            System.out.println(" *** Dia Invalido ***");
+            this.day = 01;
+        }
     }
 
     public void setHour(int hour) {
+        if(hour >= 0 && hour < 24)
         this.hour = hour;
+        else{
+            System.out.println(" *** Hora Invalido ***");
+            this.hour = 00;
+        }
     }
 
     public void setMinute(int minute) {
-        this.minute = minute;
+        if (minute >= 0 && minute < 60)
+            this.minute = minute;
+        else {
+            System.out.println(" *** Minutos Invalidos ***");
+            this.minute = 00;
+        }
     }
 
     public void setSeconds(int seconds) {
-        this.seconds = seconds;
+        if (seconds >= 0 && seconds < 60)
+            this.seconds = seconds;
+        else {
+            System.out.println(" *** Segundos Invalidos ***");
+            this.seconds = 00;
+        }
     }
 
     @Override
     public String toString() {
-        return "TIme{" +
+        return "Time{" +
                 "year=" + year +
                 ", month=" + month +
                 ", week=" + week +
