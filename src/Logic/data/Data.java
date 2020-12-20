@@ -17,7 +17,32 @@ public class Data {
         this.user = user;
     }
 
+    //TODO: fazer funções
     public String getBetName(int idx) {
+        return "";
+    }
+
+    public String getBetRegistryDate(int idx) {
+        return "";
+    }
+
+    public String getBetNumberOfGames(int idx) {
+        return "";
+    }
+
+    public String getBetNumberOfBets(int idx) {
+        return "";
+    }
+
+    public String getBetValueBetted(int idx) {
+        return "";
+    }
+
+    public String getBetPossibleWinnings(int idx) {
+        return "";
+    }
+
+    public String getBetStatus(int idx) {
         return "";
     }
 }
