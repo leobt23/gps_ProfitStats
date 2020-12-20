@@ -1,4 +1,4 @@
-package gps;
+package logic.data;
 
 public class Bet {
     int numberOfGames, numberOfBets;

@@ -1,14 +1,12 @@
 package tests;
 
-import gps.Time;
+import logic.data.Time;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class TimeTest {
 

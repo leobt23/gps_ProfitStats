@@ -1,6 +1,6 @@
-import gps.BettingHistory;
-import gps.Time;
-import gps.User;
+import logic.data.BettingHistory;
+import logic.data.Time;
+import logic.data.User;
 
 public class Data {
     User user;

@@ -1,4 +1,7 @@
-package gps;
+package logic;
+
+import logic.data.Bet;
+import logic.data.Time;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,15 +1,9 @@
 package tests;
 
-import gps.EnumGenders;
-import gps.User;
+import logic.data.EnumGenders;
+import logic.data.User;
 import org.junit.Assert;
 import org.junit.Test;
-
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 

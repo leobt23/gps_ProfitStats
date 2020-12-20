@@ -1,4 +1,4 @@
-package gps;
+package logic.data;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
