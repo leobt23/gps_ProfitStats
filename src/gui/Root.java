@@ -1,20 +1,19 @@
 package gui;
 
-
-import Logic.Model;
 import gui.left_panel.LeftPanel;
 import javafx.scene.layout.BorderPane;
+import logic.ObservableModel;
 
 public class Root extends BorderPane {
-    Model model;
+    ObservableModel model;
 
-    public Root(Model model)
+    public Root(ObservableModel model)
     {
         this.model = model;
         setPrefSize(1000,600);
         LeftPanel leftPanel = new LeftPanel();
         setLeft(leftPanel);
-        UIbettingHistory uIbettingHistory = new UIbettingHistory(model);
+//        UIbettingHistory uIbettingHistory = new UIbettingHistory(model);
     }
 
 }

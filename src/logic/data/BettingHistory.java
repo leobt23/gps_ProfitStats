@@ -1,4 +1,4 @@
-package gps;
+package logic.data;
 import java.util.ArrayList;
 
 public class BettingHistory {

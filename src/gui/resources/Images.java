@@ -1,7 +1,7 @@
 package gui.resources;
 
-import javafx.scene.image.Image;
 import gui.left_panel.PanelElements;
+import javafx.scene.image.Image;
 
 import java.io.InputStream;
 import java.util.HashMap;
