@@ -12,8 +12,7 @@ public class ObservableModel {
         return 0;
     }
 
-    public String getBetId(int i) {
-
-        return null;
+    public String getBetId(int idx) {
+        return data.getBetName(idx);
     }
 }
