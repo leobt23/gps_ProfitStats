@@ -1,8 +1,9 @@
 package tests;
 
 import gps.Time;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.testng.Assert;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

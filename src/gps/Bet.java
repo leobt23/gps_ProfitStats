@@ -82,6 +82,7 @@ public class Bet {
             betRegisterDate = date;
     }
 
+
     @Override
     public String toString() {
         return "Bet{" +
