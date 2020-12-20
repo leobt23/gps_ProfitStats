@@ -22,7 +22,9 @@ import java.beans.PropertyChangeListener;
 
 
 public class UIbettingHistory extends BorderPane {
+
     ObservableModel model;
+
     public UIbettingHistory(ObservableModel model) {
         this.model = model;
         //lABEL DO TITULO
