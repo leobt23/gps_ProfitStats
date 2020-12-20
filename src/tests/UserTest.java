@@ -1,3 +1,4 @@
+/*
 package tests;
 
 import gps.EnumGenders;
@@ -52,4 +53,4 @@ class UserTest {
     @org.junit.jupiter.api.Test
     void testToString() {
     }
-}
+}*/

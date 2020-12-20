@@ -1,3 +1,5 @@
+package Logic;
+
 import gps.BettingHistory;
 import gps.Time;
 import gps.User;
