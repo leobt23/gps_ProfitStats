@@ -9,10 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserTest {
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getName() {
         User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
         assertEquals("Filipe", user.getName());
+        assertTrue(user.getName().length() < 20);
     }
 
     @org.junit.jupiter.api.Test
