@@ -2,8 +2,9 @@ package tests;
 
 import gps.EnumGenders;
 import gps.User;
+import org.junit.Assert;
 import org.junit.Test;
-import org.testng.Assert;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,11 +15,11 @@ class UserTest {
 
     @Test
     public void getName() {
-        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 22, 0);
         Assert.assertEquals("Filipe", user.getName());
     }
 
-    @org.testng.annotations.Test
+   // @org.testng.annotations.Test
     void setName() {
     }
 
