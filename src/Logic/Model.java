@@ -9,5 +9,7 @@ public class Model {
     }
 
     public String getBetId(int i) {
+
+        return null;
     }
 }

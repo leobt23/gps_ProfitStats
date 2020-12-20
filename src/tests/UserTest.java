@@ -5,6 +5,7 @@ import gps.EnumGenders;
 import gps.User;
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserTest {
@@ -15,11 +16,16 @@ class UserTest {
         assertEquals("Filipe", user.getName());
     }
 
+    @org.junit.jupiter.api.Test
     void setName() {
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        user.setName("Leonardo");
+        assertEquals("Leonardo", user.getName());
     }
 
     @org.junit.jupiter.api.Test
     void getEmail() {
+
     }
 
     @org.junit.jupiter.api.Test
@@ -36,6 +42,8 @@ class UserTest {
 
     @org.junit.jupiter.api.Test
     void getAge() {
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        assertTrue(user.getAge() > 0);
     }
 
     @org.junit.jupiter.api.Test
