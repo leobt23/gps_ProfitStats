@@ -1,5 +1,7 @@
 package logic.data;
 
+import logic.Status;
+
 public class Data {
     private User user;
 
@@ -42,7 +44,19 @@ public class Data {
         return "";
     }
 
-    public String getBetStatus(int idx) {
+    public Status getBetStatus(int idx) {
+        return null;
+    }
+
+    public int getBetId(int idx) {
+        return -1;
+    }
+
+    public String getBetCloseDate(int idx) {
         return "";
+    }
+
+    public void setBetStatus(int betId, Status status) {
+
     }
 }

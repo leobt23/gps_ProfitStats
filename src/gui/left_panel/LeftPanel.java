@@ -23,6 +23,12 @@ public class LeftPanel extends Pane {
                 new Background(
                         new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)
                 ));
+        panelContainer.setBorder(
+                new Border(
+                        new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID,
+                                CornerRadii.EMPTY, new BorderWidths(2))
+                )
+        );
 
         getChildren().add(panelContainer);
         //TODO: registar observers
@@ -37,15 +43,29 @@ public class LeftPanel extends Pane {
         hBox.setAlignment(Pos.CENTER_LEFT);
         hBox.setSpacing(20);
         hBox.setPadding(new Insets(0, 0, 0, 20));
-        hBox.setBorder(
-                new Border(
-                    new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID,
-                            CornerRadii.EMPTY, BorderWidths.DEFAULT)
-                )
-        );
 
         //TODO: Adicionar onClickListeners e ter map de Boxes (talvez)
-//        hBox.setOnMouseClicked();
+        hBox.setOnMouseClicked( e -> {
+            switch (designation){
+                case PanelElements.USER_PROFILE:
+                    //TODO: GET ACTUAL STATE
+                    // coloca o fundo azul no estado correspondente
+
+                    hBox.setBackground(new Background(
+                            new BackgroundFill(Color.LIGHTSKYBLUE, CornerRadii.EMPTY,
+                                    Insets.EMPTY)
+                    ));
+                    hBox.setBorder(
+                            new Border(
+                                    new BorderStroke(Color.BLACK, Color.BLACK, Color.BLACK,Color.BLACK,
+                                            BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE,
+                                            BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE,
+                                            CornerRadii.EMPTY, new BorderWidths(1.5), Insets.EMPTY)
+                            )
+                    );
+                    break;
+            }
+        });
 
         ImageView imgView = new ImageView(Images.getImage(designation));
         imgView.setFitWidth(Constants.IMG_VIEW_WIDTH);

@@ -1,12 +1,10 @@
 package gui;
 
-import Logic.Model;
-import Logic.SEnum;
-import Logic.Status;
-import gui.left_panel.LeftPanel;
+import logic.ObservableModel;
+import logic.states.EnumStates;
+import logic.Status;
 import gui.resources.Constants;
 import gui.resources.Images;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -24,8 +22,8 @@ import java.beans.PropertyChangeListener;
 
 
 public class UIbettingHistory extends BorderPane {
-    Model model;
-    public UIbettingHistory(Model model) {
+    ObservableModel model;
+    public UIbettingHistory(ObservableModel model) {
         this.model = model;
         //lABEL DO TITULO
         Label title = new Label("BETS HISTORY");
@@ -183,7 +181,7 @@ public class UIbettingHistory extends BorderPane {
                 {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
-                        model.setStatus(model.getBetId(i),Status.WON);
+                        model.setBetStatus(model.getBetId(i), Status.WON);
                     } else
                     {
 
@@ -193,7 +191,7 @@ public class UIbettingHistory extends BorderPane {
                 {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
-                        model.setStatus(model.getBetId(i),Status.LOST);
+                        model.setBetStatus(model.getBetId(i),Status.LOST);
                     } else
                     {
 
@@ -285,7 +283,7 @@ public class UIbettingHistory extends BorderPane {
                 new PropertyChangeListener() {
                     @Override
                     public void propertyChange(PropertyChangeEvent evt) {
-                        setVisible(model.getState()== SEnum.BETTING_HISTORY);
+                        setVisible(model.getState() == EnumStates.BETTING_HISTORY);
                         System.out.println("propertyChange");
                     }
                 }
