@@ -11,7 +11,7 @@ import java.util.List;
 public class ObservableModel {
 
     //TODO: Errado -> nao guarda o objeto Data mas sim um objeto que engloba a data, por exemplo Model
-    private Data data;
+    private Data data = new Data();
 
     private PropertyChangeSupport propertyChangeSupport;
 

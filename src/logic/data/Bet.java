@@ -2,12 +2,15 @@ package logic.data;
 
 public class Bet {
     int numberOfGames, numberOfBets;
+    static int contador = 0;
+    int betId;
     String betRegisterDate;
     String betCloseDate;
     float totalValueBetted, possibleWinnings;
     String betName;
 
     public Bet(int numberOfGames, int numberOfBets, String betRegisterDate, String betCloseDate, float totalValueBetted, float possibleWinnings, String betName) {
+        this.betId = contador;
         this.numberOfGames = numberOfGames;
         this.numberOfBets = numberOfBets;
         this.betRegisterDate = betRegisterDate;
@@ -15,7 +18,10 @@ public class Bet {
         this.totalValueBetted = totalValueBetted;
         this.possibleWinnings = possibleWinnings;
         this.betName = betName;
+        contador++;
     }
+
+    public int getBetId(){return betId; }
 
     public int getNumberOfGames() {
         return numberOfGames;
@@ -82,7 +88,6 @@ public class Bet {
             betRegisterDate = date;
     }
 
-
     @Override
     public String toString() {
         return "Bet{" +
@@ -96,3 +101,4 @@ public class Bet {
                 '}';
     }
 }
+

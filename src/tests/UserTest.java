@@ -2,10 +2,9 @@ package tests;
 
 import logic.data.EnumGenders;
 import logic.data.User;
-import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UserTest {
 
