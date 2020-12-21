@@ -60,8 +60,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="javafx-swt" level="application" />
     <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="org.junit.jupiter:junit-jupiter:5.4.2" level="project" />
   </component>
 </module>

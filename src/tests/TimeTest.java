@@ -1,7 +1,7 @@
 
 package tests;
 
-import gps.Time;
+import logic.data.Time;
 import org.junit.jupiter.api.Test;
 
 
