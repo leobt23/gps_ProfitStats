@@ -75,7 +75,7 @@ public class UIbettingHistory extends BorderPane {
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
-                    //model.editBetButton(i);
+//                    model.editBetButton(i);
                 } else
                 {
 
@@ -85,7 +85,7 @@ public class UIbettingHistory extends BorderPane {
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
-                    //model.deleteBet(i);
+//                    model.deleteBet(i);
                 } else
                 {
 
@@ -183,7 +183,7 @@ public class UIbettingHistory extends BorderPane {
                 {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
-                        //model.setBetStatus(model.getBetId(i), Status.WON);
+//                        model.setBetStatus(model.getBetId(i), Status.WON);
                     } else
                     {
 
@@ -193,10 +193,10 @@ public class UIbettingHistory extends BorderPane {
                 {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
-                        //model.setBetStatus(model.getBetId(i),Status.LOST);
+//                        model.setBetStatus(model.getBetId(i),Status.LOST);
                     } else
                     {
-
+                        
                     }
                 });
 
@@ -285,7 +285,7 @@ public class UIbettingHistory extends BorderPane {
                 new PropertyChangeListener() {
                     @Override
                     public void propertyChange(PropertyChangeEvent evt) {
-                        //setVisible(model.getState() == EnumStates.BETTING_HISTORY);
+                        setVisible(model.getState() == EnumStates.BETTING_HISTORY);
                         System.out.println("propertyChange");
                     }
                 }

@@ -72,7 +72,8 @@ public class ObservableModel {
         data.setBetStatus(betId, status);
     }
 
-    /*public EnumStates getState() {
-        return model.getState();
-    }*/
+    public EnumStates getState() {
+//        return model.getState();
+        return null;
+    }
 }
