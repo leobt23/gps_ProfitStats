@@ -4,63 +4,80 @@ package tests;
 import gps.EnumGenders;
 import gps.User;
 import org.junit.Assert;
-import org.junit.Test;
-
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 
 class UserTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getName() {
         User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
         assertEquals("Filipe", user.getName());
-        assertTrue(user.getName().length() < 20);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void setName() {
         User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
         user.setName("Leonardo");
         assertEquals("Leonardo", user.getName());
+        assertTrue(user.getName().length() < 20);
+        assertTrue(user.getName().length() > 1);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getEmail() {
-
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        assertEquals(user.getEmail(), "a123@isec.pt");
+        assertTrue(user.getEmail().contains("@"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void setEmail() {
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        user.setEmail("a321@hotmail.com");
+        assertEquals(user.getEmail(), "a321@hotmail.com");
+        assertTrue(user.getEmail().contains("@"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getGender() {
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        assertEquals(EnumGenders.MALE, user.getGender());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void setGender() {
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        assertTrue(user.getAge() > 0);
+        assertEquals(20, user.getAge());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getAge() {
         User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
         assertTrue(user.getAge() > 0);
+        assertEquals(20, user.getAge());
+
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void setAge() {
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        user.setAge(30);
+        assertTrue(user.getAge() < 120);
+        assertTrue(user.getAge() > 18);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getTotalBets() {
+
     }
 
-    @org.junit.jupiter.api.Test
-    void setTotalBets() {
-    }
-
-    @org.junit.jupiter.api.Test
+    @Test
     void testToString() {
     }
 }
