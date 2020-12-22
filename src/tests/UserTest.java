@@ -5,18 +5,19 @@ import logic.data.EnumGenders;
 import logic.data.User;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 
 class UserTest {
 
     @Test
     public void getName() {
-        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
-        assertEquals("Filipe", user.getName());
+        User user = new User("Bet1", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        assertEquals("Bet1", user.getName());
+        assertTrue(user.getName().length() < 21);
     }
 
     @Test
@@ -24,8 +25,9 @@ class UserTest {
         User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
         user.setName("Leonardo");
         assertEquals("Leonardo", user.getName());
-        assertTrue(user.getName().length() < 20);
-        assertTrue(user.getName().length() > 1);
+        assertNotEquals("Leonildo", user.getName());
+        assertTrue(user.getName().length() < 21);
+        assertTrue(user.getName().length() > 0);
     }
 
     @Test
@@ -52,8 +54,10 @@ class UserTest {
     @Test
     void setGender() {
         User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
-        assertTrue(user.getAge() > 0);
-        assertEquals(20, user.getAge());
+        user.setGender(EnumGenders.FEMALE);
+        assertEquals(EnumGenders.FEMALE, user.getGender());
+        user.setGender(EnumGenders.OTHER);
+        assertEquals(EnumGenders.OTHER, user.getGender());
     }
 
     @Test
@@ -74,10 +78,8 @@ class UserTest {
 
     @Test
     void getTotalBets() {
-
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
+        assertTrue(user.getTotalBets() >= 0);
     }
 
-    @Test
-    void testToString() {
-    }
 }
