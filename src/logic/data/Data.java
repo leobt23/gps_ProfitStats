@@ -45,18 +45,15 @@ public class Data {
     }
 
     public Status getBetStatus(int idx) {
-        return user.betsHistory.getBets().get(idx).;
+        return user.betsHistory.getBets().get(idx).getStatus();
     }
 
     public int getBetId(int idx) {
-        return -1;
+        return user.betsHistory.getBets().get(idx).getBetId();
     }
 
     public String getBetCloseDate(int idx) {
-        return "";
+        return user.betsHistory.getBets().get(idx).getBetCloseDate();
     }
 
-    public void setBetStatus(int betId, Status status) {
-
-    }
 }

@@ -1,5 +1,7 @@
 package logic.data;
 
+import logic.Status;
+
 public class Bet {
     int numberOfGames, numberOfBets;
     static int contador = 0;
@@ -8,8 +10,10 @@ public class Bet {
     String betCloseDate;
     float totalValueBetted, possibleWinnings;
     String betName;
+    Status result;
 
-    public Bet(int numberOfGames, int numberOfBets, String betRegisterDate, String betCloseDate, float totalValueBetted, float possibleWinnings, String betName) {
+    public Bet(int numberOfGames, int numberOfBets, String betRegisterDate, String betCloseDate,
+               float totalValueBetted, float possibleWinnings, String betName, Status result) {
         this.betId = contador;
         this.numberOfGames = numberOfGames;
         this.numberOfBets = numberOfBets;
@@ -19,6 +23,7 @@ public class Bet {
         this.possibleWinnings = possibleWinnings;
         this.betName = betName;
         contador++;
+        this.result = result;
     }
 
     public int getBetId(){return betId; }
@@ -86,6 +91,10 @@ public class Bet {
         }
         else
             betRegisterDate = date;
+    }
+
+    public Status getStatus() {
+        return result;
     }
 
     @Override
