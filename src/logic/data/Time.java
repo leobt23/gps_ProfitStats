@@ -1,5 +1,6 @@
 package logic.data;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Time {
@@ -16,9 +17,27 @@ public class Time {
     }
 
     public String getCurrentDate(){
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
-        return formatter.format(date);
+        this.setTimeToCurrentDate();
+        return "Time{" +
+                       + year    +
+                "/"    + month   +
+                "/"    + day     +
+                " - "  + hour    +
+                ":"    + minute  +
+                ":"    + seconds +
+                '}';
+    }
+
+
+    public void setTimeToCurrentDate(){
+        LocalDateTime now = LocalDateTime.now();
+
+        this.setYear(now.getYear());
+        this.setMonth(now.getMonthValue());
+        this.setDay(now.getDayOfMonth());
+        this.setHour(now.getHour());
+        this.setMinute(now.getMinute());
+        this.setSeconds(now.getSecond());
     }
 
     public int getYear() {
@@ -59,7 +78,7 @@ public class Time {
     }
 
     public void setMonth(int month) {
-        if(month < 12 && month > 0)
+        if(month <= 12 && month > 0)
         this.month = month;
         else{
             System.out.println(" *** Mes Invalido ***");
@@ -110,13 +129,14 @@ public class Time {
     @Override
     public String toString() {
         return "Time{" +
-                "year=" + year +
-                ", month=" + month +
-                ", week=" + week +
-                ", day=" + day +
-                ", hour=" + hour +
-                ", minute=" + minute +
+                "year="      + year +
+                ", month="   + month +
+                ", week="    + week +
+                ", day="     + day +
+                ", hour="    + hour +
+                ", minute="  + minute +
                 ", seconds=" + seconds +
                 '}';
     }
+
 }
