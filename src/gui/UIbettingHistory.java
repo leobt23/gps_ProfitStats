@@ -285,7 +285,7 @@ public class UIbettingHistory extends BorderPane {
                 new PropertyChangeListener() {
                     @Override
                     public void propertyChange(PropertyChangeEvent evt) {
-                        setVisible(model.getState() == EnumStates.BETTING_HISTORY);
+                        setVisible(model.getState() == EnumStates.BETS_HISTORY);
                         System.out.println("propertyChange");
                     }
                 }
