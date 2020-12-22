@@ -4,6 +4,8 @@ package tests;
 import logic.data.Time;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -13,9 +15,20 @@ class TimeTest {
 
     @Test
     void getCurrentDate() {
-         Time tempo = new Time(2020, 10,1, 20, 11,30,27);
-         assertSame(tempo, tempo.getCurrentDate());
+        Time tempo = new Time(2020, 10,1, 20, 11,30,27);
+
+        LocalDateTime now = LocalDateTime.now();
+        assertEquals("Time{"        +
+                      + now.getYear()       +
+                "/"   + now.getMonthValue() +
+                "/"   + now.getDayOfMonth() +
+                " - " + now.getHour()       +
+                ":"   + now.getMinute()     +
+                ":"   + now.getSecond()     +
+                '}'  ,  tempo.getCurrentDate());
     }
+
+
 
     @Test
     void getYear() {
@@ -96,13 +109,41 @@ class TimeTest {
 
     @Test
     void setMinute() {
+        Time tempo = new Time(2020, 10,1, 20, 11,30,27);
+        tempo.setMinute(17);
+        assertEquals(17, tempo.getMinute());
     }
 
     @Test
     void setSeconds() {
+        Time tempo = new Time(2020, 10,1, 20, 11,30,27);
+        tempo.setSeconds(13);
+        assertEquals(13, tempo.getSeconds());
     }
 
     @Test
     void testToString() {
+        Time tempo = new Time(2020, 10,1, 20, 11,30,27);
+        assertEquals("Time{" +
+                "year="      + tempo.getYear()    +
+                ", month="   + tempo.getMonth()   +
+                ", week="    + tempo.getWeek()    +
+                ", day="     + tempo.getDay()     +
+                ", hour="    + tempo.getHour()    +
+                ", minute="  + tempo.getMinute()  +
+                ", seconds=" + tempo.getSeconds() +
+                '}', tempo.toString());
+    }
+
+
+    @Test
+    void setTimeToCurrentDate() {
+        Time tempo = new Time(2020, 10,1, 20, 11,30,27);
+        Time aux = new Time(200, 1,1, 2, 01,30,27);
+        tempo.getCurrentDate();
+        aux.getCurrentDate();
+
+        assertEquals(tempo.toString(), aux.toString());
+
     }
 }

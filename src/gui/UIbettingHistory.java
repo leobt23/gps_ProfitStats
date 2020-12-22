@@ -71,7 +71,7 @@ public class UIbettingHistory extends BorderPane {
             editImageView.setFitWidth(30);
             edit_button.getChildren().add(editImageView);
 
-            editImageView.setOnMouseClicked(event ->
+          /*  editImageView.setOnMouseClicked(event ->
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
@@ -90,7 +90,7 @@ public class UIbettingHistory extends BorderPane {
                 {
 
                 }
-            });
+            });*/
 
             //Add to vbox
             VBox vBoxLeftId = new VBox();

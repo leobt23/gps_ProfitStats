@@ -16,5 +16,8 @@ public class Root extends BorderPane {
 //        UIbettingHistory uIbettingHistory = new UIbettingHistory(model);
     }
 
+    public Root() {
+
+    }
 }
 
