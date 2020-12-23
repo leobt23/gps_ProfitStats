@@ -12,8 +12,19 @@ public abstract class StateAdapter implements IState {
     }
 
     @Override
-    public IState saveBet(int numberOfGames, int numberOfBets, String betRegisterDate, String betCloseDate, float totalValueBetted, float possibleWinnings, String betName) {
+    public IState betRegistry() {
+        return new BetRegistry(data);
+    }
+
+    @Override
+    public IState saveBet(int numberOfGames, int numberOfBets, String betRegisterDate, String betCloseDate,
+            float totalValueBetted, float possibleWinnings, String betName) {
         return this;
+    }
+
+    @Override
+    public IState userProfile() {
+        return new UserProfile(data);
     }
 
     @Override
@@ -55,7 +66,7 @@ public abstract class StateAdapter implements IState {
 
     @Override
     public IState notifications() {
-        return this;
+        return new Notifications(data);
     }
 
     @Override
@@ -70,7 +81,12 @@ public abstract class StateAdapter implements IState {
 
     @Override
     public IState statistics() {
-        return this;
+        return new Statistics(data);
+    }
+
+    @Override
+    public IState betsHistory() {
+        return new BetRegistry(data);
     }
 
     @Override

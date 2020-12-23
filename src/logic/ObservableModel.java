@@ -40,19 +40,19 @@ public class ObservableModel {
         return data.getBetRegistryDate(idx);
     }
 
-    public String getBetNumberOfGames(int idx) {
+    public int getBetNumberOfGames(int idx) {
         return data.getBetNumberOfGames(idx);
     }
 
-    public String getBetNumberOfBets(int idx) {
+    public int getBetNumberOfBets(int idx) {
         return data.getBetNumberOfBets(idx);
     }
 
-    public String getBetValueBetted(int idx) {
+    public float getBetValueBetted(int idx) {
         return data.getBetValueBetted(idx);
     }
 
-    public String getBetPossibleWinnings(int idx) {
+    public float getBetPossibleWinnings(int idx) {
         return data.getBetPossibleWinnings(idx);
     }
 
