@@ -22,9 +22,8 @@ import java.beans.PropertyChangeListener;
 
 
 public class UIbettingHistory extends BorderPane {
-
     ObservableModel model;
-
+    private int idx;
     public UIbettingHistory(ObservableModel model) {
         this.model = model;
         //lABEL DO TITULO
@@ -42,7 +41,10 @@ public class UIbettingHistory extends BorderPane {
         ScrollPane scrollPane = new ScrollPane();
         //SCROLL PANE VBOX
         VBox scrollPaneVBox = new VBox();
+        idx = 0;
         for(int i = 0; i < model.getNumberOfBets(); i++){
+            //idx
+            idx = i;
             //borderpane itemlist
             BorderPane itemList = new BorderPane();
             //title(info)
@@ -71,11 +73,11 @@ public class UIbettingHistory extends BorderPane {
             editImageView.setFitWidth(30);
             edit_button.getChildren().add(editImageView);
 
-          /*  editImageView.setOnMouseClicked(event ->
+            editImageView.setOnMouseClicked(event ->
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
-//                    model.editBetButton(i);
+                    model.editBetButton(idx);
                 } else
                 {
 
@@ -85,12 +87,12 @@ public class UIbettingHistory extends BorderPane {
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
-//                    model.deleteBet(i);
+                    model.deleteBet(idx);
                 } else
                 {
 
                 }
-            });*/
+            });
 
             //Add to vbox
             VBox vBoxLeftId = new VBox();
@@ -183,7 +185,7 @@ public class UIbettingHistory extends BorderPane {
                 {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
-//                        model.setBetStatus(model.getBetId(i), Status.WON);
+                        model.setBetStatus(model.getBetId(idx),Status.WON);
                     } else
                     {
 
@@ -193,10 +195,10 @@ public class UIbettingHistory extends BorderPane {
                 {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
-//                        model.setBetStatus(model.getBetId(i),Status.LOST);
+                        model.setBetStatus(model.getBetId(idx),Status.LOST);
                     } else
                     {
-                        
+
                     }
                 });
 
