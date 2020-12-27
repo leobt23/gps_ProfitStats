@@ -56,7 +56,7 @@ public class Data {
         return user.betsHistory.getBets().get(idx).getBetCloseDate();
     }
 
-    public void setBetStatus(int betId, Status status) {
+    public void setBetStatus(int betId, EnumBetStatus status) {
         user.betsHistory.getBets().forEach(
                 b -> {
                     if(b.getBetId() == betId) {
