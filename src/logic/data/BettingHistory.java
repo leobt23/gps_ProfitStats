@@ -1,4 +1,6 @@
 package logic.data;
+import logic.EnumBetStatus;
+
 import java.util.ArrayList;
 
 public class BettingHistory {
@@ -48,7 +50,7 @@ public class BettingHistory {
     }
 
     public boolean changeBetInHistory(int id, int ngames, int nbets, String betRDate, String betCDate,
-                                      float totalValueB, float possibleW, String nameBet){
+                                      float totalValueB, float possibleW, String nameBet, EnumBetStatus status){
         for(int i=0; i<bets.size(); i++){
             if(bets.get(i).getBetId() == id){
                 bets.get(i).setNumberOfGames(ngames);
@@ -58,6 +60,7 @@ public class BettingHistory {
                 bets.get(i).setTotalValueBetted(totalValueB);
                 bets.get(i).setPossibleWinnings(possibleW);
                 bets.get(i).setBetName(nameBet);
+                bets.get(i).setStatus(status);
                 return true;
             }
         }
@@ -92,5 +95,7 @@ public class BettingHistory {
                 ", moneyStats=" + moneyStats +
                 '}';
     }
+
+
 }
 
