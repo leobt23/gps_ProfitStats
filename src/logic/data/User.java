@@ -68,7 +68,7 @@ public class User {
                 '}';
     }
 
-    public boolean registerBet(int ngames, int nbets, String betRDate, String betCDate,
+    public boolean registerBet(int ngames, int nbets, Time betRDate, Time betCDate,
                                float totalValueB, float possibleW, String nameBet) {
 
         Bet newBet = new Bet(ngames, nbets, betRDate, betCDate, totalValueB, possibleW, nameBet);
@@ -78,7 +78,7 @@ public class User {
             return false;
     }
 
-    public boolean changeBet(int idBet, int ngames, int nbets, String betRDate, String betCDate,
+    public boolean changeBet(int idBet, int ngames, int nbets, Time betRDate, Time betCDate,
                              float totalValueB, float possibleW, String nameBet) {
 
         if (betsHistory.findBet(idBet) != null) {
@@ -105,9 +105,13 @@ public class User {
 
         User a = new User("Pedro", "pdls", EnumGenders.MALE, 20, 0);
 
-        a.registerBet(2, 1, "29-09-2020", "30-09-2020", 19.9f, 100.99f, "primeiraBet");
-        a.registerBet(2, 1, "29-09-2020", "30-09-2020", 19.9f, 100.99f, "segundaBet");
-        a.changeBet(0, 13, 3, "29-09-2020", "29-03-2020", 20.0f, 200.0f, "Bet alterada");
+        Time timeRegister = new Time(2020, 10,1, 20, 11,30,27);
+        Time timeClose = new Time(2020, 10,1, 20, 11,30,27);
+        timeClose.getCurrentDate();
+
+        a.registerBet(2, 1, timeRegister, timeClose, 19.9f, 100.99f, "primeiraBet");
+        a.registerBet(2, 1, timeRegister, timeClose, 19.9f, 100.99f, "segundaBet");
+        a.changeBet(0, 13, 3, timeRegister, timeClose, 20.0f, 200.0f, "Bet alterada");
         System.out.println("------------------------------------------------");
         a.getBets();
         System.out.println("------------------------------------------------");

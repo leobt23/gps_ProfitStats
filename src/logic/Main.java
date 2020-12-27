@@ -5,7 +5,7 @@ import logic.data.Time;
 
 public class Main {
     public static void main(String[] args) {
-        Bet bet = new Bet (2,2,"10/10/2020", "12/10/2020", 1, 5, "betnr1");
+     /*   //Bet bet = new Bet (2,2,"10/10/2020", "12/10/2020", 1, 5, "betnr1");
 
         //Bet bet2 = new Bet ("fff","fff",10/10/2020, 12/10/2020, "f", "f", 2222);
 
@@ -22,6 +22,6 @@ public class Main {
 
 
         System.out.println("Tempo 1:" +t1.toString());
-      //  System.out.println("Tempo 2:" +t2.toString());
+      //  System.out.println("Tempo 2:" +t2.toString());*/
     }
 }
