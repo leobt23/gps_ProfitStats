@@ -6,14 +6,13 @@ public class Bet {
     int numberOfGames, numberOfBets;
     static int contador = 0;
     int betId;
-    String betRegisterDate;
-    String betCloseDate;
+    Time betRegisterDate;
+    Time betCloseDate;
     float totalValueBetted, possibleWinnings;
     String betName;
     EnumBetStatus result;
 
-    public Bet(int numberOfGames, int numberOfBets, String betRegisterDate, String betCloseDate,
-               float totalValueBetted, float possibleWinnings, String betName, EnumBetStatus result) {
+    public Bet(int numberOfGames, int numberOfBets, Time betRegisterDate, Time betCloseDate, float totalValueBetted, float possibleWinnings, String betName,EnumBetStatus result) {
         this.betId = contador;
         this.numberOfGames = numberOfGames;
         this.numberOfBets = numberOfBets;
@@ -44,19 +43,24 @@ public class Bet {
         this.numberOfBets = numberOfBets;
     }
 
-    public String getBetRegisterDate() {
+    public Time getBetRegisterDate() {
         return betRegisterDate;
     }
 
-    public void setBetRegisterDate(String betRegisterDate) {
-        this.betRegisterDate = betRegisterDate;
+    public void setBetRegisterDate(Time date) {
+        if(date == null){
+            Time tAux = null;
+            betRegisterDate = tAux;
+        }
+        else
+            betRegisterDate = date;
     }
 
-    public String getBetCloseDate() {
+    public Time getBetCloseDate() {
         return betCloseDate;
     }
 
-    public void setBetCloseDate(String betCloseDate) {
+    public void setBetCloseDate(Time betCloseDate) {
         this.betCloseDate = betCloseDate;
     }
 
@@ -84,14 +88,6 @@ public class Bet {
         this.betName = betName;
     }
 
-    public void registBetDate(String date){
-        if(date == null){
-            Time tAux = null;
-            betRegisterDate = tAux.getCurrentDate();
-        }
-        else
-            betRegisterDate = date;
-    }
 
     public EnumBetStatus getStatus() {
         return result;

@@ -36,7 +36,7 @@ public class ObservableModel {
         return data.getBetName(idx);
     }
 
-    public String getBetRegistryDate(int idx) {
+    public Time getBetRegistryDate(int idx) {
         return data.getBetRegistryDate(idx);
     }
 
@@ -64,7 +64,7 @@ public class ObservableModel {
         return data.getBetId(idx);
     }
 
-    public String getBetCloseDate(int idx) {
+    public Time getBetCloseDate(int idx) {
         return data.getBetCloseDate(idx);
     }
 

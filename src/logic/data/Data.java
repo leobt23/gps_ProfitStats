@@ -31,7 +31,7 @@ public class Data {
         return user.betsHistory.getBets().get(idx).getBetName();
     }
 
-    public String getBetRegistryDate(int idx) {
+    public Time getBetRegistryDate(int idx) {
         return user.betsHistory.getBets().get(idx).getBetRegisterDate();
     }
 
@@ -59,7 +59,7 @@ public class Data {
         return user.betsHistory.getBets().get(idx).getBetId();
     }
 
-    public String getBetCloseDate(int idx) {
+    public Time getBetCloseDate(int idx) {
         return user.betsHistory.getBets().get(idx).getBetCloseDate();
     }
 
