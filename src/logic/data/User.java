@@ -142,8 +142,8 @@ public class User {
 
         User a = new User("Pedro", "pdls", EnumGenders.MALE, 20, 0);
 
-        a.registerBet(2, 1, "29-09-2020", "30-09-2020", 19.9f, 100.99f, "primeiraBet");
-        a.registerBet(2, 1, "29-09-2020", "30-09-2020", 19.9f, 100.99f, "segundaBet");
+        //a.registerBet(2, 1, "29-09-2020", "30-09-2020", 19.9f, 100.99f, "primeiraBet");
+        //a.registerBet(2, 1, "29-09-2020", "30-09-2020", 19.9f, 100.99f, "segundaBet");
         a.changeBet(0, 13, 3, "29-09-2020", "29-03-2020", 20.0f, 200.0f, "Bet alterada", EnumBetStatus.WON);
         Time timeRegister = new Time(2020, 10,1, 20, 11,30,27);
         Time timeClose = new Time(2020, 10,1, 20, 11,30,27);
@@ -151,7 +151,7 @@ public class User {
 
         a.registerBet(2, 1, timeRegister, timeClose, 19.9f, 100.99f, "primeiraBet");
         a.registerBet(2, 1, timeRegister, timeClose, 19.9f, 100.99f, "segundaBet");
-        a.changeBet(0, 13, 3, timeRegister, timeClose, 20.0f, 200.0f, "Bet alterada");
+        //a.changeBet(0, 13, 3, timeRegister, timeClose, 20.0f, 200.0f, "Bet alterada");
         System.out.println("------------------------------------------------");
         a.getBets();
         System.out.println("------------------------------------------------");
