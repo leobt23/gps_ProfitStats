@@ -97,6 +97,10 @@ public class Bet {
         return result;
     }
 
+    public void setStatus(Status status) {
+        this.result = status;
+    }
+
     @Override
     public String toString() {
         return "Bet{" +

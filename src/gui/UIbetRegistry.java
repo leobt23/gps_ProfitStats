@@ -185,15 +185,15 @@ public class UIbetRegistry extends BorderPane {
                     }
 
                 }
-                obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
-                        , betNameValue, status);
+//                obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
+//                        , betNameValue, status);
 
             }
         });
 
         btnCancel.setOnMouseClicked(event->{
            if(event.getButton() == MouseButton.PRIMARY){
-               obsModel.cancelBetRegistry();
+//               obsModel.cancelBetRegistry();
            }
         });
     }
