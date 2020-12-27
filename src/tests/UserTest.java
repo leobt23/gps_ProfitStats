@@ -1,7 +1,7 @@
 
 package tests;
 
-import logic.Status;
+import logic.EnumBetStatus;
 import logic.data.Bet;
 import logic.data.EnumGenders;
 import logic.data.User;

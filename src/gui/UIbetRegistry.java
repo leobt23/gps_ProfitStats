@@ -13,12 +13,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import logic.EnumBetStatus;
+import logic.EnumWrongInputBetRegistry;
 import logic.ObservableModel;
 import logic.states.EnumStates;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class UIbetRegistry extends BorderPane {
     private ObservableModel obsModel;
@@ -26,7 +28,7 @@ public class UIbetRegistry extends BorderPane {
     public UIbetRegistry(ObservableModel obsModel) {
         this.obsModel=obsModel;
 
-        //TITLE
+     /*   //TITLE
         Label betRegistryTitle = new Label("BET REGISTRY");
         betRegistryTitle.setTextFill(Color.BLACK);
         betRegistryTitle.setFont(new Font( "Arial",30) );
@@ -430,6 +432,6 @@ public class UIbetRegistry extends BorderPane {
                         System.out.println("propertyChange");
                     }
                 }
-        );
+        );*/
     }
 }
