@@ -27,8 +27,12 @@ public class UIbetRegistry extends BorderPane {
 
     public UIbetRegistry(ObservableModel obsModel) {
         this.obsModel=obsModel;
+        createView();
 
-     /*   //TITLE
+    }
+
+    private void createView() {
+        //TITLE
         Label betRegistryTitle = new Label("BET REGISTRY");
         betRegistryTitle.setTextFill(Color.BLACK);
         betRegistryTitle.setFont(new Font( "Arial",30) );
@@ -51,7 +55,7 @@ public class UIbetRegistry extends BorderPane {
 
         DatePicker registDatePicker = new DatePicker(LocalDate.now());
         registDatePicker.setOnAction(event -> {
-           // LocalDate date = registDatePicker.getValue();
+            // LocalDate date = registDatePicker.getValue();
         });
         gridPane.add(registDatePicker,1,2);
 
@@ -153,12 +157,21 @@ public class UIbetRegistry extends BorderPane {
         Button btnSave = new Button("Save");
 
         HBox containerButtons = new HBox();
-
+        btnCancel.setMinSize(100,20);
+        btnCancel.setPadding(new Insets(5,5,5,5));
+        btnSave.setMinSize(100,20);
+        btnSave.setPadding(new Insets(5,5,5,5));
         containerButtons.getChildren().addAll(btnCancel,btnSave);
 
-        setTop(betRegistryTitle);
+        HBox titleBox = new HBox();
+        titleBox.getChildren().add(betRegistryTitle);
+        titleBox.setAlignment(Pos.BOTTOM_CENTER);
+        titleBox.setPadding(new Insets(20,0,0,0));
+        setTop(titleBox);
         setCenter(gridPane);
         setBottom(containerButtons);
+        containerButtons.setAlignment(Pos.CENTER);
+        containerButtons.setPadding(new Insets(20,20,20,20));
 
         btnSave.setOnMouseClicked(event -> {
 
@@ -208,11 +221,12 @@ public class UIbetRegistry extends BorderPane {
         });
 
         btnCancel.setOnMouseClicked(event->{
-           if(event.getButton() == MouseButton.PRIMARY){
-               obsModel.cancelBetRegistry();
-           }
+            if(event.getButton() == MouseButton.PRIMARY){
+                createView();
+            }
         });
     }
+
     private void ViewWithWrongInputs(ArrayList<EnumWrongInputBetRegistry> wrong_input){
         this.obsModel=obsModel;
 
@@ -354,6 +368,7 @@ public class UIbetRegistry extends BorderPane {
 
         containerButtons.getChildren().addAll(btnCancel,btnSave);
 
+        betRegistryTitle.setAlignment(Pos.TOP_CENTER);
         setTop(betRegistryTitle);
         setCenter(gridPane);
         setBottom(containerButtons);
@@ -408,7 +423,7 @@ public class UIbetRegistry extends BorderPane {
 
         btnCancel.setOnMouseClicked(event->{
             if(event.getButton() == MouseButton.PRIMARY){
-                obsModel.cancelBetRegistry();
+                createView();
             }
         });
 
@@ -427,11 +442,11 @@ public class UIbetRegistry extends BorderPane {
                 new PropertyChangeListener() {
                     @Override
                     public void propertyChange(PropertyChangeEvent evt) {
-                        ArrayList<EnumWrongInputBetRegistry> wrong_input = obsModel.getBetRegistryWrongInput();
+                        ArrayList<EnumWrongInputBetRegistry> wrong_input = obsModel.getWrongInputBetRegistry();
                         ViewWithWrongInputs(wrong_input);
                         System.out.println("propertyChange");
                     }
                 }
-        );*/
+        );
     }
 }

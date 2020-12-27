@@ -7,6 +7,7 @@ import logic.states.EnumStates;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ObservableModel {
@@ -81,4 +82,14 @@ public class ObservableModel {
     public boolean verifyInputBetRegistry(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
         return data.verifyInputBetRegistry(numOfGamesBettedValue,registDateValue,closeDateValue,totalValueBettedValue,possibleWinningsValue,numberOfBetsValue,betNameValue,enumBetStatus);
     }
+    public ArrayList<EnumWrongInputBetRegistry> getWrongInputBetRegistry(){
+        return  data.getWrongInputBetRegistry();
+    }
+
+    public void addNewBet(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        data.addNewBet(numOfGamesBettedValue,registDateValue,
+                closeDateValue,totalValueBettedValue,possibleWinningsValue,
+                numberOfBetsValue,betNameValue, enumBetStatus);
+    }
+
 }

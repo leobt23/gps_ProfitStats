@@ -14,6 +14,7 @@ public class Root extends BorderPane {
         LeftPanel leftPanel = new LeftPanel();
         setLeft(leftPanel);
 //        UIbettingHistory uIbettingHistory = new UIbettingHistory(model);
+        setCenter(new UIbetRegistry(model));
     }
 
     public Root() {

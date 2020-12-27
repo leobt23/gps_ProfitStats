@@ -1,3 +1,4 @@
+/*
 
 package tests;
 
@@ -147,3 +148,4 @@ class TimeTest {
 
     }
 }
+*/
