@@ -24,6 +24,14 @@ import java.util.ArrayList;
 
 public class UIbetRegistry extends BorderPane {
     private ObservableModel obsModel;
+    String possibleWinningsValue;
+    String numOfGamesBettedValue;
+    String betNameValue;
+    String totalValueBettedValue;
+    String numberOfBetsValue;
+    LocalDate registDateValue;
+    LocalDate closeDateValue;
+    EnumBetStatus enumBetStatus;
 
     public UIbetRegistry(ObservableModel obsModel) {
         this.obsModel=obsModel;
@@ -134,7 +142,7 @@ public class UIbetRegistry extends BorderPane {
             {
                 if (checkBoxPendent.isSelected()) {
                     checkBoxWin.setSelected(false);
-                    checkBoxPendent.setSelected(false);
+                    checkBoxLost.setSelected(false);
                 }
 
 
@@ -177,15 +185,14 @@ public class UIbetRegistry extends BorderPane {
 
             if (event.getButton() == MouseButton.PRIMARY) {
 
-                String possibleWinningsValue = possibleWinningsField.getText();
-                String numOfGamesBettedValue = numberOfGamesBettedField.getText();
-                String betNameValue = betNameField.getText();
-                String totalValueBettedValue = totalValueBettedField.getText();
-                String numberOfBetsValue = numberOfBetsField.getText();
-                LocalDate registDateValue = registDatePicker.getValue();
-                LocalDate closeDateValue = closeDatePicker.getValue();
+                possibleWinningsValue = possibleWinningsField.getText();
+                numOfGamesBettedValue = numberOfGamesBettedField.getText();
+                betNameValue = betNameField.getText();
+                totalValueBettedValue = totalValueBettedField.getText();
+                numberOfBetsValue = numberOfBetsField.getText();
+                registDateValue = registDatePicker.getValue();
+                closeDateValue = closeDatePicker.getValue();
 
-                EnumBetStatus enumBetStatus;
                 if (checkBoxLost.isSelected()) {
                     enumBetStatus = EnumBetStatus.LOST;
                 } else {
@@ -215,6 +222,7 @@ public class UIbetRegistry extends BorderPane {
                             "Input error(s)!", ButtonType.OK);
                     // show the dialog
                     a1.showAndWait();
+                    ViewWithWrongInputs(obsModel.getWrongInputBetRegistry());
                 }
 
             }
@@ -247,13 +255,14 @@ public class UIbetRegistry extends BorderPane {
 
         TextField numberOfGamesBettedField= new TextField();
         if(wrong_input.contains(EnumWrongInputBetRegistry.NUMBER_OF_GAMES_BETTED))
-            numberOfGamesBettedField.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            numberOfGamesBettedField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
+        numberOfGamesBettedField.setText(numOfGamesBettedValue);
         gridPane.add(numberOfGamesBettedField, 1, 1);
 
         Label registDate = new Label("Bet regist date:");
         gridPane.add(registDate, 0, 2);
 
-        DatePicker registDatePicker = new DatePicker(LocalDate.now());
+        DatePicker registDatePicker = new DatePicker(registDateValue);
         registDatePicker.setOnAction(event -> {
             // LocalDate date = registDatePicker.getValue();
         });
@@ -262,10 +271,12 @@ public class UIbetRegistry extends BorderPane {
         Label closeDate = new Label("Bet close date:");
         gridPane.add(closeDate, 0, 3);
 
-        DatePicker closeDatePicker = new DatePicker(LocalDate.now());
+        DatePicker closeDatePicker = new DatePicker(closeDateValue);
         closeDatePicker.setOnAction(event -> {
             LocalDate date = closeDatePicker.getValue();
         });
+        if(wrong_input.contains(EnumWrongInputBetRegistry.BET_CLOSE_DATE))
+            closeDatePicker.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
         gridPane.add(closeDatePicker,1,3);
 
         Label totalValueBetted = new Label("Total value betted:");
@@ -273,7 +284,8 @@ public class UIbetRegistry extends BorderPane {
 
         TextField totalValueBettedField= new TextField();
         if(wrong_input.contains(EnumWrongInputBetRegistry.TOTAL_VALUE_BETTED))
-            totalValueBettedField.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            totalValueBettedField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
+        totalValueBettedField.setText(totalValueBettedValue);
         gridPane.add(totalValueBettedField, 1, 4);
 
         Label possibleWinnings = new Label("Possible winnings:");
@@ -281,7 +293,8 @@ public class UIbetRegistry extends BorderPane {
 
         TextField possibleWinningsField= new TextField();
         if(wrong_input.contains(EnumWrongInputBetRegistry.POSSIBLE_WINNINGS))
-            possibleWinningsField.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            possibleWinningsField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
+        possibleWinningsField.setText(possibleWinningsValue);
         gridPane.add(possibleWinningsField, 1, 5);
 
         Label numberOfBets = new Label("Number of bets:");
@@ -289,7 +302,9 @@ public class UIbetRegistry extends BorderPane {
 
         TextField numberOfBetsField= new TextField();
         if(wrong_input.contains(EnumWrongInputBetRegistry.NUMBER_OF_BETS))
-            numberOfBetsField.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            numberOfBetsField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
+        numberOfBetsField.setText(numberOfBetsValue);
+
         gridPane.add(numberOfBetsField, 1, 6);
 
         Label betName = new Label("Bet name:");
@@ -297,8 +312,9 @@ public class UIbetRegistry extends BorderPane {
 
         TextField betNameField= new TextField();
         if(wrong_input.contains(EnumWrongInputBetRegistry.BET_NAME))
-            betNameField.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            betNameField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
         gridPane.add(betNameField, 1, 7);
+        betNameField.setText(betNameValue);
 
         Label Result = new Label("Result:");
         gridPane.add(Result, 0, 8);
@@ -309,6 +325,12 @@ public class UIbetRegistry extends BorderPane {
         checkBoxLost.setAllowIndeterminate(false);
         CheckBox checkBoxPendent = new CheckBox("Pendent");
         checkBoxPendent.setAllowIndeterminate(false);
+        if(enumBetStatus==EnumBetStatus.LOST)
+            checkBoxLost.setSelected(true);
+        if(enumBetStatus==EnumBetStatus.WON)
+            checkBoxWin.setSelected(true);
+        if(enumBetStatus==EnumBetStatus.PENDENT)
+            checkBoxPendent.setSelected(true);
 
         EventHandler<ActionEvent> eventWin = new EventHandler<ActionEvent>() {
 
@@ -368,22 +390,31 @@ public class UIbetRegistry extends BorderPane {
 
         containerButtons.getChildren().addAll(btnCancel,btnSave);
 
-        betRegistryTitle.setAlignment(Pos.TOP_CENTER);
-        setTop(betRegistryTitle);
+        HBox boxTitle = new HBox();
+        boxTitle.getChildren().add(betRegistryTitle);
+        boxTitle.setAlignment(Pos.TOP_CENTER);
+        boxTitle.setPadding(new Insets(20,0,0,0));
+        setTop(boxTitle);
         setCenter(gridPane);
         setBottom(containerButtons);
+        containerButtons.setAlignment(Pos.CENTER);
+        btnCancel.setMinSize(100,20);
+        btnCancel.setPadding(new Insets(5,5,5,5));
+        btnSave.setMinSize(100,20);
+        btnSave.setPadding(new Insets(5,5,5,5));
+        containerButtons.setPadding(new Insets(20,20,20,20));
 
         btnSave.setOnMouseClicked(event -> {
 
             if (event.getButton() == MouseButton.PRIMARY) {
 
-                String possibleWinningsValue = possibleWinningsField.getText();
-                String numOfGamesBettedValue = numberOfGamesBettedField.getText();
-                String betNameValue = betNameField.getText();
-                String totalValueBettedValue = totalValueBettedField.getText();
-                String numberOfBetsValue = numberOfBetsField.getText();
-                LocalDate registDateValue = registDatePicker.getValue();
-                LocalDate closeDateValue = closeDatePicker.getValue();
+                possibleWinningsValue = possibleWinningsField.getText();
+                numOfGamesBettedValue = numberOfGamesBettedField.getText();
+                betNameValue = betNameField.getText();
+                totalValueBettedValue = totalValueBettedField.getText();
+                numberOfBetsValue = numberOfBetsField.getText();
+                registDateValue = registDatePicker.getValue();
+                closeDateValue = closeDatePicker.getValue();
 
                 EnumBetStatus enumBetStatus;
                 if (checkBoxLost.isSelected()) {
@@ -415,6 +446,7 @@ public class UIbetRegistry extends BorderPane {
                             "Input error(s)!", ButtonType.OK);
                     // show the dialog
                     a1.showAndWait();
+                    ViewWithWrongInputs(obsModel.getWrongInputBetRegistry());
                 }
 
 
