@@ -49,7 +49,7 @@ public class BettingHistory {
             return false;
     }
 
-    public boolean changeBetInHistory(int id, int ngames, int nbets, String betRDate, String betCDate,
+    public boolean changeBetInHistory(int id, int ngames, int nbets, Time betRDate,Time betCDate,
                                       float totalValueB, float possibleW, String nameBet, EnumBetStatus status){
         for(int i=0; i<bets.size(); i++){
             if(bets.get(i).getBetId() == id){

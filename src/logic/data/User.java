@@ -79,7 +79,7 @@ public class User {
             return false;
     }
 
-    public boolean changeBet(int idBet, int ngames, int nbets, String betRDate, String betCDate,
+    public boolean changeBet(int idBet, int ngames, int nbets, Time betRDate, Time betCDate,
                              float totalValueB, float possibleW, String nameBet, EnumBetStatus status) {
 
         if (betsHistory.findBet(idBet) != null) {
@@ -105,12 +105,12 @@ public class User {
     }
 
     public float getTotalProfit() {
-        for(int i=0; i < betsHistory.bets.size(); i++){
-            if(betsHistory.bets.get(i).result == EnumBetStatus.WON)
-                totalProfit += betsHistory.bets.get(i).possibleWinnings;
+        for(int i=0; i < betsHistory.getBets().size(); i++){
+            if(betsHistory.getBets().get(i).result == EnumBetStatus.WON)
+                totalProfit += betsHistory.getBets().get(i).possibleWinnings;
             else
-                if(betsHistory.bets.get(i).result == EnumBetStatus.LOST)
-                    totalProfit -= betsHistory.bets.get(i).totalValueBetted;
+                if(betsHistory.getBets().get(i).result == EnumBetStatus.LOST)
+                    totalProfit -= betsHistory.getBets().get(i).totalValueBetted;
         }
 
         return totalProfit;

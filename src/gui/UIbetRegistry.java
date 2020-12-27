@@ -157,12 +157,21 @@ public class UIbetRegistry extends BorderPane {
         Button btnSave = new Button("Save");
 
         HBox containerButtons = new HBox();
-
+        btnCancel.setMinSize(100,20);
+        btnCancel.setPadding(new Insets(5,5,5,5));
+        btnSave.setMinSize(100,20);
+        btnSave.setPadding(new Insets(5,5,5,5));
         containerButtons.getChildren().addAll(btnCancel,btnSave);
 
-        setTop(betRegistryTitle);
+        HBox titleBox = new HBox();
+        titleBox.getChildren().add(betRegistryTitle);
+        titleBox.setAlignment(Pos.BOTTOM_CENTER);
+        titleBox.setPadding(new Insets(20,0,0,0));
+        setTop(titleBox);
         setCenter(gridPane);
         setBottom(containerButtons);
+        containerButtons.setAlignment(Pos.CENTER);
+        containerButtons.setPadding(new Insets(20,20,20,20));
 
         btnSave.setOnMouseClicked(event -> {
 
@@ -359,6 +368,7 @@ public class UIbetRegistry extends BorderPane {
 
         containerButtons.getChildren().addAll(btnCancel,btnSave);
 
+        betRegistryTitle.setAlignment(Pos.TOP_CENTER);
         setTop(betRegistryTitle);
         setCenter(gridPane);
         setBottom(containerButtons);
