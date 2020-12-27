@@ -13,14 +13,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import logic.EnumBetStatus;
-import logic.EnumWrongInputBetRegistry;
 import logic.ObservableModel;
 import logic.states.EnumStates;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class UIbetRegistry extends BorderPane {
     private ObservableModel obsModel;
