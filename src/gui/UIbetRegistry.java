@@ -342,7 +342,7 @@ public class UIbetRegistry extends BorderPane {
             {
                 if (checkBoxPendent.isSelected()) {
                     checkBoxWin.setSelected(false);
-                    checkBoxPendent.setSelected(false);
+                    checkBoxLost.setSelected(false);
                 }
 
 
