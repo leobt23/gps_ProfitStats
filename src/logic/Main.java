@@ -22,6 +22,6 @@ public class Main {
 
 
         System.out.println("Tempo 1:" +t1.toString());
-      //  System.out.println("Tempo 2:" +t2.toString());*/
+      //  System.out.println("Tempo 2:" +t2.toString());
     }
 }

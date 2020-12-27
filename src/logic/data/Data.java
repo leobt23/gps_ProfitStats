@@ -21,42 +21,48 @@ public class Data {
 
     //TODO: fazer funções
     public String getBetName(int idx) {
-        return "";
+        return user.betsHistory.getBets().get(idx).getBetName();
     }
 
     public String getBetRegistryDate(int idx) {
-        return "";
+        return user.betsHistory.getBets().get(idx).getBetRegisterDate();
     }
 
-    public String getBetNumberOfGames(int idx) {
-        return "";
+    public int getBetNumberOfGames(int idx) {
+        return user.betsHistory.getBets().get(idx).getNumberOfGames();
     }
 
-    public String getBetNumberOfBets(int idx) {
-        return "";
+    public int getBetNumberOfBets(int idx) {
+        return user.betsHistory.getBets().get(idx).getNumberOfBets();
     }
 
-    public String getBetValueBetted(int idx) {
-        return "";
+    public float getBetValueBetted(int idx) {
+        return user.betsHistory.getBets().get(idx).getTotalValueBetted();
     }
 
-    public String getBetPossibleWinnings(int idx) {
-        return "";
+    public float getBetPossibleWinnings(int idx) {
+        return user.betsHistory.getBets().get(idx).getPossibleWinnings();
     }
 
     public Status getBetStatus(int idx) {
-        return null;
+        return user.betsHistory.getBets().get(idx).getStatus();
     }
 
     public int getBetId(int idx) {
-        return -1;
+        return user.betsHistory.getBets().get(idx).getBetId();
     }
 
     public String getBetCloseDate(int idx) {
-        return "";
+        return user.betsHistory.getBets().get(idx).getBetCloseDate();
     }
 
     public void setBetStatus(int betId, Status status) {
-
+        user.betsHistory.getBets().forEach(
+                b -> {
+                    if(b.getBetId() == betId) {
+                        b.setStatus(status);
+                    }
+                }
+        );
     }
 }

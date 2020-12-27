@@ -1,5 +1,10 @@
 package logic.states;
 
 public enum EnumStates {
-    BETTING_HISTORY
+    BETS_HISTORY,
+    BET_REGISTRY,
+    USER_PROFILE,
+    EDIT_USER_PROFILE,
+    NOTIFICATIONS,
+    STATISTICS
 }
