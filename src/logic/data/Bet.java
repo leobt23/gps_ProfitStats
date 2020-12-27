@@ -97,7 +97,7 @@ public class Bet {
         return result;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(EnumBetStatus status) {
         this.result = status;
     }
 
