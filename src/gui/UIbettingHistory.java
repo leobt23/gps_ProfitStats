@@ -77,7 +77,7 @@ public class UIbettingHistory extends BorderPane {
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
-                    model.editBetButton(idx);
+           //         model.editBetButton(idx);
                 } else
                 {
 
@@ -87,7 +87,7 @@ public class UIbettingHistory extends BorderPane {
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
-                    model.deleteBet(idx);
+           //         model.deleteBet(idx);
                 } else
                 {
 

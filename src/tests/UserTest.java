@@ -1,14 +1,13 @@
 
 package tests;
 
+import logic.Status;
+import logic.data.Bet;
 import logic.data.EnumGenders;
 import logic.data.User;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class UserTest {
@@ -24,8 +23,13 @@ class UserTest {
         User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
         user.setName("Leonardo");
         assertEquals("Leonardo", user.getName());
-        assertTrue(user.getName().length() < 20);
-        assertTrue(user.getName().length() > 1);
+        user.setName("Leonardo Rafael Amado Brito");
+        assertEquals("Leonardo", user.getName());
+        user.setName(null);
+        assertEquals("Leonardo", user.getName());
+        user.setName("");
+        assertEquals("Leonardo", user.getName());
+
     }
 
     @Test
@@ -52,14 +56,13 @@ class UserTest {
     @Test
     void setGender() {
         User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
-        assertTrue(user.getAge() > 0);
-        assertEquals(20, user.getAge());
+        user.setGender(EnumGenders.FEMALE);
+        assertEquals(EnumGenders.FEMALE, user.getGender());
     }
 
     @Test
     void getAge() {
         User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
-        assertTrue(user.getAge() > 0);
         assertEquals(20, user.getAge());
 
     }
@@ -68,17 +71,19 @@ class UserTest {
     void setAge() {
         User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 0);
         user.setAge(30);
-        assertTrue(user.getAge() < 120);
-        assertTrue(user.getAge() > 18);
+        assertEquals(30, user.getAge());
+        user.setAge(300);
+        assertEquals(30, user.getAge());
+        user.setAge(17);
+        assertEquals(30, user.getAge());
     }
 
-    @Test
+  /*  @Test
     void getTotalBets() {
-
+        User user = new User("Filipe", "a123@isec.pt", EnumGenders.MALE, 20, 2);
+        Bet bet1 = new Bet(2, 2, "10/12/2021", "11/12/2021", 2, 4, "bet1", Status.WON);
+        Bet bet2 = new Bet(2, 2, "10/12/2021", "11/12/2021", 2, 4, "bet1", Status.WON);
+        assertEquals(2, user.getTotalBets());
     }
-
-    @Test
-    void testToString() {
-
-    }
+   */
 }
