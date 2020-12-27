@@ -1,6 +1,6 @@
 package logic.states;
 
-import logic.Status;
+import logic.EnumBetStatus;
 import logic.data.Data;
 
 public abstract class StateAdapter implements IState {
@@ -48,7 +48,7 @@ public abstract class StateAdapter implements IState {
     }
 
     @Override
-    public IState updateBetStatus(Status status) {
+    public IState updateBetStatus(EnumBetStatus enumBetStatus) {
         return this;
     }
 

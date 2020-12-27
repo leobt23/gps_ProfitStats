@@ -2,7 +2,7 @@ package gui;
 
 import logic.ObservableModel;
 import logic.states.EnumStates;
-import logic.Status;
+import logic.EnumBetStatus;
 import gui.resources.Constants;
 import gui.resources.Images;
 import javafx.scene.control.Label;
@@ -144,7 +144,7 @@ public class UIbettingHistory extends BorderPane {
             itemList.setCenter(hBox);
             //Vbox to status
             VBox statusVbox = new VBox();
-            if(model.getBetStatus(i) == Status.PENDENT){
+            if(model.getBetStatus(i) == EnumBetStatus.PENDENT){
                 Label statusTitleLabel = new Label("Status");
                 statusTitleLabel.setTextFill(Color.BLACK);
                 statusTitleLabel.setFont( new Font( "Arial", 12 ) );
@@ -185,7 +185,7 @@ public class UIbettingHistory extends BorderPane {
                 {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
-                        model.setBetStatus(model.getBetId(idx),Status.WON);
+                        model.setBetStatus(model.getBetId(idx), EnumBetStatus.WON);
                     } else
                     {
 
@@ -195,7 +195,7 @@ public class UIbettingHistory extends BorderPane {
                 {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
-                        model.setBetStatus(model.getBetId(idx),Status.LOST);
+                        model.setBetStatus(model.getBetId(idx), EnumBetStatus.LOST);
                     } else
                     {
 
@@ -204,7 +204,7 @@ public class UIbettingHistory extends BorderPane {
 
             }
             else{
-                if(model.getBetStatus(i) == Status.WON){
+                if(model.getBetStatus(i) == EnumBetStatus.WON){
                     Label statusTitleLabel = new Label("Status");
                     statusTitleLabel.setTextFill(Color.BLACK);
                     statusTitleLabel.setFont( new Font( "Arial", 12 ) );
@@ -231,7 +231,7 @@ public class UIbettingHistory extends BorderPane {
                     statusVbox.getChildren().addAll(statusTitleLabel,markPane,statusLabel);
                 }
                 else{
-                    if(model.getBetStatus(i) == Status.LOST){
+                    if(model.getBetStatus(i) == EnumBetStatus.LOST){
                         Label statusTitleLabel = new Label("Status");
                         statusTitleLabel.setTextFill(Color.BLACK);
                         statusTitleLabel.setFont( new Font( "Arial", 12 ) );
