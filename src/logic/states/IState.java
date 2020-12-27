@@ -1,6 +1,6 @@
 package logic.states;
 
-import logic.Status;
+import logic.EnumBetStatus;
 
 public interface IState {
 
@@ -20,7 +20,7 @@ public interface IState {
     //BetsHistory
     IState betsHistory();
     IState editBet();
-    IState updateBetStatus(Status status);
+    IState updateBetStatus(EnumBetStatus enumBetStatus);
     IState saveEditedBet(int betId, int numberOfGames, int numberOfBets, String betRegisterDate,
                          String betCloseDate, float totalValueBetted, float possibleWinnings,
                          String betName);

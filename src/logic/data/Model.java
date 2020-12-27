@@ -1,6 +1,6 @@
 package logic.data;
 
-import logic.Status;
+import logic.EnumBetStatus;
 import logic.states.BetRegistry;
 import logic.states.IState;
 
@@ -31,7 +31,7 @@ public class Model {
         return data.getBetName(idx);
     }
 
-    public String getBetRegistryDate(int idx) {
+    public Time getBetRegistryDate(int idx) {
         return data.getBetRegistryDate(idx);
     }
 
@@ -51,7 +51,7 @@ public class Model {
         return data.getBetPossibleWinnings(idx);
     }
 
-    public Status getBetStatus(int idx) {
+    public EnumBetStatus getBetStatus(int idx) {
         return data.getBetStatus(idx);
     }
 
@@ -59,7 +59,7 @@ public class Model {
         return data.getBetId(idx);
     }
 
-    public String getBetCloseDate(int idx) {
+    public Time getBetCloseDate(int idx) {
         return data.getBetCloseDate(idx);
     }
 }

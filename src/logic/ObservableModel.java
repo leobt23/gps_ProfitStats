@@ -6,6 +6,8 @@ import logic.states.EnumStates;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ObservableModel {
@@ -36,7 +38,7 @@ public class ObservableModel {
         return data.getBetName(idx);
     }
 
-    public String getBetRegistryDate(int idx) {
+    public Time getBetRegistryDate(int idx) {
         return data.getBetRegistryDate(idx);
     }
 
@@ -56,7 +58,7 @@ public class ObservableModel {
         return data.getBetPossibleWinnings(idx);
     }
 
-    public Status getBetStatus(int idx) {
+    public EnumBetStatus getBetStatus(int idx) {
         return data.getBetStatus(idx);
     }
 
@@ -64,16 +66,30 @@ public class ObservableModel {
         return data.getBetId(idx);
     }
 
-    public String getBetCloseDate(int idx) {
+    public Time getBetCloseDate(int idx) {
         return data.getBetCloseDate(idx);
     }
 
-    public void setBetStatus(int betId, Status status) {
-        data.setBetStatus(betId, status);
+    public void setBetStatus(int betId, EnumBetStatus enumBetStatus) {
+        data.setBetStatus(betId, enumBetStatus);
     }
 
     public EnumStates getState() {
 //        return model.getState();
         return null;
     }
+
+    public boolean verifyInputBetRegistry(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        return data.verifyInputBetRegistry(numOfGamesBettedValue,registDateValue,closeDateValue,totalValueBettedValue,possibleWinningsValue,numberOfBetsValue,betNameValue,enumBetStatus);
+    }
+    public ArrayList<EnumWrongInputBetRegistry> getWrongInputBetRegistry(){
+        return  data.getWrongInputBetRegistry();
+    }
+
+    public void addNewBet(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        data.addNewBet(numOfGamesBettedValue,registDateValue,
+                closeDateValue,totalValueBettedValue,possibleWinningsValue,
+                numberOfBetsValue,betNameValue, enumBetStatus);
+    }
+
 }

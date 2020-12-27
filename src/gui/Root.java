@@ -18,6 +18,7 @@ public class Root extends BorderPane {
         MoneyStats statistics = new MoneyStats(model);
         setCenter(statistics);
 //        UIbettingHistory uIbettingHistory = new UIbettingHistory(model);
+        setCenter(new UIbetRegistry(model));
     }
 
     public Root() {

@@ -1,12 +1,10 @@
 package logic.data;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Time {
     int year, month, week, day, hour, minute, seconds;
 
-    public Time(int year, int month, int week, int day, int hour, int minute, int seconds) {
+  /*  public Time(int year, int month, int week, int day, int hour, int minute, int seconds) {
         setYear(year);
         setMonth(month);
         setWeek(week);
@@ -14,6 +12,9 @@ public class Time {
         setHour(hour);
         setMinute(minute);
         setSeconds(seconds);
+    }*/
+
+    public Time(int year, int monthValue, int week, int dayOfMonth) {
     }
 
     public String getCurrentDate(){
