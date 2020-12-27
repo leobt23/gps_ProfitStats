@@ -1,6 +1,6 @@
 package logic.data;
 
-import logic.Status;
+import logic.EnumBetStatus;
 
 public class Data {
     private User user;
@@ -44,7 +44,7 @@ public class Data {
         return user.betsHistory.getBets().get(idx).getPossibleWinnings();
     }
 
-    public Status getBetStatus(int idx) {
+    public EnumBetStatus getBetStatus(int idx) {
         return user.betsHistory.getBets().get(idx).getStatus();
     }
 

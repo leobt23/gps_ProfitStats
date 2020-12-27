@@ -1,6 +1,6 @@
 package logic.data;
 
-import logic.Status;
+import logic.EnumBetStatus;
 
 public class Bet {
     int numberOfGames, numberOfBets;
@@ -10,9 +10,9 @@ public class Bet {
     Time betCloseDate;
     float totalValueBetted, possibleWinnings;
     String betName;
-    Status result;
+    EnumBetStatus result;
 
-    public Bet(int numberOfGames, int numberOfBets, Time betRegisterDate, Time betCloseDate, float totalValueBetted, float possibleWinnings, String betName, Status result) {
+    public Bet(int numberOfGames, int numberOfBets, Time betRegisterDate, Time betCloseDate, float totalValueBetted, float possibleWinnings, String betName,EnumBetStatus result) {
         this.betId = contador;
         this.numberOfGames = numberOfGames;
         this.numberOfBets = numberOfBets;
@@ -89,7 +89,7 @@ public class Bet {
     }
 
 
-    public Status getStatus() {
+    public EnumBetStatus getStatus() {
         return result;
     }
 

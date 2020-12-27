@@ -1,6 +1,6 @@
 package logic.data;
 
-import logic.Status;
+import logic.EnumBetStatus;
 
 import java.util.ArrayList;
 
@@ -73,7 +73,7 @@ public class User {
     public boolean registerBet(int ngames, int nbets, Time betRDate, Time betCDate,
                                float totalValueB, float possibleW, String nameBet) {
 
-        Bet newBet = new Bet(ngames, nbets, betRDate, betCDate, totalValueB, possibleW, nameBet, Status.PENDENT);
+        Bet newBet = new Bet(ngames, nbets, betRDate, betCDate, totalValueB, possibleW, nameBet, EnumBetStatus.PENDENT);
         if (betsHistory.addBetToHistory(newBet))
             return true;
         else

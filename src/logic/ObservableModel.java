@@ -1,7 +1,6 @@
 package logic;
 
 import logic.data.Data;
-import logic.data.Time;
 import logic.states.EnumStates;
 
 import java.beans.PropertyChangeListener;
@@ -56,7 +55,7 @@ public class ObservableModel {
         return data.getBetPossibleWinnings(idx);
     }
 
-    public Status getBetStatus(int idx) {
+    public EnumBetStatus getBetStatus(int idx) {
         return data.getBetStatus(idx);
     }
 
@@ -68,8 +67,8 @@ public class ObservableModel {
         return data.getBetCloseDate(idx);
     }
 
-    public void setBetStatus(int betId, Status status) {
-        data.setBetStatus(betId, status);
+    public void setBetStatus(int betId, EnumBetStatus enumBetStatus) {
+        data.setBetStatus(betId, enumBetStatus);
     }
 
     public EnumStates getState() {

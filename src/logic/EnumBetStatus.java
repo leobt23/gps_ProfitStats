@@ -1,6 +1,6 @@
 package logic;
 
-public enum Status {
+public enum EnumBetStatus {
     PENDENT,
     WON,
     LOST;
