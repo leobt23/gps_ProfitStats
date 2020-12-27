@@ -2,9 +2,9 @@ package logic.data;
 import java.util.ArrayList;
 
 public class BettingHistory {
-    ArrayList<Bet> bets = new ArrayList<>();
-    float percentWins = 0.0f, percentLosses = 0.0f;
-    float moneyStats = 0.0f;
+    private ArrayList<Bet> bets = new ArrayList<>();
+    private float percentWins = 0.0f, percentLosses = 0.0f;
+    private float moneyStats = 0.0f;
 
     public BettingHistory( ) { }
 

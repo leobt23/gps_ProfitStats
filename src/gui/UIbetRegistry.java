@@ -13,19 +13,25 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import logic.EnumBetStatus;
+import logic.EnumWrongInputBetRegistry;
 import logic.ObservableModel;
 import logic.states.EnumStates;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class UIbetRegistry extends BorderPane {
     private ObservableModel obsModel;
 
     public UIbetRegistry(ObservableModel obsModel) {
         this.obsModel=obsModel;
+        createView();
 
+    }
+
+    private void createView() {
         //TITLE
         Label betRegistryTitle = new Label("BET REGISTRY");
         betRegistryTitle.setTextFill(Color.BLACK);
@@ -49,7 +55,7 @@ public class UIbetRegistry extends BorderPane {
 
         DatePicker registDatePicker = new DatePicker(LocalDate.now());
         registDatePicker.setOnAction(event -> {
-           // LocalDate date = registDatePicker.getValue();
+            // LocalDate date = registDatePicker.getValue();
         });
         gridPane.add(registDatePicker,1,2);
 
@@ -206,11 +212,12 @@ public class UIbetRegistry extends BorderPane {
         });
 
         btnCancel.setOnMouseClicked(event->{
-           if(event.getButton() == MouseButton.PRIMARY){
-               obsModel.cancelBetRegistry();
-           }
+            if(event.getButton() == MouseButton.PRIMARY){
+                createView();
+            }
         });
     }
+
     private void ViewWithWrongInputs(ArrayList<EnumWrongInputBetRegistry> wrong_input){
         this.obsModel=obsModel;
 
@@ -406,7 +413,7 @@ public class UIbetRegistry extends BorderPane {
 
         btnCancel.setOnMouseClicked(event->{
             if(event.getButton() == MouseButton.PRIMARY){
-                obsModel.cancelBetRegistry();
+                createView();
             }
         });
 
@@ -425,7 +432,7 @@ public class UIbetRegistry extends BorderPane {
                 new PropertyChangeListener() {
                     @Override
                     public void propertyChange(PropertyChangeEvent evt) {
-                        ArrayList<EnumWrongInputBetRegistry> wrong_input = obsModel.getBetRegistryWrongInput();
+                        ArrayList<EnumWrongInputBetRegistry> wrong_input = obsModel.getWrongInputBetRegistry();
                         ViewWithWrongInputs(wrong_input);
                         System.out.println("propertyChange");
                     }

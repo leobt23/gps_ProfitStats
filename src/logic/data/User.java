@@ -2,8 +2,6 @@ package logic.data;
 
 import logic.EnumBetStatus;
 
-import java.util.ArrayList;
-
 public class User {
     String name, email;
     EnumGenders gender;
@@ -96,13 +94,13 @@ public class User {
     }
 
     public void getBets() {
-        for (int i = 0; i < betsHistory.bets.size(); i++) {
-            System.out.println("ID = " + betsHistory.bets.get(i).getBetId() + " Nome da aposta: " + betsHistory.bets.get(i).getBetName() + "");
+        for (int i = 0; i < betsHistory.getBets().size(); i++) {
+            System.out.println("ID = " + betsHistory.getBets().get(i).getBetId() + " Nome da aposta: " + betsHistory.getBets().get(i).getBetName() + "");
         }
     }
 
     public static void main(String[] args) {
-        ArrayList<Bet> bets = new ArrayList<>();
+   /*     ArrayList<Bet> bets = new ArrayList<>();
         BettingHistory betH = new BettingHistory();
 
         User a = new User("Pedro", "pdls", EnumGenders.MALE, 20, 0);
@@ -120,7 +118,7 @@ public class User {
         a.removeBet(0);
         a.getBets();
         System.out.println("------------------------------------------------");
-        //System.out.println("Username: " + a.getName());
+        //System.out.println("Username: " + a.getName());*/
     }
 }
 

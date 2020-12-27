@@ -4,13 +4,14 @@ import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
 
 import java.time.LocalDate;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
-
-import static java.lang.Integer.parseInt;
+import java.util.Locale;
 
 public class Data {
     private User user;
     private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry;
+    BettingHistory bettingHistory = new BettingHistory();
 
     /*public Data(User user, BettingHistory bettingHistory, Time time){
         this.user = user;
@@ -122,5 +123,35 @@ public class Data {
     }
     public ArrayList<EnumWrongInputBetRegistry> getWrongInputBetRegistry(){
         return wrongInputBetRegistry;
+    }
+
+    public void addNewBet(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        int numOfGamesBetted,numberOfBets;
+        float totalValueBetted,possibleWinnings;
+        Time registDate,closeDate;
+        if(numOfGamesBettedValue.equals("")||numOfGamesBettedValue==null){
+            numOfGamesBetted=1;
+        }
+        else{
+            numOfGamesBetted=Integer.parseInt(numOfGamesBettedValue);
+        }
+        if(numberOfBetsValue.equals("")||numberOfBetsValue==null){
+            numberOfBets=1;
+        }
+        else{
+            numberOfBets=Integer.parseInt(numberOfBetsValue);
+        }
+        totalValueBetted = Float.parseFloat(totalValueBettedValue);
+        possibleWinnings = Float.parseFloat(possibleWinningsValue);
+        WeekFields weekFieldsRegistDate = WeekFields.of(Locale.getDefault());
+
+        registDate = new Time(registDateValue.getYear(),registDateValue.getMonthValue(),registDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),registDateValue.getDayOfMonth());
+        closeDate = new Time(closeDateValue.getYear(),closeDateValue.getMonthValue(),closeDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),closeDateValue.getDayOfMonth());
+
+        Bet bet = new Bet(numOfGamesBetted,numberOfBets,registDate,closeDate,totalValueBetted,possibleWinnings,betNameValue,enumBetStatus);
+
+        bettingHistory.addBetToHistory(bet);
+
+
     }
 }
