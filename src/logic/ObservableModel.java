@@ -1,6 +1,7 @@
 package logic;
 
 import logic.data.Data;
+import logic.data.Time;
 import logic.states.EnumStates;
 
 import java.beans.PropertyChangeListener;
