@@ -15,6 +15,6 @@ public class Statistics extends StateAdapter {
 
     @Override
     public EnumStates getState() {
-        return super.getState();
+        return EnumStates.STATISTICS;
     }
 }

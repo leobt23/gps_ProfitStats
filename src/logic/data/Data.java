@@ -4,13 +4,14 @@ import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
 
 import java.time.LocalDate;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
-
-import static java.lang.Integer.parseInt;
+import java.util.Locale;
 
 public class Data {
     private User user;
-    private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry;
+    private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry = new ArrayList<>();
+    BettingHistory bettingHistory = new BettingHistory();
 
     /*public Data(User user, BettingHistory bettingHistory, Time time){
         this.user = user;
@@ -19,7 +20,7 @@ public class Data {
     }*/
 
     public Data() {
-
+        user = new User("", "", EnumGenders.OTHER, 18, 0);
     }
 
     public void setUser(User user) {
@@ -75,13 +76,19 @@ public class Data {
 
     public boolean verifyInputBetRegistry(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
         boolean flag=true;
-        wrongInputBetRegistry.clear();
+        if(wrongInputBetRegistry!=null)
+            wrongInputBetRegistry.clear();
         if(numOfGamesBettedValue.equals("")||numOfGamesBettedValue==null){
 
         }
         else {
-            int numberOfGamesBets = Integer.parseInt(numOfGamesBettedValue);
-            if (numberOfGamesBets < 0 || numberOfGamesBets > 100) {
+            try {
+                int numberOfGamesBets = Integer.parseInt(numOfGamesBettedValue);
+                if (numberOfGamesBets < 0 || numberOfGamesBets > 100) {
+                    wrongInputBetRegistry.add(EnumWrongInputBetRegistry.NUMBER_OF_GAMES_BETTED);
+                    flag = false;
+                }
+            }catch (NumberFormatException e){
                 wrongInputBetRegistry.add(EnumWrongInputBetRegistry.NUMBER_OF_GAMES_BETTED);
                 flag = false;
             }
@@ -90,13 +97,23 @@ public class Data {
             wrongInputBetRegistry.add(EnumWrongInputBetRegistry.BET_CLOSE_DATE);
             flag = false;
         }
-        float totalValueBetted = Float.parseFloat(totalValueBettedValue);
-        if(totalValueBetted<0.10||totalValueBetted>100000){
-            wrongInputBetRegistry.add(EnumWrongInputBetRegistry.TOTAL_VALUE_BETTED);
-            flag = false;
-        }
-        float possibleWinnings = Float.parseFloat(possibleWinningsValue);
-        if(possibleWinnings<0.10||possibleWinnings>100000){
+        try {
+            float totalValueBetted = Float.parseFloat(totalValueBettedValue);
+            if (totalValueBetted < 0.10 || totalValueBetted > 100000) {
+                wrongInputBetRegistry.add(EnumWrongInputBetRegistry.TOTAL_VALUE_BETTED);
+                flag = false;
+            }
+            }catch (NumberFormatException e){
+                wrongInputBetRegistry.add(EnumWrongInputBetRegistry.TOTAL_VALUE_BETTED);
+                flag = false;
+            }
+        try {
+            float possibleWinnings = Float.parseFloat(possibleWinningsValue);
+            if (possibleWinnings < 0.10 || possibleWinnings > 100000) {
+                wrongInputBetRegistry.add(EnumWrongInputBetRegistry.POSSIBLE_WINNINGS);
+                flag = false;
+            }
+        }catch (NumberFormatException e){
             wrongInputBetRegistry.add(EnumWrongInputBetRegistry.POSSIBLE_WINNINGS);
             flag = false;
         }
@@ -104,8 +121,13 @@ public class Data {
 
         }
         else {
-            int numberOfBets = Integer.parseInt(numberOfBetsValue);
-            if (numberOfBets < 0) {
+            try {
+                int numberOfBets = Integer.parseInt(numberOfBetsValue);
+                if (numberOfBets < 0) {
+                    wrongInputBetRegistry.add(EnumWrongInputBetRegistry.NUMBER_OF_BETS);
+                    flag = false;
+                }
+            }catch (NumberFormatException e){
                 wrongInputBetRegistry.add(EnumWrongInputBetRegistry.NUMBER_OF_BETS);
                 flag = false;
             }
@@ -122,5 +144,37 @@ public class Data {
     }
     public ArrayList<EnumWrongInputBetRegistry> getWrongInputBetRegistry(){
         return wrongInputBetRegistry;
+    }
+
+    public void addNewBet(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        int numOfGamesBetted,numberOfBets;
+        float totalValueBetted,possibleWinnings;
+        Time registDate,closeDate;
+        if(numOfGamesBettedValue.equals("")||numOfGamesBettedValue==null){
+            numOfGamesBetted=1;
+        }
+        else{
+            numOfGamesBetted=Integer.parseInt(numOfGamesBettedValue);
+        }
+        if(numberOfBetsValue.equals("")||numberOfBetsValue==null){
+            numberOfBets=1;
+        }
+        else{
+            numberOfBets=Integer.parseInt(numberOfBetsValue);
+        }
+        totalValueBetted = Float.parseFloat(totalValueBettedValue);
+        possibleWinnings = Float.parseFloat(possibleWinningsValue);
+        WeekFields weekFieldsRegistDate = WeekFields.of(Locale.getDefault());
+
+        registDate = new Time(registDateValue.getYear(),registDateValue.getMonthValue(),registDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),registDateValue.getDayOfMonth());
+        closeDate = new Time(closeDateValue.getYear(),closeDateValue.getMonthValue(),closeDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),closeDateValue.getDayOfMonth());
+
+        Bet bet = new Bet(numOfGamesBetted,numberOfBets,registDate,closeDate,totalValueBetted,possibleWinnings,betNameValue,enumBetStatus);
+
+        bettingHistory.addBetToHistory(bet);
+    }
+
+    public float getTotalProfit() {
+        return user.getTotalProfit();
     }
 }

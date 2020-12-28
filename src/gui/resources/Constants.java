@@ -10,4 +10,6 @@ public class Constants {
     public static String STATE_PROP = "state-prop";
     public static String UPDATE_BETS_HISTORY = "update-bets-history";
     public static String WRONG_INPUT_BET_REGISTRY = "wrong-input-bet-registry";
+
+    public static String STATISTICS_BACKGROUND = "statistics-background";
 }
