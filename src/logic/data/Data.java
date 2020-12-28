@@ -20,7 +20,7 @@ public class Data {
     }*/
 
     public Data() {
-
+        user = new User("", "", EnumGenders.OTHER, 18, 0);
     }
 
     public void setUser(User user) {
@@ -172,7 +172,9 @@ public class Data {
         Bet bet = new Bet(numOfGamesBetted,numberOfBets,registDate,closeDate,totalValueBetted,possibleWinnings,betNameValue,enumBetStatus);
 
         bettingHistory.addBetToHistory(bet);
+    }
 
-
+    public float getTotalProfit() {
+        return user.getTotalProfit();
     }
 }

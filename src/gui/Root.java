@@ -3,6 +3,7 @@ package gui;
 import gui.left_panel.LeftPanel;
 import gui.money_stats.MoneyStats;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import logic.ObservableModel;
 
 public class Root extends BorderPane {
@@ -11,14 +12,20 @@ public class Root extends BorderPane {
     public Root(ObservableModel model)
     {
         this.model = model;
-        setPrefSize(1000,600);
-        LeftPanel leftPanel = new LeftPanel();
+        setPrefSize(1280,800);
+        LeftPanel leftPanel = new LeftPanel(model);
         setLeft(leftPanel);
 
+        StackPane stack = new StackPane();
         MoneyStats statistics = new MoneyStats(model);
-        setCenter(statistics);
+        UIbetRegistry betRegistry =  new UIbetRegistry(model);
+        betRegistry.setVisible(true);
+        statistics.setVisible(false);
+        stack.getChildren().add(statistics);
+        stack.getChildren().add(betRegistry);
 //        UIbettingHistory uIbettingHistory = new UIbettingHistory(model);
-        setCenter(new UIbetRegistry(model));
+//        setCenter(new UIbetRegistry(model));
+        setCenter(stack);
     }
 
     public Root() {
