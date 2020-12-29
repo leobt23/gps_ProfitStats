@@ -10,4 +10,5 @@ public interface ImagesPaths {
     String EDIT_ICON = "images/edit-icon.png";
     String MARK_ICON = "images/mark-icon.png";
     String CROSS_ICON = "images/cross-icon.jpg";
+    String STATISTICS_BACKGROUND = "images/stonks.png";
 }

@@ -10,7 +10,7 @@ import java.util.Locale;
 
 public class Data {
     private User user;
-    private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry;
+    private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry = new ArrayList<>();
     BettingHistory bettingHistory = new BettingHistory();
 
     /*public Data(User user, BettingHistory bettingHistory, Time time){
@@ -20,7 +20,7 @@ public class Data {
     }*/
 
     public Data() {
-
+        user = new User("", "", EnumGenders.OTHER, 18, 0);
     }
 
     public void setUser(User user) {
@@ -76,13 +76,19 @@ public class Data {
 
     public boolean verifyInputBetRegistry(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
         boolean flag=true;
-        wrongInputBetRegistry.clear();
+        if(wrongInputBetRegistry!=null)
+            wrongInputBetRegistry.clear();
         if(numOfGamesBettedValue.equals("")||numOfGamesBettedValue==null){
 
         }
         else {
-            int numberOfGamesBets = Integer.parseInt(numOfGamesBettedValue);
-            if (numberOfGamesBets < 0 || numberOfGamesBets > 100) {
+            try {
+                int numberOfGamesBets = Integer.parseInt(numOfGamesBettedValue);
+                if (numberOfGamesBets < 0 || numberOfGamesBets > 100) {
+                    wrongInputBetRegistry.add(EnumWrongInputBetRegistry.NUMBER_OF_GAMES_BETTED);
+                    flag = false;
+                }
+            }catch (NumberFormatException e){
                 wrongInputBetRegistry.add(EnumWrongInputBetRegistry.NUMBER_OF_GAMES_BETTED);
                 flag = false;
             }
@@ -91,13 +97,23 @@ public class Data {
             wrongInputBetRegistry.add(EnumWrongInputBetRegistry.BET_CLOSE_DATE);
             flag = false;
         }
-        float totalValueBetted = Float.parseFloat(totalValueBettedValue);
-        if(totalValueBetted<0.10||totalValueBetted>100000){
-            wrongInputBetRegistry.add(EnumWrongInputBetRegistry.TOTAL_VALUE_BETTED);
-            flag = false;
-        }
-        float possibleWinnings = Float.parseFloat(possibleWinningsValue);
-        if(possibleWinnings<0.10||possibleWinnings>100000){
+        try {
+            float totalValueBetted = Float.parseFloat(totalValueBettedValue);
+            if (totalValueBetted < 0.10 || totalValueBetted > 100000) {
+                wrongInputBetRegistry.add(EnumWrongInputBetRegistry.TOTAL_VALUE_BETTED);
+                flag = false;
+            }
+            }catch (NumberFormatException e){
+                wrongInputBetRegistry.add(EnumWrongInputBetRegistry.TOTAL_VALUE_BETTED);
+                flag = false;
+            }
+        try {
+            float possibleWinnings = Float.parseFloat(possibleWinningsValue);
+            if (possibleWinnings < 0.10 || possibleWinnings > 100000) {
+                wrongInputBetRegistry.add(EnumWrongInputBetRegistry.POSSIBLE_WINNINGS);
+                flag = false;
+            }
+        }catch (NumberFormatException e){
             wrongInputBetRegistry.add(EnumWrongInputBetRegistry.POSSIBLE_WINNINGS);
             flag = false;
         }
@@ -105,8 +121,13 @@ public class Data {
 
         }
         else {
-            int numberOfBets = Integer.parseInt(numberOfBetsValue);
-            if (numberOfBets < 0) {
+            try {
+                int numberOfBets = Integer.parseInt(numberOfBetsValue);
+                if (numberOfBets < 0) {
+                    wrongInputBetRegistry.add(EnumWrongInputBetRegistry.NUMBER_OF_BETS);
+                    flag = false;
+                }
+            }catch (NumberFormatException e){
                 wrongInputBetRegistry.add(EnumWrongInputBetRegistry.NUMBER_OF_BETS);
                 flag = false;
             }
@@ -151,7 +172,9 @@ public class Data {
         Bet bet = new Bet(numOfGamesBetted,numberOfBets,registDate,closeDate,totalValueBetted,possibleWinnings,betNameValue,enumBetStatus);
 
         bettingHistory.addBetToHistory(bet);
+    }
 
-
+    public float getTotalProfit() {
+        return user.getTotalProfit();
     }
 }

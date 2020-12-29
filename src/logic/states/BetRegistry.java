@@ -15,7 +15,6 @@ public class BetRegistry extends StateAdapter {
     }
 
 
-
     @Override
     public EnumStates getState() {
         return EnumStates.BET_REGISTRY;
