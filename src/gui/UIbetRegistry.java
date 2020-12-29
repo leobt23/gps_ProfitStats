@@ -193,8 +193,8 @@ public class UIbetRegistry extends BorderPane {
                 boolean input_result = obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                         , betNameValue, enumBetStatus);
                 if(input_result) {
-              //      obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
-              //              , betNameValue, enumBetStatus);
+                    obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
+                            , betNameValue, enumBetStatus);
                     Alert a1 = new Alert(Alert.AlertType.NONE,
                             "Bet successfuly registered!", ButtonType.OK);
                     // show the dialog
@@ -212,7 +212,7 @@ public class UIbetRegistry extends BorderPane {
 
         btnCancel.setOnMouseClicked(event->{
            if(event.getButton() == MouseButton.PRIMARY){
-       //        obsModel.cancelBetRegistry();
+           //    obsModel.cancelBetRegistry();
            }
         });
     }

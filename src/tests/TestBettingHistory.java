@@ -34,7 +34,7 @@ public class TestBettingHistory {
         assertEquals("bet3", bet2.getBetName());
         assertEquals(EnumBetStatus.LOST, bet2.getStatus());
 
-        a.changeBetInHistory(-1, 80,80,time2, time3, -5, -5, "bet3sssssssssssssssssssssssssssassssssssss", EnumBetStatus.LOST);
+        a.changeBetInHistory(-1, 80,90,time2, time3, -5, -5, "bet3ssssssddddddddddddddddsssssssssssssssssssssassssssssss", EnumBetStatus.LOST);
         assertEquals(1, bet2.getBetId());
         assertEquals(3, bet2.getNumberOfGames());
         assertEquals(3, bet2.getNumberOfBets());
