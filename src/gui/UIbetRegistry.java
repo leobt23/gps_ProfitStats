@@ -13,18 +13,23 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import logic.EnumBetStatus;
+import logic.EnumWrongInputBetRegistry;
 import logic.ObservableModel;
+import logic.data.PropertyChanges;
 import logic.states.EnumStates;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class UIbetRegistry extends BorderPane {
     private ObservableModel obsModel;
 
     public UIbetRegistry(ObservableModel obsModel) {
         this.obsModel=obsModel;
+
+        propsListener();
 
         //TITLE
         Label betRegistryTitle = new Label("BET REGISTRY");
@@ -188,8 +193,8 @@ public class UIbetRegistry extends BorderPane {
                 boolean input_result = obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                         , betNameValue, enumBetStatus);
                 if(input_result) {
-                    obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
-                            , betNameValue, enumBetStatus);
+              //      obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
+              //              , betNameValue, enumBetStatus);
                     Alert a1 = new Alert(Alert.AlertType.NONE,
                             "Bet successfuly registered!", ButtonType.OK);
                     // show the dialog
@@ -207,7 +212,7 @@ public class UIbetRegistry extends BorderPane {
 
         btnCancel.setOnMouseClicked(event->{
            if(event.getButton() == MouseButton.PRIMARY){
-               obsModel.cancelBetRegistry();
+       //        obsModel.cancelBetRegistry();
            }
         });
     }
@@ -386,8 +391,8 @@ public class UIbetRegistry extends BorderPane {
                 boolean input_result = obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                         , betNameValue, enumBetStatus);
                 if(input_result) {
-                    obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
-                            , betNameValue, enumBetStatus);
+      //              obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
+      //                      , betNameValue, enumBetStatus);
                     Alert a1 = new Alert(Alert.AlertType.NONE,
                             "Bet successfuly registered!", ButtonType.OK);
                     // show the dialog
@@ -406,27 +411,23 @@ public class UIbetRegistry extends BorderPane {
 
         btnCancel.setOnMouseClicked(event->{
             if(event.getButton() == MouseButton.PRIMARY){
-                obsModel.cancelBetRegistry();
+       //         obsModel.cancelBetRegistry();
             }
         });
 
     }
     private void propsListener() {
-        obsModel.addPropertyChangeListener(Constants.STATE_PROP,
-                new PropertyChangeListener() {
-                    @Override
-                    public void propertyChange(PropertyChangeEvent evt) {
-                        setVisible(obsModel.getState() == EnumStates.BET_REGISTRY);
-                        System.out.println("propertyChange");
-                    }
+        obsModel.addPropertyChangeListener(PropertyChanges.STATE_CHANGE,
+                evt -> {
+                    setVisible(obsModel.getState() == EnumStates.BET_REGISTRY);
                 }
         );
         obsModel.addPropertyChangeListener(Constants.WRONG_INPUT_BET_REGISTRY,
                 new PropertyChangeListener() {
                     @Override
                     public void propertyChange(PropertyChangeEvent evt) {
-                        ArrayList<EnumWrongInputBetRegistry> wrong_input = obsModel.getBetRegistryWrongInput();
-                        ViewWithWrongInputs(wrong_input);
+         //               ArrayList<EnumWrongInputBetRegistry> wrong_input = obsModel.getBetRegistryWrongInput();
+          //              ViewWithWrongInputs(wrong_input);
                         System.out.println("propertyChange");
                     }
                 }

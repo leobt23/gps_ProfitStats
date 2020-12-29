@@ -1,9 +1,13 @@
 package logic.data;
 
 import logic.EnumBetStatus;
+import logic.EnumWrongInputBetRegistry;
 import logic.states.BetRegistry;
+import logic.states.EnumStates;
 import logic.states.IState;
+import logic.states.Statistics;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,5 +65,45 @@ public class Model {
 
     public Time getBetCloseDate(int idx) {
         return data.getBetCloseDate(idx);
+    }
+
+    public void setBetStatus(int betId, EnumBetStatus enumBetStatus) {
+        data.setBetStatus(betId, enumBetStatus);
+    }
+
+    public EnumStates getState() {
+        return state.getState();
+    }
+
+    public boolean verifyInputBetRegistry(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        return data.verifyInputBetRegistry(numOfGamesBettedValue,registDateValue,closeDateValue,totalValueBettedValue,possibleWinningsValue,numberOfBetsValue,betNameValue,enumBetStatus);
+    }
+
+    public void addNewBet(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        data.addNewBet(numOfGamesBettedValue,registDateValue,
+                closeDateValue,totalValueBettedValue,possibleWinningsValue,
+                numberOfBetsValue,betNameValue, enumBetStatus);
+    }
+
+
+
+    public float getTotalProfit() {
+        return data.getTotalProfit();
+    }
+
+    public List<String> moveToStatisctics() {
+        events.clear();
+        setState(new Statistics(data));
+        return events;
+    }
+
+    public List<String> moveToBetRegistry() {
+        events.clear();
+        setState(new BetRegistry(data));
+        return events;
+    }
+
+    public ArrayList<EnumWrongInputBetRegistry> getWrongInputBetRegistry() {
+        return data.getWrongInputBetRegistry();
     }
 }

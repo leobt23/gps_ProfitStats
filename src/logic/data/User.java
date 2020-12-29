@@ -2,8 +2,6 @@ package logic.data;
 
 import logic.EnumBetStatus;
 
-import java.util.ArrayList;
-
 public class User {
     String name, email, bestMonth;
     EnumGenders gender;
@@ -81,7 +79,7 @@ public class User {
             return false;
     }
 
-    public boolean changeBet(int idBet, int ngames, int nbets, String betRDate, String betCDate,
+    public boolean changeBet(int idBet, int ngames, int nbets, Time betRDate, Time betCDate,
                              float totalValueB, float possibleW, String nameBet, EnumBetStatus status) {
 
         if (betsHistory.findBet(idBet) != null) {
@@ -97,8 +95,8 @@ public class User {
     }
 
     public void getBets() {
-        for (int i = 0; i < betsHistory.bets.size(); i++) {
-            System.out.println("ID = " + betsHistory.bets.get(i).getBetId() + " Nome da aposta: " + betsHistory.bets.get(i).getBetName() + "");
+        for (int i = 0; i < betsHistory.getBets().size(); i++) {
+            System.out.println("ID = " + betsHistory.getBets().get(i).getBetId() + " Nome da aposta: " + betsHistory.getBets().get(i).getBetName() + "");
         }
     }
 
@@ -243,12 +241,12 @@ public class User {
     }
 
     public float getTotalProfit() {
-        for(int i=0; i < betsHistory.bets.size(); i++){
-            if(betsHistory.bets.get(i).result == EnumBetStatus.WON)
-                totalProfit += betsHistory.bets.get(i).possibleWinnings;
+        for(int i=0; i < betsHistory.getBets().size(); i++){
+            if(betsHistory.getBets().get(i).result == EnumBetStatus.WON)
+                totalProfit += betsHistory.getBets().get(i).possibleWinnings;
             else
-                if(betsHistory.bets.get(i).result == EnumBetStatus.LOST)
-                    totalProfit -= betsHistory.bets.get(i).totalValueBetted;
+                if(betsHistory.getBets().get(i).result == EnumBetStatus.LOST)
+                    totalProfit -= betsHistory.getBets().get(i).totalValueBetted;
         }
 
         return totalProfit;
@@ -279,14 +277,14 @@ public class User {
 
 
     public static void main(String[] args) {
-        ArrayList<Bet> bets = new ArrayList<>();
+   /*     ArrayList<Bet> bets = new ArrayList<>();
         BettingHistory betH = new BettingHistory();
 
         User a = new User("Pedro", "pdls", EnumGenders.MALE, 20, 0);
 
         //a.registerBet(2, 1, "29-09-2020", "30-09-2020", 19.9f, 100.99f, "primeiraBet");
         //a.registerBet(2, 1, "29-09-2020", "30-09-2020", 19.9f, 100.99f, "segundaBet");
-        a.changeBet(0, 13, 3, "29-09-2020", "29-03-2020", 20.0f, 200.0f, "Bet alterada", EnumBetStatus.WON);
+       // a.changeBet(0, 13, 3, "29/09/2020", "29/03/2020", 20.0f, 200.0f, "Bet alterada", EnumBetStatus.WON);
         Time timeRegister = new Time(2020, 10,1, 20, 11,30,27);
         Time timeClose = new Time(2020, 10,1, 20, 11,30,27);
         timeClose.getCurrentDate();
@@ -300,7 +298,7 @@ public class User {
         a.removeBet(0);
         a.getBets();
         System.out.println("------------------------------------------------");
-        //System.out.println("Username: " + a.getName());
+        //System.out.println("Username: " + a.getName());*/
     }
 }
 
