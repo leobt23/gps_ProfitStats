@@ -85,7 +85,7 @@ public class ObservableModel {
         return model.verifyInputBetRegistry(numOfGamesBettedValue,registDateValue,closeDateValue,totalValueBettedValue,possibleWinningsValue,numberOfBetsValue,betNameValue,enumBetStatus);
     }
     public ArrayList<EnumWrongInputBetRegistry> getWrongInputBetRegistry(){
-        return  data.getWrongInputBetRegistry();
+        return model.getWrongInputBetRegistry();
     }
 
     public void addNewBet(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
