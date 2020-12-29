@@ -4,9 +4,9 @@ import logic.EnumBetStatus;
 import java.util.ArrayList;
 
 public class BettingHistory {
-    private ArrayList<Bet> bets = new ArrayList<>();
-    private float percentWins = 0.0f, percentLosses = 0.0f;
-    private float moneyStats = 0.0f;
+    ArrayList<Bet> bets = new ArrayList<>();
+    float percentWins = 0.0f, percentLosses = 0.0f;
+    float moneyStats = 0.0f;
 
     public BettingHistory( ) { }
 
@@ -49,7 +49,7 @@ public class BettingHistory {
             return false;
     }
 
-    public boolean changeBetInHistory(int id, int ngames, int nbets, Time betRDate,Time betCDate,
+    public boolean changeBetInHistory(int id, int ngames, int nbets, Time betRDate, Time betCDate,
                                       float totalValueB, float possibleW, String nameBet, EnumBetStatus status){
         for(int i=0; i<bets.size(); i++){
             if(bets.get(i).getBetId() == id){

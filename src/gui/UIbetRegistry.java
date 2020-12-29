@@ -15,7 +15,6 @@ import javafx.scene.text.Font;
 import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
 import logic.ObservableModel;
-import logic.data.PropertyChanges;
 import logic.states.EnumStates;
 
 import java.beans.PropertyChangeEvent;
@@ -25,22 +24,10 @@ import java.util.ArrayList;
 
 public class UIbetRegistry extends BorderPane {
     private ObservableModel obsModel;
-    String possibleWinningsValue;
-    String numOfGamesBettedValue;
-    String betNameValue;
-    String totalValueBettedValue;
-    String numberOfBetsValue;
-    LocalDate registDateValue;
-    LocalDate closeDateValue;
-    EnumBetStatus enumBetStatus;
 
     public UIbetRegistry(ObservableModel obsModel) {
         this.obsModel=obsModel;
-        createView();
-        propsListener();
-    }
 
-    private void createView() {
         //TITLE
         Label betRegistryTitle = new Label("BET REGISTRY");
         betRegistryTitle.setTextFill(Color.BLACK);
@@ -64,7 +51,7 @@ public class UIbetRegistry extends BorderPane {
 
         DatePicker registDatePicker = new DatePicker(LocalDate.now());
         registDatePicker.setOnAction(event -> {
-            // LocalDate date = registDatePicker.getValue();
+           // LocalDate date = registDatePicker.getValue();
         });
         gridPane.add(registDatePicker,1,2);
 
@@ -143,7 +130,7 @@ public class UIbetRegistry extends BorderPane {
             {
                 if (checkBoxPendent.isSelected()) {
                     checkBoxWin.setSelected(false);
-                    checkBoxLost.setSelected(false);
+                    checkBoxPendent.setSelected(false);
                 }
 
 
@@ -166,34 +153,26 @@ public class UIbetRegistry extends BorderPane {
         Button btnSave = new Button("Save");
 
         HBox containerButtons = new HBox();
-        btnCancel.setMinSize(100,20);
-        btnCancel.setPadding(new Insets(5,5,5,5));
-        btnSave.setMinSize(100,20);
-        btnSave.setPadding(new Insets(5,5,5,5));
+
         containerButtons.getChildren().addAll(btnCancel,btnSave);
 
-        HBox titleBox = new HBox();
-        titleBox.getChildren().add(betRegistryTitle);
-        titleBox.setAlignment(Pos.BOTTOM_CENTER);
-        titleBox.setPadding(new Insets(20,0,0,0));
-        setTop(titleBox);
+        setTop(betRegistryTitle);
         setCenter(gridPane);
         setBottom(containerButtons);
-        containerButtons.setAlignment(Pos.CENTER);
-        containerButtons.setPadding(new Insets(20,20,20,20));
 
         btnSave.setOnMouseClicked(event -> {
 
             if (event.getButton() == MouseButton.PRIMARY) {
 
-                possibleWinningsValue = possibleWinningsField.getText();
-                numOfGamesBettedValue = numberOfGamesBettedField.getText();
-                betNameValue = betNameField.getText();
-                totalValueBettedValue = totalValueBettedField.getText();
-                numberOfBetsValue = numberOfBetsField.getText();
-                registDateValue = registDatePicker.getValue();
-                closeDateValue = closeDatePicker.getValue();
+                String possibleWinningsValue = possibleWinningsField.getText();
+                String numOfGamesBettedValue = numberOfGamesBettedField.getText();
+                String betNameValue = betNameField.getText();
+                String totalValueBettedValue = totalValueBettedField.getText();
+                String numberOfBetsValue = numberOfBetsField.getText();
+                LocalDate registDateValue = registDatePicker.getValue();
+                LocalDate closeDateValue = closeDatePicker.getValue();
 
+                EnumBetStatus enumBetStatus;
                 if (checkBoxLost.isSelected()) {
                     enumBetStatus = EnumBetStatus.LOST;
                 } else {
@@ -211,8 +190,8 @@ public class UIbetRegistry extends BorderPane {
                 boolean input_result = obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                         , betNameValue, enumBetStatus);
                 if(input_result) {
-                    obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
-                            , betNameValue, enumBetStatus);
+              //      obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
+              //              , betNameValue, enumBetStatus);
                     Alert a1 = new Alert(Alert.AlertType.NONE,
                             "Bet successfuly registered!", ButtonType.OK);
                     // show the dialog
@@ -223,19 +202,17 @@ public class UIbetRegistry extends BorderPane {
                             "Input error(s)!", ButtonType.OK);
                     // show the dialog
                     a1.showAndWait();
-                    ViewWithWrongInputs(obsModel.getWrongInputBetRegistry());
                 }
 
             }
         });
 
         btnCancel.setOnMouseClicked(event->{
-            if(event.getButton() == MouseButton.PRIMARY){
-                createView();
-            }
+           if(event.getButton() == MouseButton.PRIMARY){
+       //        obsModel.cancelBetRegistry();
+           }
         });
     }
-
     private void ViewWithWrongInputs(ArrayList<EnumWrongInputBetRegistry> wrong_input){
         this.obsModel=obsModel;
 
@@ -256,14 +233,13 @@ public class UIbetRegistry extends BorderPane {
 
         TextField numberOfGamesBettedField= new TextField();
         if(wrong_input.contains(EnumWrongInputBetRegistry.NUMBER_OF_GAMES_BETTED))
-            numberOfGamesBettedField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
-        numberOfGamesBettedField.setText(numOfGamesBettedValue);
+            numberOfGamesBettedField.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         gridPane.add(numberOfGamesBettedField, 1, 1);
 
         Label registDate = new Label("Bet regist date:");
         gridPane.add(registDate, 0, 2);
 
-        DatePicker registDatePicker = new DatePicker(registDateValue);
+        DatePicker registDatePicker = new DatePicker(LocalDate.now());
         registDatePicker.setOnAction(event -> {
             // LocalDate date = registDatePicker.getValue();
         });
@@ -272,12 +248,10 @@ public class UIbetRegistry extends BorderPane {
         Label closeDate = new Label("Bet close date:");
         gridPane.add(closeDate, 0, 3);
 
-        DatePicker closeDatePicker = new DatePicker(closeDateValue);
+        DatePicker closeDatePicker = new DatePicker(LocalDate.now());
         closeDatePicker.setOnAction(event -> {
             LocalDate date = closeDatePicker.getValue();
         });
-        if(wrong_input.contains(EnumWrongInputBetRegistry.BET_CLOSE_DATE))
-            closeDatePicker.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
         gridPane.add(closeDatePicker,1,3);
 
         Label totalValueBetted = new Label("Total value betted:");
@@ -285,8 +259,7 @@ public class UIbetRegistry extends BorderPane {
 
         TextField totalValueBettedField= new TextField();
         if(wrong_input.contains(EnumWrongInputBetRegistry.TOTAL_VALUE_BETTED))
-            totalValueBettedField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
-        totalValueBettedField.setText(totalValueBettedValue);
+            totalValueBettedField.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         gridPane.add(totalValueBettedField, 1, 4);
 
         Label possibleWinnings = new Label("Possible winnings:");
@@ -294,8 +267,7 @@ public class UIbetRegistry extends BorderPane {
 
         TextField possibleWinningsField= new TextField();
         if(wrong_input.contains(EnumWrongInputBetRegistry.POSSIBLE_WINNINGS))
-            possibleWinningsField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
-        possibleWinningsField.setText(possibleWinningsValue);
+            possibleWinningsField.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         gridPane.add(possibleWinningsField, 1, 5);
 
         Label numberOfBets = new Label("Number of bets:");
@@ -303,9 +275,7 @@ public class UIbetRegistry extends BorderPane {
 
         TextField numberOfBetsField= new TextField();
         if(wrong_input.contains(EnumWrongInputBetRegistry.NUMBER_OF_BETS))
-            numberOfBetsField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
-        numberOfBetsField.setText(numberOfBetsValue);
-
+            numberOfBetsField.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         gridPane.add(numberOfBetsField, 1, 6);
 
         Label betName = new Label("Bet name:");
@@ -313,9 +283,8 @@ public class UIbetRegistry extends BorderPane {
 
         TextField betNameField= new TextField();
         if(wrong_input.contains(EnumWrongInputBetRegistry.BET_NAME))
-            betNameField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
+            betNameField.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         gridPane.add(betNameField, 1, 7);
-        betNameField.setText(betNameValue);
 
         Label Result = new Label("Result:");
         gridPane.add(Result, 0, 8);
@@ -326,12 +295,6 @@ public class UIbetRegistry extends BorderPane {
         checkBoxLost.setAllowIndeterminate(false);
         CheckBox checkBoxPendent = new CheckBox("Pendent");
         checkBoxPendent.setAllowIndeterminate(false);
-        if(enumBetStatus==EnumBetStatus.LOST)
-            checkBoxLost.setSelected(true);
-        if(enumBetStatus==EnumBetStatus.WON)
-            checkBoxWin.setSelected(true);
-        if(enumBetStatus==EnumBetStatus.PENDENT)
-            checkBoxPendent.setSelected(true);
 
         EventHandler<ActionEvent> eventWin = new EventHandler<ActionEvent>() {
 
@@ -365,7 +328,7 @@ public class UIbetRegistry extends BorderPane {
             {
                 if (checkBoxPendent.isSelected()) {
                     checkBoxWin.setSelected(false);
-                    checkBoxLost.setSelected(false);
+                    checkBoxPendent.setSelected(false);
                 }
 
 
@@ -391,31 +354,21 @@ public class UIbetRegistry extends BorderPane {
 
         containerButtons.getChildren().addAll(btnCancel,btnSave);
 
-        HBox boxTitle = new HBox();
-        boxTitle.getChildren().add(betRegistryTitle);
-        boxTitle.setAlignment(Pos.TOP_CENTER);
-        boxTitle.setPadding(new Insets(20,0,0,0));
-        setTop(boxTitle);
+        setTop(betRegistryTitle);
         setCenter(gridPane);
         setBottom(containerButtons);
-        containerButtons.setAlignment(Pos.CENTER);
-        btnCancel.setMinSize(100,20);
-        btnCancel.setPadding(new Insets(5,5,5,5));
-        btnSave.setMinSize(100,20);
-        btnSave.setPadding(new Insets(5,5,5,5));
-        containerButtons.setPadding(new Insets(20,20,20,20));
 
         btnSave.setOnMouseClicked(event -> {
 
             if (event.getButton() == MouseButton.PRIMARY) {
 
-                possibleWinningsValue = possibleWinningsField.getText();
-                numOfGamesBettedValue = numberOfGamesBettedField.getText();
-                betNameValue = betNameField.getText();
-                totalValueBettedValue = totalValueBettedField.getText();
-                numberOfBetsValue = numberOfBetsField.getText();
-                registDateValue = registDatePicker.getValue();
-                closeDateValue = closeDatePicker.getValue();
+                String possibleWinningsValue = possibleWinningsField.getText();
+                String numOfGamesBettedValue = numberOfGamesBettedField.getText();
+                String betNameValue = betNameField.getText();
+                String totalValueBettedValue = totalValueBettedField.getText();
+                String numberOfBetsValue = numberOfBetsField.getText();
+                LocalDate registDateValue = registDatePicker.getValue();
+                LocalDate closeDateValue = closeDatePicker.getValue();
 
                 EnumBetStatus enumBetStatus;
                 if (checkBoxLost.isSelected()) {
@@ -435,8 +388,8 @@ public class UIbetRegistry extends BorderPane {
                 boolean input_result = obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                         , betNameValue, enumBetStatus);
                 if(input_result) {
-                    obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
-                            , betNameValue, enumBetStatus);
+      //              obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
+      //                      , betNameValue, enumBetStatus);
                     Alert a1 = new Alert(Alert.AlertType.NONE,
                             "Bet successfuly registered!", ButtonType.OK);
                     // show the dialog
@@ -447,7 +400,6 @@ public class UIbetRegistry extends BorderPane {
                             "Input error(s)!", ButtonType.OK);
                     // show the dialog
                     a1.showAndWait();
-                    ViewWithWrongInputs(obsModel.getWrongInputBetRegistry());
                 }
 
 
@@ -456,25 +408,27 @@ public class UIbetRegistry extends BorderPane {
 
         btnCancel.setOnMouseClicked(event->{
             if(event.getButton() == MouseButton.PRIMARY){
-                createView();
+       //         obsModel.cancelBetRegistry();
             }
         });
 
     }
-
     private void propsListener() {
-        obsModel.addPropertyChangeListener(PropertyChanges.STATE_CHANGE,
-                evt -> {
-                    setVisible(obsModel.getState() == EnumStates.BET_REGISTRY);
-                    System.out.println("propertyChange");
+        obsModel.addPropertyChangeListener(Constants.STATE_PROP,
+                new PropertyChangeListener() {
+                    @Override
+                    public void propertyChange(PropertyChangeEvent evt) {
+                        setVisible(obsModel.getState() == EnumStates.BET_REGISTRY);
+                        System.out.println("propertyChange");
+                    }
                 }
         );
         obsModel.addPropertyChangeListener(Constants.WRONG_INPUT_BET_REGISTRY,
                 new PropertyChangeListener() {
                     @Override
                     public void propertyChange(PropertyChangeEvent evt) {
-                        ArrayList<EnumWrongInputBetRegistry> wrong_input = obsModel.getWrongInputBetRegistry();
-                        ViewWithWrongInputs(wrong_input);
+         //               ArrayList<EnumWrongInputBetRegistry> wrong_input = obsModel.getBetRegistryWrongInput();
+          //              ViewWithWrongInputs(wrong_input);
                         System.out.println("propertyChange");
                     }
                 }

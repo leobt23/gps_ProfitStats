@@ -1,10 +1,10 @@
 
 package tests;
 
+import logic.data.Bet;
 import logic.data.EnumGenders;
 import logic.data.User;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
