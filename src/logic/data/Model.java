@@ -1,6 +1,7 @@
 package logic.data;
 
 import logic.EnumBetStatus;
+import logic.EnumWrongInputBetRegistry;
 import logic.states.BetRegistry;
 import logic.states.EnumStates;
 import logic.states.IState;
@@ -84,6 +85,8 @@ public class Model {
                 numberOfBetsValue,betNameValue, enumBetStatus);
     }
 
+
+
     public float getTotalProfit() {
         return data.getTotalProfit();
     }
@@ -98,5 +101,9 @@ public class Model {
         events.clear();
         setState(new BetRegistry(data));
         return events;
+    }
+
+    public ArrayList<EnumWrongInputBetRegistry> getWrongInputBetRegistry() {
+        return data.getWrongInputBetRegistry();
     }
 }
