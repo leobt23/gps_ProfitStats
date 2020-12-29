@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
 import logic.ObservableModel;
+import logic.data.PropertyChanges;
 import logic.states.EnumStates;
 
 import java.beans.PropertyChangeEvent;
@@ -27,6 +28,8 @@ public class UIbetRegistry extends BorderPane {
 
     public UIbetRegistry(ObservableModel obsModel) {
         this.obsModel=obsModel;
+
+        propsListener();
 
         //TITLE
         Label betRegistryTitle = new Label("BET REGISTRY");
@@ -414,13 +417,9 @@ public class UIbetRegistry extends BorderPane {
 
     }
     private void propsListener() {
-        obsModel.addPropertyChangeListener(Constants.STATE_PROP,
-                new PropertyChangeListener() {
-                    @Override
-                    public void propertyChange(PropertyChangeEvent evt) {
-                        setVisible(obsModel.getState() == EnumStates.BET_REGISTRY);
-                        System.out.println("propertyChange");
-                    }
+        obsModel.addPropertyChangeListener(PropertyChanges.STATE_CHANGE,
+                evt -> {
+                    setVisible(obsModel.getState() == EnumStates.BET_REGISTRY);
                 }
         );
         obsModel.addPropertyChangeListener(Constants.WRONG_INPUT_BET_REGISTRY,
