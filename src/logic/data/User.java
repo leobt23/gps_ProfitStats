@@ -2,6 +2,8 @@ package logic.data;
 
 import logic.EnumBetStatus;
 
+import java.util.ArrayList;
+
 public class User {
     String name, email, bestMonth;
     EnumGenders gender;
