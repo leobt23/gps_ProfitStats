@@ -72,9 +72,9 @@ public class User {
     }
 
     public boolean registerBet(int ngames, int nbets, Time betRDate, Time betCDate,
-                               float totalValueB, float possibleW, String nameBet) {
+                               float totalValueB, float possibleW, String nameBet, EnumBetStatus result) {
 
-        Bet newBet = new Bet(ngames, nbets, betRDate, betCDate, totalValueB, possibleW, nameBet, EnumBetStatus.PENDENT);
+        Bet newBet = new Bet(ngames, nbets, betRDate, betCDate, totalValueB, possibleW, nameBet, result);
         if (betsHistory.addBetToHistory(newBet))
             return true;
         else
@@ -107,8 +107,8 @@ public class User {
         float max = 0.0f;
         int pos = 0;
 
-        for(int i=0; i < arrayMeses.size(); i++)
-            arrayMeses.set(i,0.0f);
+        for(int i=0; i < 12; i++)
+            arrayMeses.add(0.0f);
 
         for(int i=0; i < betsHistory.bets.size(); i++){
             if(betsHistory.bets.get(i).betRegisterDate.month == 1 && betsHistory.bets.get(i).result == EnumBetStatus.WON)
@@ -178,8 +178,8 @@ public class User {
                 pos = i;
             }
 
-         if(pos == 1)
-             bestMonth = "Janeiro";
+        if(pos == 1)
+            bestMonth = "Janeiro";
         if(pos == 2)
             bestMonth = "Feveiro";
         if(pos == 3)
@@ -209,34 +209,34 @@ public class User {
     public ArrayList<Integer> numberOfBetsMonth(){
         ArrayList<Integer> arrayMeses = new ArrayList<>(12);
 
-        for(int i=0; i < arrayMeses.size(); i++)
-            arrayMeses.set(i,0);
+        for(int i=0; i < 12; i++)
+            arrayMeses.add(0);
 
         for(int i=0; i < betsHistory.bets.size(); i++){
             if(betsHistory.bets.get(i).betRegisterDate.month == 1)
-                arrayMeses.set(1,arrayMeses.get(1) + 1);
+                arrayMeses.set(0,arrayMeses.get(0) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 2)
-                arrayMeses.set(2,arrayMeses.get(2) + 1);
+                arrayMeses.set(1,arrayMeses.get(1) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 3)
-                arrayMeses.set(3,arrayMeses.get(3) + 1);
+                arrayMeses.set(2,arrayMeses.get(2) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 4)
-                arrayMeses.set(4,arrayMeses.get(4) + 1);
+                arrayMeses.set(3,arrayMeses.get(3) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 5)
-                arrayMeses.set(5,arrayMeses.get(5) + 1);
+                arrayMeses.set(4,arrayMeses.get(4) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 6)
-                arrayMeses.set(6,arrayMeses.get(6) + 1);
+                arrayMeses.set(5,arrayMeses.get(5) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 7)
-                arrayMeses.set(7,arrayMeses.get(7) + 1);
+                arrayMeses.set(6,arrayMeses.get(6) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 8)
-                arrayMeses.set(8,arrayMeses.get(8) + 1);
+                arrayMeses.set(7,arrayMeses.get(7) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 9)
-                arrayMeses.set(9,arrayMeses.get(9) + 1);
+                arrayMeses.set(8,arrayMeses.get(8) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 10)
-                arrayMeses.set(10,arrayMeses.get(10) + 1);
+                arrayMeses.set(9,arrayMeses.get(9) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 11)
-                arrayMeses.set(11,arrayMeses.get(11) + 1);
+                arrayMeses.set(10,arrayMeses.get(10) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 12)
-                arrayMeses.set(12,arrayMeses.get(12) + 1);
+                arrayMeses.set(11,arrayMeses.get(11) + 1);
         }
 
         return arrayMeses;
