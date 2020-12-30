@@ -104,7 +104,7 @@ public class User {
             System.out.println("ID = " + betsHistory.getBets().get(i).getBetId() + " Nome da aposta: " + betsHistory.getBets().get(i).getBetName() + "");
         }
     }
-
+//
     public String getBestMonth() {
         ArrayList<Float> arrayMeses = new ArrayList<>(12);
         float max = 0.0f;
