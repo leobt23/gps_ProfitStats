@@ -5,6 +5,7 @@ import logic.EnumWrongInputBetRegistry;
 import logic.states.BetRegistry;
 import logic.states.EnumStates;
 import logic.states.IState;
+import logic.states.Notifications;
 import logic.states.Statistics;
 
 import java.time.LocalDate;
@@ -100,6 +101,12 @@ public class Model {
     public List<String> moveToBetRegistry() {
         events.clear();
         setState(new BetRegistry(data));
+        return events;
+    }
+
+    public List<String> moveNotifications() {
+        events.clear();
+        setState(new Notifications(data));
         return events;
     }
 

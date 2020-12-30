@@ -105,4 +105,7 @@ public class ObservableModel {
     public void moveToBetRegistry() {
         fireEvents(model.moveToBetRegistry());
     }
+    public void moveToNotifications() {
+        fireEvents(model.moveNotifications());
+    }
 }
