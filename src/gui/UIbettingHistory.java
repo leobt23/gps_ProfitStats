@@ -1,6 +1,7 @@
 package gui;
 
 import logic.ObservableModel;
+import logic.data.PropertyChanges;
 import logic.states.EnumStates;
 import logic.EnumBetStatus;
 import gui.resources.Constants;
@@ -283,13 +284,10 @@ public class UIbettingHistory extends BorderPane {
     }
 
     private void propsListener() {
-        model.addPropertyChangeListener(Constants.STATE_PROP,
-                new PropertyChangeListener() {
-                    @Override
-                    public void propertyChange(PropertyChangeEvent evt) {
-                        setVisible(model.getState() == EnumStates.BETS_HISTORY);
-                        System.out.println("propertyChange");
-                    }
+        model.addPropertyChangeListener(PropertyChanges.STATE_CHANGE,
+                evt -> {
+                    setVisible(model.getState() == EnumStates.BETS_HISTORY);
+                    System.out.println("propertyChange");
                 }
         );
         model.addPropertyChangeListener(Constants.UPDATE_BETS_HISTORY,

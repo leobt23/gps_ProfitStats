@@ -130,13 +130,14 @@ public class MoneyStats extends BorderPane {
         final NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Number of bets");
         yAxis.setTickUnit(1);
+        xAxis.setLabel("Months");
 
         final LineChart<String,Number> lineChart =
                 new LineChart<>(xAxis, yAxis);
         lineChart.setTitle("Bets");
 
         XYChart.Series series = new XYChart.Series();
-        series.setName("My portfolio");
+        series.setName("Bets");
 
         ArrayList<Integer> betPerMonths = obsModel.numberOfBetsMonth();
         ObservableList<String> catList = FXCollections.observableArrayList();
@@ -180,10 +181,10 @@ public class MoneyStats extends BorderPane {
 
         HBox hbTotalProfit = new HBox();
         hbTotalProfit.setSpacing(5);
-     //   Label lTotalProfitTitle = new Label("Total profit: " + obsModel.getTotalProfit() + "€");
-     //   lTotalProfitTitle.setFont(lFont);
-      //  lTotalProfitTitle.setTextFill(Color.WHITE);
-     //   hbTotalProfit.getChildren().addAll(lTotalProfitTitle);
+        Label lTotalProfitTitle = new Label("Total profit: " + obsModel.getTotalProfit() + "€");
+        lTotalProfitTitle.setFont(lFont);
+        lTotalProfitTitle.setTextFill(Color.WHITE);
+        hbTotalProfit.getChildren().addAll(lTotalProfitTitle);
 
         HBox hbHighestWin = new HBox();
         hbHighestWin.setSpacing(5);
