@@ -2,7 +2,10 @@ package logic.data;
 
 import logic.EnumBetStatus;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class User {
     String name, email, bestMonth;
@@ -72,9 +75,9 @@ public class User {
     }
 
     public boolean registerBet(int ngames, int nbets, Time betRDate, Time betCDate,
-                               float totalValueB, float possibleW, String nameBet, EnumBetStatus result) {
+                               float totalValueB, float possibleW, String nameBet, EnumBetStatus betResult) {
 
-        Bet newBet = new Bet(ngames, nbets, betRDate, betCDate, totalValueB, possibleW, nameBet, result);
+        Bet newBet = new Bet(ngames, nbets, betRDate, betCDate, totalValueB, possibleW, nameBet, betResult);
         if (betsHistory.addBetToHistory(newBet))
             return true;
         else
@@ -179,7 +182,7 @@ public class User {
             }
 
         if(pos == 1)
-            bestMonth = "Janeiro";
+             bestMonth = "Janeiro";
         if(pos == 2)
             bestMonth = "Feveiro";
         if(pos == 3)
@@ -237,9 +240,81 @@ public class User {
                 arrayMeses.set(10,arrayMeses.get(10) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 12)
                 arrayMeses.set(11,arrayMeses.get(11) + 1);
+            if(betsHistory.bets.get(i).betRegisterDate.month == 12)
+                arrayMeses.set(12,arrayMeses.get(12) + 1);
         }
 
         return arrayMeses;
+    }
+
+    public ArrayList<Float> getWonMoneyCurrentMonth(){
+        ArrayList<Float> arraySemanas = new ArrayList<>(4);
+
+        for(int i=0; i < 4; i++)
+            arraySemanas.set(i,0.0f);
+
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int month = localDate.getMonthValue();
+
+        for(int i=1; i < betsHistory.bets.size(); i++){
+            if(betsHistory.bets.get(i).betRegisterDate.day >= 1 && betsHistory.bets.get(i).betRegisterDate.day <= 7
+                    && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
+                arraySemanas.set(0, arraySemanas.get(0) + betsHistory.bets.get(i).possibleWinnings);
+            }
+
+            if(betsHistory.bets.get(i).betRegisterDate.day >= 8 && betsHistory.bets.get(i).betRegisterDate.day <= 14
+                    && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
+                arraySemanas.set(1, arraySemanas.get(1) + betsHistory.bets.get(i).possibleWinnings);
+            }
+
+            if(betsHistory.bets.get(i).betRegisterDate.day >= 15 && betsHistory.bets.get(i).betRegisterDate.day <= 21
+                    && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
+                arraySemanas.set(2, arraySemanas.get(2) + betsHistory.bets.get(i).possibleWinnings);
+            }
+
+            if(betsHistory.bets.get(i).betRegisterDate.day >= 22 && betsHistory.bets.get(i).betRegisterDate.day <= 31
+                    && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
+                arraySemanas.set(3, arraySemanas.get(3) + betsHistory.bets.get(i).possibleWinnings);
+            }
+
+        }
+        return arraySemanas;
+    }
+
+    public ArrayList<Float> getLostMoneyCurrentMonth(){
+        ArrayList<Float> arraySemanas = new ArrayList<>(4);
+
+        for(int i=0; i < 4; i++)
+            arraySemanas.set(i,0.0f);
+
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int month = localDate.getMonthValue();
+
+        for(int i=1; i < betsHistory.bets.size(); i++){
+            if(betsHistory.bets.get(i).betRegisterDate.day >= 1 && betsHistory.bets.get(i).betRegisterDate.day <= 7
+                    && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
+                arraySemanas.set(0, arraySemanas.get(0) - betsHistory.bets.get(i).possibleWinnings);
+            }
+
+            if(betsHistory.bets.get(i).betRegisterDate.day >= 8 && betsHistory.bets.get(i).betRegisterDate.day <= 14
+                    && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
+                arraySemanas.set(1, arraySemanas.get(1) - betsHistory.bets.get(i).possibleWinnings);
+            }
+
+            if(betsHistory.bets.get(i).betRegisterDate.day >= 15 && betsHistory.bets.get(i).betRegisterDate.day <= 21
+                    && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
+                arraySemanas.set(2, arraySemanas.get(2) - betsHistory.bets.get(i).possibleWinnings);
+            }
+
+            if(betsHistory.bets.get(i).betRegisterDate.day >= 22 && betsHistory.bets.get(i).betRegisterDate.day <= 31
+                    && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
+                arraySemanas.set(3, arraySemanas.get(3) - betsHistory.bets.get(i).possibleWinnings);
+            }
+
+        }
+        return arraySemanas;
     }
 
     public float getTotalProfit() {
@@ -279,7 +354,7 @@ public class User {
 
 
     public static void main(String[] args) {
-   /*     ArrayList<Bet> bets = new ArrayList<>();
+        ArrayList<Bet> bets = new ArrayList<>();
         BettingHistory betH = new BettingHistory();
 
         User a = new User("Pedro", "pdls", EnumGenders.MALE, 20, 0);
@@ -287,12 +362,14 @@ public class User {
         //a.registerBet(2, 1, "29-09-2020", "30-09-2020", 19.9f, 100.99f, "primeiraBet");
         //a.registerBet(2, 1, "29-09-2020", "30-09-2020", 19.9f, 100.99f, "segundaBet");
        // a.changeBet(0, 13, 3, "29/09/2020", "29/03/2020", 20.0f, 200.0f, "Bet alterada", EnumBetStatus.WON);
-        Time timeRegister = new Time(2020, 10,1, 20, 11,30,27);
-        Time timeClose = new Time(2020, 10,1, 20, 11,30,27);
+        Time timeRegister = new Time(2020,12,3,22);
+        Time timeClose = new Time(2020, 12,3, 24);
         timeClose.getCurrentDate();
 
-        a.registerBet(2, 1, timeRegister, timeClose, 19.9f, 100.99f, "primeiraBet");
-        a.registerBet(2, 1, timeRegister, timeClose, 19.9f, 100.99f, "segundaBet");
+        a.registerBet(2, 1, timeRegister, timeClose, 19.9f, 100.99f, "primeiraBet", EnumBetStatus.WON);
+        a.registerBet(2, 1, timeRegister, timeClose, 19.9f, 100.99f, "segundaBet", EnumBetStatus.LOST);
+        a.registerBet(1,3,timeRegister,timeClose,5.0f,500.0f,"praVitoria", EnumBetStatus.WON);
+        //a.changeBet()
         //a.changeBet(0, 13, 3, timeRegister, timeClose, 20.0f, 200.0f, "Bet alterada");
         System.out.println("------------------------------------------------");
         a.getBets();
@@ -300,6 +377,9 @@ public class User {
         a.removeBet(0);
         a.getBets();
         System.out.println("------------------------------------------------");
+        ArrayList<Float> LostMoney = a.getLostMoneyCurrentMonth();
+        for(int i=0; i < 4; i++)
+            System.out.println(LostMoney.get(i));
         //System.out.println("Username: " + a.getName());*/
     }
 }
