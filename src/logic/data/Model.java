@@ -2,6 +2,7 @@ package logic.data;
 
 import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
+import logic.states.*;
 import logic.states.BetRegistry;
 import logic.states.EnumStates;
 import logic.states.IState;
@@ -86,6 +87,8 @@ public class Model {
                 numberOfBetsValue,betNameValue, enumBetStatus);
     }
 
+
+
     public float getTotalProfit() {
         return data.getTotalProfit();
     }
@@ -99,6 +102,12 @@ public class Model {
     public List<String> moveToBetRegistry() {
         events.clear();
         setState(new BetRegistry(data));
+        return events;
+    }
+
+    public List<String> moveToUserProfile() {
+        events.clear();
+        setState(new UserProfile(data));
         return events;
     }
 

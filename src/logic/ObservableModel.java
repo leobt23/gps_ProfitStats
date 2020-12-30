@@ -103,4 +103,8 @@ public class ObservableModel {
     public ArrayList<Integer> numberOfBetsMonth() {
         return model.numberOfBetsMonth();
     }
+
+    public void moveToUserProfile() {
+        fireEvents(model.moveToUserProfile());
+    }
 }

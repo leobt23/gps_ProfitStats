@@ -48,6 +48,9 @@ public class LeftPanel extends Pane {
                 case PanelElements.NOTIFICATIONS:
 //                    obsModel.moveToNotifications();
                     break;
+                case PanelElements.USER_PROFILE:
+                    obsModel.moveToUserProfile();
+                    break;
             }
         });
 
@@ -88,7 +91,7 @@ public class LeftPanel extends Pane {
         addPanelElement(PanelElements.NOTIFICATIONS);
 
         switch (obsModel.getState()) {
-            case EDIT_USER_PROFILE -> setActiveElement( (HBox) panelContainer.getChildren().get(0));
+            case USER_PROFILE -> setActiveElement( (HBox) panelContainer.getChildren().get(0));
             case STATISTICS -> setActiveElement( (HBox) panelContainer.getChildren().get(1));
             case BETS_HISTORY -> setActiveElement( (HBox) panelContainer.getChildren().get(2));
             case BET_REGISTRY -> setActiveElement( (HBox) panelContainer.getChildren().get(3));
