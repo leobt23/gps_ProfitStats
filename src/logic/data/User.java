@@ -197,7 +197,7 @@ public class User {
         if(pos == 9)
             bestMonth = "Setembro";
         if(pos == 10)
-            bestMonth = "Outobro";
+            bestMonth = "Outubro";
         if(pos == 11)
             bestMonth = "Novembro";
         if(pos == 12)

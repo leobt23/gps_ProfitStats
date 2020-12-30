@@ -86,6 +86,11 @@ public class MoneyStats extends BorderPane {
         xAxisProfit.setLabel("Month");
         yAxisProfit.setLabel("Profit (€)");
 
+        ObservableList<String> catList = FXCollections.observableArrayList();
+        catList.addAll("Jan", "Feb","Mar","Apr","May",
+                "Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+        xAxisProfit.setCategories(catList);
+
         bcProfit.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
         XYChart.Series incomeSeries = new XYChart.Series();
@@ -96,11 +101,12 @@ public class MoneyStats extends BorderPane {
 
         XYChart.Series outcomeSeries = new XYChart.Series();
         outcomeSeries.setName("Outcome");
-        outcomeSeries.getData().add(new XYChart.Data("abril", 30));
-        outcomeSeries.getData().add(new XYChart.Data("maio", 50));
-        outcomeSeries.getData().add(new XYChart.Data("junho", 10));
-        outcomeSeries.getData().add(new XYChart.Data("julho", 50));
-        outcomeSeries.getData().add(new XYChart.Data("agosto", 12));
+
+        ArrayList<Float> profitPerMonth = obsModel;
+
+        for (int idx = 0; idx < betPerMonths.size(); idx++) {
+            outcomeSeries.getData().add(new XYChart.Data(xAxisProfit.getCategories().get(idx), betPerMonths.get(idx)));
+        }
 
         bcProfit.getData().addAll(incomeSeries, outcomeSeries);
 
