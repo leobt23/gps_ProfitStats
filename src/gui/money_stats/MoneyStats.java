@@ -2,13 +2,12 @@ package gui.money_stats;
 
 import gui.resources.Constants;
 import gui.resources.Images;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -21,13 +20,19 @@ import logic.data.PropertyChanges;
 import logic.states.EnumStates;
 
 import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
 
 public class MoneyStats extends BorderPane {
     private final ObservableModel obsModel;
+    private HBox hbGraphs;
 
     public MoneyStats (ObservableModel obsModel) {
         this.obsModel = obsModel;
+        registerPropertyObservers();
+        draw();
+    }
 
+    private void draw() {
         BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
         this.setBackground(new Background(new BackgroundImage(Images.getImage(Constants.STATISTICS_BACKGROUND),
                 BackgroundRepeat.NO_REPEAT,
@@ -59,10 +64,14 @@ public class MoneyStats extends BorderPane {
         BorderPane.setAlignment(hbTitleContainer, Pos.CENTER);
         BorderPane.setMargin(hbTitleContainer, new Insets(20,0,0,0));
 
-
+        hbGraphs = new HBox();
+        hbGraphs.setBackground(new Background(new BackgroundFill(
+                Color.rgb(255,255,255,0.7), new CornerRadii(5), Insets.EMPTY)
+        ));
+        hbGraphs.setPadding(new Insets(30));
         profitGraphic();
+        betsGraphic();
         textStatistics();
-        registerPropertyObservers();
     }
 
     private void profitGraphic() {
@@ -113,13 +122,34 @@ public class MoneyStats extends BorderPane {
         XYChart.Series outcomeSeries = new XYChart.Series();
         outcomeSeries.setName("Outcome");*/
 
-        HBox hbGraphs = new HBox();
-        hbGraphs.setBackground(new Background(new BackgroundFill(
-                Color.rgb(255,255,255,0.7), new CornerRadii(5), Insets.EMPTY)
-        ));
-        hbGraphs.setPadding(new Insets(30));
         hbGraphs.getChildren().add(bcProfit);
+    }
 
+    private void betsGraphic() {
+        final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Number of bets");
+        yAxis.setTickUnit(1);
+
+        final LineChart<String,Number> lineChart =
+                new LineChart<>(xAxis, yAxis);
+        lineChart.setTitle("Bets");
+
+        XYChart.Series series = new XYChart.Series();
+        series.setName("My portfolio");
+
+        ArrayList<Integer> betPerMonths = obsModel.numberOfBetsMonth();
+        ObservableList<String> catList = FXCollections.observableArrayList();
+        catList.addAll("Jan", "Feb","Mar","Apr","May",
+                "Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+        xAxis.setCategories(catList);
+        for (int idx = 0; idx < betPerMonths.size(); idx++) {
+            series.getData().add(new XYChart.Data(xAxis.getCategories().get(idx), betPerMonths.get(idx)));
+        }
+
+        lineChart.getData().add(series);
+
+        hbGraphs.getChildren().add(lineChart);
         StackPane pane = new StackPane();
         pane.setPadding(new Insets(20));
         pane.getChildren().add(hbGraphs);
@@ -176,6 +206,9 @@ public class MoneyStats extends BorderPane {
     private void registerPropertyObservers() {
         obsModel.addPropertyChangeListener(PropertyChanges.STATE_CHANGE, (PropertyChangeEvent evt) -> {
             setVisible(obsModel.getState() == EnumStates.STATISTICS);
+            if (isVisible()) {
+                draw();
+            }
         });
     }
 }

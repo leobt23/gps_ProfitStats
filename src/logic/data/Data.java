@@ -177,4 +177,8 @@ public class Data {
     public float getTotalProfit() {
         return user.getTotalProfit();
     }
+
+    public ArrayList<Integer> numberOfBetsMonth() {
+        return user.numberOfBetsMonth();
+    }
 }

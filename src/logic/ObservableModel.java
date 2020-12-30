@@ -12,17 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ObservableModel {
-
-    //TODO: Errado -> nao guarda o objeto Data mas sim um objeto que engloba a data, por exemplo Model
-    private Data data = new Data();
-
     private Model model = new Model();
     private PropertyChangeSupport propertyChangeSupport;
 
     public ObservableModel(){
-        //TODO: Mudar para observar o Model
-
-        propertyChangeSupport = new PropertyChangeSupport(data);
+        propertyChangeSupport = new PropertyChangeSupport(model);
     }
 
     private void fireEvents(List<String> events) {
@@ -104,5 +98,9 @@ public class ObservableModel {
 
     public void moveToBetRegistry() {
         fireEvents(model.moveToBetRegistry());
+    }
+
+    public ArrayList<Integer> numberOfBetsMonth() {
+        return model.numberOfBetsMonth();
     }
 }

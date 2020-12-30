@@ -85,8 +85,6 @@ public class Model {
                 numberOfBetsValue,betNameValue, enumBetStatus);
     }
 
-
-
     public float getTotalProfit() {
         return data.getTotalProfit();
     }
@@ -105,5 +103,9 @@ public class Model {
 
     public ArrayList<EnumWrongInputBetRegistry> getWrongInputBetRegistry() {
         return data.getWrongInputBetRegistry();
+    }
+
+    public ArrayList<Integer> numberOfBetsMonth() {
+        return data.numberOfBetsMonth();
     }
 }
