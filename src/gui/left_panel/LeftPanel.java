@@ -45,6 +45,9 @@ public class LeftPanel extends Pane {
                 case PanelElements.BET_REGISTRY:
                     obsModel.moveToBetRegistry();
                     break;
+                case PanelElements.NOTIFICATIONS:
+                    obsModel.moveToNotifications();
+                    break;
             }
         });
 
