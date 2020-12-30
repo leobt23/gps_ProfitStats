@@ -180,10 +180,10 @@ public class MoneyStats extends BorderPane {
 
         HBox hbTotalProfit = new HBox();
         hbTotalProfit.setSpacing(5);
-        Label lTotalProfitTitle = new Label("Total profit: " + obsModel.getTotalProfit() + "€");
-        lTotalProfitTitle.setFont(lFont);
-        lTotalProfitTitle.setTextFill(Color.WHITE);
-        hbTotalProfit.getChildren().addAll(lTotalProfitTitle);
+     //   Label lTotalProfitTitle = new Label("Total profit: " + obsModel.getTotalProfit() + "€");
+     //   lTotalProfitTitle.setFont(lFont);
+      //  lTotalProfitTitle.setTextFill(Color.WHITE);
+     //   hbTotalProfit.getChildren().addAll(lTotalProfitTitle);
 
         HBox hbHighestWin = new HBox();
         hbHighestWin.setSpacing(5);
