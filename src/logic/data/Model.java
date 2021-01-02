@@ -144,4 +144,10 @@ public class Model {
     public float getWinningPercentage() {
         return data.getWinningPercentage();
     }
+
+    public List<String> moveToBetsHistory() {
+        events.clear();
+        setState(new BetsHistory(data));
+        return events;
+    }
 }

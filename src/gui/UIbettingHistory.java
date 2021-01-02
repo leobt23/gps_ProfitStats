@@ -281,6 +281,8 @@ public class UIbettingHistory extends BorderPane {
         scrollPane.setContent(scrollPaneVBox);
         scrollPane.setFitToWidth(true);
         setCenter(scrollPane);
+
+        propsListener();
     }
 
     private void propsListener() {

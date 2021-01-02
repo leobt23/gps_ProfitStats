@@ -51,6 +51,9 @@ public class LeftPanel extends Pane {
                 case PanelElements.USER_PROFILE:
                     obsModel.moveToUserProfile();
                     break;
+                case PanelElements.BETS_HISTORY:
+                    obsModel.moveToBetsHistory();
+                    break;
             }
         });
 

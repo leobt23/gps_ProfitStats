@@ -127,4 +127,8 @@ public class ObservableModel {
     public void moveToUserProfile() {
         fireEvents(model.moveToUserProfile());
     }
+
+    public void moveToBetsHistory() {
+        fireEvents(model.moveToBetsHistory());
+    }
 }

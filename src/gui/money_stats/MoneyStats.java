@@ -82,7 +82,7 @@ public class MoneyStats extends BorderPane {
         BarChart<String,Number> bcProfit =
                 new BarChart<String,Number>(xAxis,yAxis);
 
-        bcProfit.setTitle("Income/Loss (Actual week)");
+        bcProfit.setTitle("Income/Loss (Actual month)");
         xAxis.setLabel("Weeks");
         yAxis.setLabel("Value (€)");
 
