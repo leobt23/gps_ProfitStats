@@ -2,6 +2,7 @@ package logic.data;
 
 import logic.EnumBetStatus;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -9,7 +10,10 @@ import java.util.Date;
 
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     String name, email, bestMonth;
     EnumGenders gender;
     int age, totalBets;
@@ -320,6 +324,7 @@ public class User {
     }
 
     public float getTotalProfit() {
+        totalProfit = 0;
         for(int i=0; i < betsHistory.getBets().size(); i++){
             if(betsHistory.getBets().get(i).result == EnumBetStatus.WON)
                 totalProfit += betsHistory.getBets().get(i).possibleWinnings;

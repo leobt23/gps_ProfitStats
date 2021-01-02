@@ -3,7 +3,11 @@ package logic.states;
 import logic.EnumBetStatus;
 import logic.data.Data;
 
-public abstract class StateAdapter implements IState {
+import java.io.Serializable;
+
+public abstract class StateAdapter implements IState, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Data data;
 

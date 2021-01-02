@@ -164,6 +164,7 @@ public class UIbetRegistry extends BorderPane {
         Button btnSave = new Button("Save");
 
         HBox containerButtons = new HBox();
+        containerButtons.setSpacing(20);
         btnCancel.setMinSize(100,20);
         btnCancel.setPadding(new Insets(5,5,5,5));
         btnSave.setMinSize(100,20);

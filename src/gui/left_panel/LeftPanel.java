@@ -1,6 +1,8 @@
 package gui.left_panel;
 
 import gui.resources.Images;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
@@ -36,7 +38,6 @@ public class LeftPanel extends Pane {
         hBox.setSpacing(20);
         hBox.setPadding(new Insets(0, 0, 0, 20));
 
-        //TODO: Adicionar restantes
         hBox.setOnMouseClicked( e -> {
             switch (designation){
                 case PanelElements.STATISTICS:
@@ -101,6 +102,13 @@ public class LeftPanel extends Pane {
             case NOTIFICATIONS -> setActiveElement( (HBox) panelContainer.getChildren().get(4));
         }
 
+        HBox separator = new HBox();
+        separator.setPadding(new Insets(72,0,0,0));
+
+        ImageView ivAppLogo = new ImageView(Images.getImage(gui.resources.Constants.APP_LOGO));
+        ivAppLogo.setFitWidth(Constants.PANEL_WIDTH);
+        ivAppLogo.setFitHeight(Constants.IMG_VIEW_HEIGHT*2.5);
+        panelContainer.getChildren().addAll(separator ,ivAppLogo);
     }
 
     private void setActiveElement(HBox element) {
@@ -125,5 +133,4 @@ public class LeftPanel extends Pane {
             draw();
         });
     }
-
 }
