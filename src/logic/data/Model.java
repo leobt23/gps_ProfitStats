@@ -2,6 +2,7 @@ package logic.data;
 
 import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
+import logic.FileUtility;
 import logic.states.*;
 import logic.states.BetRegistry;
 import logic.states.EnumStates;
@@ -9,11 +10,14 @@ import logic.states.IState;
 import logic.states.Notifications;
 import logic.states.Statistics;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Model {
+public class Model implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Data data;
     private IState state;
@@ -87,13 +91,11 @@ public class Model {
                 numberOfBetsValue,betNameValue, enumBetStatus);
     }
 
-
-
     public float getTotalProfit() {
         return data.getTotalProfit();
     }
 
-    public List<String> moveToStatisctics() {
+    public List<String> moveToStatistics() {
         events.clear();
         setState(new Statistics(data));
         return events;
@@ -149,5 +151,9 @@ public class Model {
         events.clear();
         setState(new BetsHistory(data));
         return events;
+    }
+
+    public int getNumberOfBets() {
+        return data.getNumberOfBets();
     }
 }

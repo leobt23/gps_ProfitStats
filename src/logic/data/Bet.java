@@ -2,7 +2,12 @@ package logic.data;
 
 import logic.EnumBetStatus;
 
-public class Bet {
+import java.io.Serializable;
+
+public class Bet implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     int numberOfGames, numberOfBets;
     static int contador = 0;
     int betId;

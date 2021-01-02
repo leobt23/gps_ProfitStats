@@ -2,6 +2,7 @@ package logic.data;
 
 import logic.EnumBetStatus;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -9,7 +10,10 @@ import java.util.Date;
 
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     String name, email, bestMonth;
     EnumGenders gender;
     int age, totalBets;
@@ -259,25 +263,25 @@ public class User {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         int month = localDate.getMonthValue();
 
-        for(int i=1; i < betsHistory.bets.size(); i++){
+        for(int i=0; i < betsHistory.bets.size(); i++){
             if(betsHistory.bets.get(i).betRegisterDate.day >= 1 && betsHistory.bets.get(i).betRegisterDate.day <= 7
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
-                arraySemanas.set(0, arraySemanas.get(0) + betsHistory.bets.get(i).possibleWinnings);
+                arraySemanas.set(0, arraySemanas.get(0) + betsHistory.bets.get(i).possibleWinnings - betsHistory.bets.get(i).totalValueBetted);
             }
 
             if(betsHistory.bets.get(i).betRegisterDate.day >= 8 && betsHistory.bets.get(i).betRegisterDate.day <= 14
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
-                arraySemanas.set(1, arraySemanas.get(1) + betsHistory.bets.get(i).possibleWinnings);
+                arraySemanas.set(1, arraySemanas.get(1) + betsHistory.bets.get(i).possibleWinnings - betsHistory.bets.get(i).totalValueBetted);
             }
 
             if(betsHistory.bets.get(i).betRegisterDate.day >= 15 && betsHistory.bets.get(i).betRegisterDate.day <= 21
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
-                arraySemanas.set(2, arraySemanas.get(2) + betsHistory.bets.get(i).possibleWinnings);
+                arraySemanas.set(2, arraySemanas.get(2) + betsHistory.bets.get(i).possibleWinnings - betsHistory.bets.get(i).totalValueBetted);
             }
 
             if(betsHistory.bets.get(i).betRegisterDate.day >= 22 && betsHistory.bets.get(i).betRegisterDate.day <= 31
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
-                arraySemanas.set(3, arraySemanas.get(3) + betsHistory.bets.get(i).possibleWinnings);
+                arraySemanas.set(3, arraySemanas.get(3) + betsHistory.bets.get(i).possibleWinnings - betsHistory.bets.get(i).totalValueBetted);
             }
 
         }
@@ -294,25 +298,25 @@ public class User {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         int month = localDate.getMonthValue();
 
-        for(int i=1; i < betsHistory.bets.size(); i++){
+        for(int i=0; i < betsHistory.bets.size(); i++){
             if(betsHistory.bets.get(i).betRegisterDate.day >= 1 && betsHistory.bets.get(i).betRegisterDate.day <= 7
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
-                arraySemanas.set(0, arraySemanas.get(0) - betsHistory.bets.get(i).possibleWinnings);
+                arraySemanas.set(0, arraySemanas.get(0) - betsHistory.bets.get(i).totalValueBetted);
             }
 
             if(betsHistory.bets.get(i).betRegisterDate.day >= 8 && betsHistory.bets.get(i).betRegisterDate.day <= 14
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
-                arraySemanas.set(1, arraySemanas.get(1) - betsHistory.bets.get(i).possibleWinnings);
+                arraySemanas.set(1, arraySemanas.get(1) - betsHistory.bets.get(i).totalValueBetted);
             }
 
             if(betsHistory.bets.get(i).betRegisterDate.day >= 15 && betsHistory.bets.get(i).betRegisterDate.day <= 21
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
-                arraySemanas.set(2, arraySemanas.get(2) - betsHistory.bets.get(i).possibleWinnings);
+                arraySemanas.set(2, arraySemanas.get(2) - betsHistory.bets.get(i).totalValueBetted);
             }
 
             if(betsHistory.bets.get(i).betRegisterDate.day >= 22 && betsHistory.bets.get(i).betRegisterDate.day <= 31
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
-                arraySemanas.set(3, arraySemanas.get(3) - betsHistory.bets.get(i).possibleWinnings);
+                arraySemanas.set(3, arraySemanas.get(3) - betsHistory.bets.get(i).totalValueBetted);
             }
 
         }
@@ -320,6 +324,7 @@ public class User {
     }
 
     public float getTotalProfit() {
+        totalProfit = 0;
         for(int i=0; i < betsHistory.getBets().size(); i++){
             if(betsHistory.getBets().get(i).result == EnumBetStatus.WON)
                 totalProfit += betsHistory.getBets().get(i).possibleWinnings;
