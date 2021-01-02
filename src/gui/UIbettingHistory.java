@@ -1,5 +1,8 @@
 package gui;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.layout.*;
 import logic.ObservableModel;
 import logic.data.PropertyChanges;
 import logic.states.EnumStates;
@@ -11,10 +14,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -28,10 +27,35 @@ public class UIbettingHistory extends BorderPane {
     public UIbettingHistory(ObservableModel model) {
         this.model = model;
         //lABEL DO TITULO
-        Label title = new Label("BETS HISTORY");
+        /*Label title = new Label("BETS HISTORY");
         title.setTextFill(Color.BLACK);
         title.setFont( new Font( "Arial", 30 ) );
-        setTop(title);
+        setTop(title);*/
+
+        Label lTitle = new Label("Statistics");
+        lTitle.setTextFill(Color.BLACK);
+        lTitle.setFont(new Font( "Arial",24) );
+        lTitle.setAlignment(Pos.CENTER);
+
+        VBox hbTitleContainer = new VBox();
+        hbTitleContainer.setAlignment(Pos.CENTER);
+        hbTitleContainer.setPadding(new Insets(15));
+        hbTitleContainer.setMaxWidth(250);
+        hbTitleContainer.setBackground(new Background( new BackgroundFill(
+                Color.LIGHTGRAY, new CornerRadii(5), Insets.EMPTY
+        )));
+        hbTitleContainer.setBorder(
+                new Border(
+                        new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID,
+                                new CornerRadii(5), new BorderWidths(2))
+                )
+        );
+        hbTitleContainer.getChildren().add(lTitle);
+
+        setTop(hbTitleContainer);
+        BorderPane.setAlignment(hbTitleContainer, Pos.CENTER);
+        BorderPane.setMargin(hbTitleContainer, new Insets(20,0,0,0));
+
         //Label info
         Label info = new Label("Info");
         info.setTextFill(Color.BLACK);
