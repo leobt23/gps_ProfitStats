@@ -6,6 +6,7 @@ import logic.states.EnumStates;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,16 @@ public class ObservableModel {
 
     public ObservableModel(){
         propertyChangeSupport = new PropertyChangeSupport(model);
+        try {
+            model = (Model) FileUtility.retrieveModelFromFile();
+            if (model == null) {
+                model = new Model();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void fireEvents(List<String> events) {
@@ -27,7 +38,7 @@ public class ObservableModel {
     }
 
     public int getNumberOfBets(){
-        return 0;
+        return model.getNumberOfBets();
     }
 
     public String getBetName(int idx) {
@@ -85,6 +96,12 @@ public class ObservableModel {
         model.addNewBet(numOfGamesBettedValue,registDateValue,
                 closeDateValue,totalValueBettedValue,possibleWinningsValue,
                 numberOfBetsValue,betNameValue, enumBetStatus);
+        //TODO: Tratar excecao
+        try {
+            FileUtility.saveModelToFile(model);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public float getTotalProfit() {
