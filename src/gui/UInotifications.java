@@ -60,30 +60,46 @@ public class UInotifications extends BorderPane {
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);
-        gridPane.setVgap(10);
+        gridPane.setVgap(50);
         gridPane.setPadding(new Insets(25, 25, 25, 25));
+
         //FORM
+        ToggleSwitch button = new ToggleSwitch();
+        ToggleSwitch button1 = new ToggleSwitch();
+        ToggleSwitch button2 = new ToggleSwitch();
+        ToggleSwitch button3 = new ToggleSwitch();
 
-        HBox hBox1 = new HBox();
-        hBox1.setSpacing(10);
-        Label titulo = new Label("Notifications:");
+        VBox vBox1 = new VBox();
+        vBox1.setSpacing(10);
+        Label titulo = new Label("Limit monet betted / day:");
         TextField asasas= new TextField();
-        hBox1.getChildren().addAll(titulo,asasas);
-        gridPane.add(hBox1, 0, 1);
+        vBox1.getChildren().addAll(titulo,asasas, button);
+        gridPane.add(vBox1, 0, 0);
 
-        HBox hBox2 = new HBox();
-        hBox2.setSpacing(10);
-        Label titulo1 = new Label("Notifications:");
+        VBox vBox2 = new VBox();
+        vBox2.setSpacing(10);
+        Label titulo1 = new Label("Limit loss / week:");
         TextField asasas1 = new TextField();
-        hBox2.getChildren().addAll(titulo1,asasas1);
-        gridPane.add(hBox2, 1, 1);
+        vBox2.getChildren().addAll(titulo1,asasas1, button1);
+        gridPane.add(vBox2, 1, 0);
 
-        HBox hBox3 = new HBox();
-        hBox3.setSpacing(10);
-        Label titulo2 = new Label("Notifications:");
+        VBox vBox3 = new VBox();
+        vBox3.setSpacing(10);
+        Label titulo2 = new Label("Min. betted money / week:");
         TextField asasas2 = new TextField();
-        hBox3.getChildren().addAll(titulo2,asasas2);
-        gridPane.add(hBox3, 2, 1);
+        vBox3.getChildren().addAll(titulo2,asasas2, button2);
+        gridPane.add(vBox3, 2, 0);
+
+
+
+        VBox vBox4 = new VBox();
+        vBox4.setSpacing(22);
+        Label titulo3 = new Label("Reminder to bet €/day:");
+        TextField asasas3 = new TextField();
+        vBox4.getChildren().addAll(titulo3,asasas3, button3);
+        gridPane.add(vBox4, 0, 1);
+
+
 
         /*Label titulo2 = new Label("Notifications:");
         gridPane.add(titulo2, 0, 1);

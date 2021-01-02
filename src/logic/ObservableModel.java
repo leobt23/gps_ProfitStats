@@ -135,7 +135,4 @@ public class ObservableModel {
         fireEvents(model.moveToBetsHistory());
     }
 
-    public void moveToNotifications() {
-        fireEvents(model.moveToNotifications());
-    }
 }
