@@ -11,7 +11,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import logic.ObservableModel;
 import logic.data.PropertyChanges;
-import logic.states.EnumStates;
 
 import java.beans.PropertyChangeEvent;
 
@@ -46,7 +45,7 @@ public class LeftPanel extends Pane {
                     obsModel.moveToBetRegistry();
                     break;
                 case PanelElements.NOTIFICATIONS:
-//                    obsModel.moveToNotifications();
+                   obsModel.moveToNotifications();
                     break;
                 case PanelElements.USER_PROFILE:
                     obsModel.moveToUserProfile();

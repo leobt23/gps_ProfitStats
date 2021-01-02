@@ -1,9 +1,5 @@
 package gui;
 
-import logic.ObservableModel;
-import logic.data.PropertyChanges;
-import logic.states.EnumStates;
-import logic.EnumBetStatus;
 import gui.resources.Constants;
 import gui.resources.Images;
 import javafx.scene.control.Label;
@@ -17,6 +13,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import logic.EnumBetStatus;
+import logic.ObservableModel;
+import logic.data.PropertyChanges;
+import logic.states.EnumStates;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -27,6 +27,12 @@ public class UIbettingHistory extends BorderPane {
     private int idx;
     public UIbettingHistory(ObservableModel model) {
         this.model = model;
+        propsListener();
+        drawView();
+
+    }
+
+    private void drawView(){
         //lABEL DO TITULO
         Label title = new Label("BETS HISTORY");
         title.setTextFill(Color.BLACK);
@@ -78,7 +84,7 @@ public class UIbettingHistory extends BorderPane {
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
-           //         model.editBetButton(idx);
+                    //         model.editBetButton(idx);
                 } else
                 {
 
@@ -88,7 +94,7 @@ public class UIbettingHistory extends BorderPane {
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
-           //         model.deleteBet(idx);
+                    //         model.deleteBet(idx);
                 } else
                 {
 
@@ -187,6 +193,7 @@ public class UIbettingHistory extends BorderPane {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
                         model.setBetStatus(model.getBetId(idx), EnumBetStatus.WON);
+                        drawView();
                     } else
                     {
 
@@ -197,6 +204,7 @@ public class UIbettingHistory extends BorderPane {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
                         model.setBetStatus(model.getBetId(idx), EnumBetStatus.LOST);
+                        drawView();
                     } else
                     {
 
@@ -287,6 +295,7 @@ public class UIbettingHistory extends BorderPane {
         model.addPropertyChangeListener(PropertyChanges.STATE_CHANGE,
                 evt -> {
                     setVisible(model.getState() == EnumStates.BETS_HISTORY);
+                    drawView();
                     System.out.println("propertyChange");
                 }
         );

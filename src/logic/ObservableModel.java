@@ -1,6 +1,5 @@
 package logic;
 
-import logic.data.Data;
 import logic.data.Model;
 import logic.data.Time;
 import logic.states.EnumStates;
@@ -99,6 +98,7 @@ public class ObservableModel {
     public void moveToBetRegistry() {
         fireEvents(model.moveToBetRegistry());
     }
+    public void moveToNotifications() { fireEvents(model.moveNotifications()); }
 
     public ArrayList<Integer> numberOfBetsMonth() {
         return model.numberOfBetsMonth();
