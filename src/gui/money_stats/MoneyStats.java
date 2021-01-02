@@ -108,7 +108,7 @@ public class MoneyStats extends BorderPane {
 
         ArrayList<Float> outcomePerWeek = obsModel.getLostMoneyCurrentMonth();
         for (int idx = 0; idx < outcomePerWeek.size(); idx++) {
-            outcomeSeries.getData().add(new XYChart.Data(xAxis.getCategories().get(idx), outcomePerWeek.get(idx)));
+            outcomeSeries.getData().add(new XYChart.Data(xAxis.getCategories().get(idx), -outcomePerWeek.get(idx)));
         }
 
         bcProfit.getData().addAll(incomeSeries, outcomeSeries);

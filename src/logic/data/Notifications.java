@@ -1,6 +1,13 @@
 package logic.data;
 
-public class Notifications {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Notifications implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     float limitMoneyDay, limitLossWeek, minimumMoneyMonth, reminderBetDay;
     boolean flagLimitMoneyDay, flagLimitLossWeek, flagMinimumMoneyMonth, flagReminderBetDay, flagResultsReminder;
 

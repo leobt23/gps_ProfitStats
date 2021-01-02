@@ -3,15 +3,19 @@ package logic.data;
 import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Data {
+public class Data implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private User user;
     private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry = new ArrayList<>();
-    BettingHistory bettingHistory = new BettingHistory();
+//    BettingHistory bettingHistory = new BettingHistory();
 
     /*public Data(User user, BettingHistory bettingHistory, Time time){
         this.user = user;
@@ -170,8 +174,7 @@ public class Data {
         closeDate = new Time(closeDateValue.getYear(),closeDateValue.getMonthValue(),closeDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),closeDateValue.getDayOfMonth());
 
         Bet bet = new Bet(numOfGamesBetted,numberOfBets,registDate,closeDate,totalValueBetted,possibleWinnings,betNameValue,enumBetStatus);
-
-        bettingHistory.addBetToHistory(bet);
+        user.betsHistory.addBetToHistory(bet);
     }
 
     public float getTotalProfit() {
@@ -200,5 +203,9 @@ public class Data {
 
     public float getWinningPercentage() {
         return user.getWinningPercentage();
+    }
+
+    public int getNumberOfBets() {
+        return user.betsHistory.bets.size();
     }
 }

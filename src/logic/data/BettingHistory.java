@@ -1,9 +1,15 @@
 package logic.data;
 import logic.EnumBetStatus;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BettingHistory {
+public class BettingHistory implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     ArrayList<Bet> bets = new ArrayList<>();
     float percentWins = 0.0f, percentLosses = 0.0f;
     float moneyStats = 0.0f;
@@ -43,10 +49,7 @@ public class BettingHistory {
     }
 
     public boolean addBetToHistory(Bet aux){
-        if(bets.add(aux))
-            return true;
-        else
-            return false;
+        return bets.add(aux);
     }
 
     public boolean changeBetInHistory(int id, int ngames, int nbets, Time betRDate, Time betCDate,
