@@ -123,4 +123,8 @@ public class ObservableModel {
     public float getWinningPercentage() {
         return model.getWinningPercentage();
     }
+
+    public void moveToUserProfile() {
+        fireEvents(model.moveToUserProfile());
+    }
 }

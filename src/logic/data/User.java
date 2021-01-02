@@ -7,6 +7,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
+import java.util.ArrayList;
+
 public class User {
     String name, email, bestMonth;
     EnumGenders gender;
