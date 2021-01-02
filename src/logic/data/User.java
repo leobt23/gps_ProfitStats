@@ -266,22 +266,22 @@ public class User implements Serializable {
         for(int i=0; i < betsHistory.bets.size(); i++){
             if(betsHistory.bets.get(i).betRegisterDate.day >= 1 && betsHistory.bets.get(i).betRegisterDate.day <= 7
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
-                arraySemanas.set(0, arraySemanas.get(0) + betsHistory.bets.get(i).possibleWinnings - betsHistory.bets.get(i).totalValueBetted);
+                arraySemanas.set(0, arraySemanas.get(0) + betsHistory.bets.get(i).possibleWinnings);
             }
 
             if(betsHistory.bets.get(i).betRegisterDate.day >= 8 && betsHistory.bets.get(i).betRegisterDate.day <= 14
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
-                arraySemanas.set(1, arraySemanas.get(1) + betsHistory.bets.get(i).possibleWinnings - betsHistory.bets.get(i).totalValueBetted);
+                arraySemanas.set(1, arraySemanas.get(1) + betsHistory.bets.get(i).possibleWinnings);
             }
 
             if(betsHistory.bets.get(i).betRegisterDate.day >= 15 && betsHistory.bets.get(i).betRegisterDate.day <= 21
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
-                arraySemanas.set(2, arraySemanas.get(2) + betsHistory.bets.get(i).possibleWinnings - betsHistory.bets.get(i).totalValueBetted);
+                arraySemanas.set(2, arraySemanas.get(2) + betsHistory.bets.get(i).possibleWinnings);
             }
 
             if(betsHistory.bets.get(i).betRegisterDate.day >= 22 && betsHistory.bets.get(i).betRegisterDate.day <= 31
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
-                arraySemanas.set(3, arraySemanas.get(3) + betsHistory.bets.get(i).possibleWinnings - betsHistory.bets.get(i).totalValueBetted);
+                arraySemanas.set(3, arraySemanas.get(3) + betsHistory.bets.get(i).possibleWinnings);
             }
 
         }
@@ -300,22 +300,22 @@ public class User implements Serializable {
 
         for(int i=0; i < betsHistory.bets.size(); i++){
             if(betsHistory.bets.get(i).betRegisterDate.day >= 1 && betsHistory.bets.get(i).betRegisterDate.day <= 7
-                    && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
+                    && betsHistory.bets.get(i).betRegisterDate.month == month){
                 arraySemanas.set(0, arraySemanas.get(0) - betsHistory.bets.get(i).totalValueBetted);
             }
 
             if(betsHistory.bets.get(i).betRegisterDate.day >= 8 && betsHistory.bets.get(i).betRegisterDate.day <= 14
-                    && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
+                    && betsHistory.bets.get(i).betRegisterDate.month == month){
                 arraySemanas.set(1, arraySemanas.get(1) - betsHistory.bets.get(i).totalValueBetted);
             }
 
             if(betsHistory.bets.get(i).betRegisterDate.day >= 15 && betsHistory.bets.get(i).betRegisterDate.day <= 21
-                    && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
+                    && betsHistory.bets.get(i).betRegisterDate.month == month){
                 arraySemanas.set(2, arraySemanas.get(2) - betsHistory.bets.get(i).totalValueBetted);
             }
 
             if(betsHistory.bets.get(i).betRegisterDate.day >= 22 && betsHistory.bets.get(i).betRegisterDate.day <= 31
-                    && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
+                    && betsHistory.bets.get(i).betRegisterDate.month == month){
                 arraySemanas.set(3, arraySemanas.get(3) - betsHistory.bets.get(i).totalValueBetted);
             }
 
