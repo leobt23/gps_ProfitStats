@@ -32,7 +32,6 @@ public class Root extends BorderPane {
         stack.getChildren().add(userInterface);
         stack.getChildren().add(notifications);
         stack.getChildren().add(uIbettingHistory);
-//        setCenter(new UIbetRegistry(model));
         setCenter(stack);
     }
 
