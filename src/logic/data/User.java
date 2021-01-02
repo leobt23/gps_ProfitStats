@@ -263,7 +263,7 @@ public class User implements Serializable {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         int month = localDate.getMonthValue();
 
-        for(int i=1; i < betsHistory.bets.size(); i++){
+        for(int i=0; i < betsHistory.bets.size(); i++){
             if(betsHistory.bets.get(i).betRegisterDate.day >= 1 && betsHistory.bets.get(i).betRegisterDate.day <= 7
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.WON){
                 arraySemanas.set(0, arraySemanas.get(0) + betsHistory.bets.get(i).possibleWinnings);
@@ -298,7 +298,7 @@ public class User implements Serializable {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         int month = localDate.getMonthValue();
 
-        for(int i=1; i < betsHistory.bets.size(); i++){
+        for(int i=0; i < betsHistory.bets.size(); i++){
             if(betsHistory.bets.get(i).betRegisterDate.day >= 1 && betsHistory.bets.get(i).betRegisterDate.day <= 7
                     && betsHistory.bets.get(i).betRegisterDate.month == month && betsHistory.bets.get(i).result == EnumBetStatus.LOST){
                 arraySemanas.set(0, arraySemanas.get(0) - betsHistory.bets.get(i).possibleWinnings);
@@ -324,6 +324,7 @@ public class User implements Serializable {
     }
 
     public float getTotalProfit() {
+        totalProfit = 0;
         for(int i=0; i < betsHistory.getBets().size(); i++){
             if(betsHistory.getBets().get(i).result == EnumBetStatus.WON)
                 totalProfit += betsHistory.getBets().get(i).possibleWinnings;

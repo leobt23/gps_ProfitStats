@@ -109,7 +109,7 @@ public class ObservableModel {
     }
 
     public void moveToStatistics() {
-        fireEvents(model.moveToStatisctics());
+        fireEvents(model.moveToStatistics());
     }
 
     public void moveToBetRegistry() {

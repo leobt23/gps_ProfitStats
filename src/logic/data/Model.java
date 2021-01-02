@@ -95,7 +95,7 @@ public class Model implements Serializable {
         return data.getTotalProfit();
     }
 
-    public List<String> moveToStatisctics() {
+    public List<String> moveToStatistics() {
         events.clear();
         setState(new Statistics(data));
         return events;
