@@ -1,6 +1,5 @@
 package logic;
 
-import logic.data.Data;
 import logic.data.Model;
 import logic.data.Time;
 import logic.states.EnumStates;
@@ -130,5 +129,13 @@ public class ObservableModel {
 
     public void moveToUserProfile() {
         fireEvents(model.moveToUserProfile());
+    }
+
+    public void moveToBetsHistory() {
+        fireEvents(model.moveToBetsHistory());
+    }
+
+    public void moveToNotifications() {
+        fireEvents(model.moveToNotifications());
     }
 }

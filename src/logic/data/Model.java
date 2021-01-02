@@ -2,6 +2,7 @@ package logic.data;
 
 import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
+import logic.states.*;
 import logic.states.BetRegistry;
 import logic.states.EnumStates;
 import logic.states.IState;
@@ -86,6 +87,8 @@ public class Model {
                 numberOfBetsValue,betNameValue, enumBetStatus);
     }
 
+
+
     public float getTotalProfit() {
         return data.getTotalProfit();
     }
@@ -102,6 +105,12 @@ public class Model {
         return events;
     }
 
+    public List<String> moveToUserProfile() {
+        events.clear();
+        setState(new UserProfile(data));
+        return events;
+    }
+
     public List<String> moveToNotifications() {
         events.clear();
         setState(new Notifications(data));
@@ -114,5 +123,31 @@ public class Model {
 
     public ArrayList<Integer> numberOfBetsMonth() {
         return data.numberOfBetsMonth();
+    }
+
+    public ArrayList<Float> getWonMoneyCurrentMonth() {
+        return data.getWonMoneyCurrentMonth();
+    }
+
+    public float getHighestWin() {
+        return data.getHighestWin();
+    }
+
+    public ArrayList<Float> getLostMoneyCurrentMonth() {
+        return data.getLostMoneyCurrentMonth();
+    }
+
+    public String getBestMonth() {
+        return data.getBestMonth();
+    }
+
+    public float getWinningPercentage() {
+        return data.getWinningPercentage();
+    }
+
+    public List<String> moveToBetsHistory() {
+        events.clear();
+        setState(new BetsHistory(data));
+        return events;
     }
 }
