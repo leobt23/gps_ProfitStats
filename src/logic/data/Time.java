@@ -16,9 +16,9 @@ public class Time {
 
     public Time(int year, int monthValue, int week, int dayOfMonth) {
         setYear(year);
-        setMonth(month);
+        setMonth(monthValue);
         setWeek(week);
-        setDay(day);
+        setDay(dayOfMonth);
     }
 
     public String getCurrentDate(){
@@ -96,7 +96,7 @@ public class Time {
     }
 
     public void setDay(int day) {
-        if(day > 0 && day < 30)
+        if(day > 0 && day < 32)
         this.day = day;
         else{
             System.out.println(" *** Dia Invalido ***");
