@@ -100,11 +100,40 @@ public class ObservableModel {
     }
     public void moveToNotifications() { fireEvents(model.moveNotifications()); }
 
+    public void moveToNotifications() {
+        fireEvents(model.moveToNotifications());
+    }
+
     public ArrayList<Integer> numberOfBetsMonth() {
         return model.numberOfBetsMonth();
+    }
+
+    public ArrayList<Float> getWonMoneyCurrentMonth() {
+        return model.getWonMoneyCurrentMonth();
+    }
+
+    public float getHighestWin() {
+        return model.getHighestWin();
+    }
+
+    public ArrayList<Float> getLostMoneyCurrentMonth() {
+        return model.getLostMoneyCurrentMonth();
+    }
+
+    public String getBestMonth() {
+        return model.getBestMonth();
+    }
+
+    public float getWinningPercentage() {
+        return model.getWinningPercentage();
     }
 
     public void moveToUserProfile() {
         fireEvents(model.moveToUserProfile());
     }
+
+    public void moveToBetsHistory() {
+        fireEvents(model.moveToBetsHistory());
+    }
+
 }

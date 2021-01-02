@@ -37,9 +37,9 @@ public class UserInterface extends BorderPane{
 
     private void functionToShow(){
 
-        Label userTitle = new Label("USER");
+        /*Label userTitle = new Label("USER");
         userTitle.setTextFill(Color.BLACK);
-        userTitle.setFont(new Font("Arial", 30));
+        userTitle.setFont(new Font("Arial", 30));*/
 
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
@@ -101,7 +101,31 @@ public class UserInterface extends BorderPane{
 
         containerButtons.getChildren().addAll(btnCancel,btnSave);
 
-        setTop(userTitle);
+        Label lTitle = new Label("User Profile");
+        lTitle.setTextFill(Color.BLACK);
+        lTitle.setFont(new Font( "Arial",24) );
+        lTitle.setAlignment(Pos.CENTER);
+
+        VBox hbTitleContainer = new VBox();
+        hbTitleContainer.setAlignment(Pos.CENTER);
+        hbTitleContainer.setPadding(new Insets(15));
+        hbTitleContainer.setMaxWidth(250);
+        hbTitleContainer.setBackground(new Background( new BackgroundFill(
+                Color.LIGHTGRAY, new CornerRadii(5), Insets.EMPTY
+        )));
+        hbTitleContainer.setBorder(
+                new Border(
+                        new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID,
+                                new CornerRadii(5), new BorderWidths(2))
+                )
+        );
+        hbTitleContainer.getChildren().add(lTitle);
+
+        setTop(hbTitleContainer);
+        BorderPane.setAlignment(hbTitleContainer, Pos.CENTER);
+        BorderPane.setMargin(hbTitleContainer, new Insets(20,0,0,0));
+
+//        setTop(userTitle);
         setCenter(gridPane);
         setBottom(containerButtons);
     }

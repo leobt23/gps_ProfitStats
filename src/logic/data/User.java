@@ -202,7 +202,7 @@ public class User {
         if(pos == 9)
             bestMonth = "Setembro";
         if(pos == 10)
-            bestMonth = "Outobro";
+            bestMonth = "Outubro";
         if(pos == 11)
             bestMonth = "Novembro";
         if(pos == 12)
@@ -253,7 +253,7 @@ public class User {
         ArrayList<Float> arraySemanas = new ArrayList<>(4);
 
         for(int i=0; i < 4; i++)
-            arraySemanas.set(i,0.0f);
+            arraySemanas.add(0.0f);
 
         Date date = new Date();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -288,7 +288,7 @@ public class User {
         ArrayList<Float> arraySemanas = new ArrayList<>(4);
 
         for(int i=0; i < 4; i++)
-            arraySemanas.set(i,0.0f);
+            arraySemanas.add(0.0f);
 
         Date date = new Date();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -323,9 +323,7 @@ public class User {
         for(int i=0; i < betsHistory.getBets().size(); i++){
             if(betsHistory.getBets().get(i).result == EnumBetStatus.WON)
                 totalProfit += betsHistory.getBets().get(i).possibleWinnings;
-            else
-                if(betsHistory.getBets().get(i).result == EnumBetStatus.LOST)
-                    totalProfit -= betsHistory.getBets().get(i).totalValueBetted;
+            totalProfit -= betsHistory.getBets().get(i).totalValueBetted;
         }
 
         return totalProfit;
@@ -339,6 +337,22 @@ public class User {
         }
 
         return highestWinValue;
+    }
+
+    public float getWinningPercentage() {
+        int wins = 0, losses = 0;
+        for (Bet bet : betsHistory.getBets()) {
+            if (bet.result == EnumBetStatus.WON) {
+                wins++;
+            }
+            else if(bet.result == EnumBetStatus.LOST) {
+                losses++;
+            }
+        }
+        winningPercentage = (float) wins/(wins+losses)*100;
+        if (winningPercentage != winningPercentage) //To evaluate if percentage is NaN
+            return 0.0f;
+        return winningPercentage;
     }
 
     public void setBestMonth(String bestMonth) {

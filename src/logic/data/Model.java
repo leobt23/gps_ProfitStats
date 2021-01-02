@@ -111,7 +111,7 @@ public class Model {
         return events;
     }
 
-    public List<String> moveNotifications() {
+    public List<String> moveToNotifications() {
         events.clear();
         setState(new Notifications(data));
         return events;
@@ -123,5 +123,31 @@ public class Model {
 
     public ArrayList<Integer> numberOfBetsMonth() {
         return data.numberOfBetsMonth();
+    }
+
+    public ArrayList<Float> getWonMoneyCurrentMonth() {
+        return data.getWonMoneyCurrentMonth();
+    }
+
+    public float getHighestWin() {
+        return data.getHighestWin();
+    }
+
+    public ArrayList<Float> getLostMoneyCurrentMonth() {
+        return data.getLostMoneyCurrentMonth();
+    }
+
+    public String getBestMonth() {
+        return data.getBestMonth();
+    }
+
+    public float getWinningPercentage() {
+        return data.getWinningPercentage();
+    }
+
+    public List<String> moveToBetsHistory() {
+        events.clear();
+        setState(new BetsHistory(data));
+        return events;
     }
 }

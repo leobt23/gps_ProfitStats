@@ -77,41 +77,50 @@ public class MoneyStats extends BorderPane {
     private void profitGraphic() {
         getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
-        final CategoryAxis xAxisProfit = new CategoryAxis();
-        final NumberAxis yAxisProfit = new NumberAxis();
-        final BarChart<String,Number> bcProfit =
-                new BarChart<String,Number>(xAxisProfit,yAxisProfit);
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        BarChart<String,Number> bcProfit =
+                new BarChart<String,Number>(xAxis,yAxis);
 
-        bcProfit.setTitle("Profit");
-        xAxisProfit.setLabel("Month");
-        yAxisProfit.setLabel("Profit (€)");
+        bcProfit.setTitle("Income/Loss (Actual month)");
+        xAxis.setLabel("Weeks");
+        yAxis.setLabel("Value (€)");
+
+        ObservableList<String> catList = FXCollections.observableArrayList();
+        catList.addAll("Week 1", "Week 2", "Week 3", "Week 4");
+        xAxis.setCategories(catList);
 
         bcProfit.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
         XYChart.Series incomeSeries = new XYChart.Series();
         incomeSeries.setName("Income");
 
+        ArrayList<Float> incomePerWeek = obsModel.getWonMoneyCurrentMonth();
+        for (int idx = 0; idx < incomePerWeek.size(); idx++) {
+            incomeSeries.getData().add(new XYChart.Data(xAxis.getCategories().get(idx), incomePerWeek.get(idx)));
+        }
+
         //TODO: COMPLETAR
         //        obsModel.
 
         XYChart.Series outcomeSeries = new XYChart.Series();
-        outcomeSeries.setName("Outcome");
-        outcomeSeries.getData().add(new XYChart.Data("abril", 30));
-        outcomeSeries.getData().add(new XYChart.Data("maio", 50));
-        outcomeSeries.getData().add(new XYChart.Data("junho", 10));
-        outcomeSeries.getData().add(new XYChart.Data("julho", 50));
-        outcomeSeries.getData().add(new XYChart.Data("agosto", 12));
+        outcomeSeries.setName("Loss");
+
+        ArrayList<Float> outcomePerWeek = obsModel.getLostMoneyCurrentMonth();
+        for (int idx = 0; idx < outcomePerWeek.size(); idx++) {
+            outcomeSeries.getData().add(new XYChart.Data(xAxis.getCategories().get(idx), outcomePerWeek.get(idx)));
+        }
 
         bcProfit.getData().addAll(incomeSeries, outcomeSeries);
 
-        final CategoryAxis xAxisBets = new CategoryAxis();
+        /*final CategoryAxis xAxisBets = new CategoryAxis();
         final NumberAxis yAxisBets = new NumberAxis();
         final BarChart<String,Number> bcBets =
-                new BarChart<String,Number>(xAxisProfit,yAxisProfit);
+                new BarChart<String,Number>(xAxis,yAxisProfit);
 
         bcBets.setTitle("Profit");
         xAxisBets.setLabel("Month");
-        yAxisBets.setLabel("Profit (€)");
+        yAxisBets.setLabel("Profit (€)");*/
 
        /* XYChart.Series incomeSeries = new XYChart.Series();
         incomeSeries.setName("Income");
@@ -134,7 +143,7 @@ public class MoneyStats extends BorderPane {
 
         final LineChart<String,Number> lineChart =
                 new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("Bets");
+        lineChart.setTitle("Number of bets (per year)");
 
         XYChart.Series series = new XYChart.Series();
         series.setName("Bets");
@@ -164,20 +173,19 @@ public class MoneyStats extends BorderPane {
         //TODO: Acabar de inserir as informacoes
         HBox hbWinPercentage = new HBox();
         hbWinPercentage.setSpacing(5);
-        Label lWinPercentageTitle = new Label("Winning percentage: ");
+        Label lWinPercentageTitle = new Label(String.format("Winning percentage: %.2f", obsModel.getWinningPercentage()) + "%");
         lWinPercentageTitle.setFont(lFont);
         lWinPercentageTitle.setTextFill(Color.WHITE);
         hbWinPercentage.getChildren().addAll(lWinPercentageTitle);
 
         HBox hbBestMonth = new HBox();
-        Label lBestMonthTitle = new Label("Best month: ");
+        Label lBestMonthTitle = new Label("Best month: " + (obsModel.getBestMonth() != null? obsModel.getBestMonth() : "None"));
         lBestMonthTitle.setFont(lFont);
         lBestMonthTitle.setTextFill(Color.WHITE);
         hbBestMonth.getChildren().addAll(lBestMonthTitle);
 
         VBox vbLeftContainer = new VBox();
         vbLeftContainer.getChildren().addAll(hbWinPercentage, hbBestMonth);
-
 
         HBox hbTotalProfit = new HBox();
         hbTotalProfit.setSpacing(5);
@@ -188,7 +196,7 @@ public class MoneyStats extends BorderPane {
 
         HBox hbHighestWin = new HBox();
         hbHighestWin.setSpacing(5);
-        Label lHighestWin = new Label("Highest win value: ");
+        Label lHighestWin = new Label("Highest win value: " + obsModel.getHighestWin() + "€");
         lHighestWin.setFont(lFont);
         lHighestWin.setTextFill(Color.WHITE);
         hbHighestWin.getChildren().addAll(lHighestWin);
