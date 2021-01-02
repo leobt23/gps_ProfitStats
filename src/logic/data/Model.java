@@ -102,7 +102,7 @@ public class Model {
         return events;
     }
 
-    public List<String> moveNotifications() {
+    public List<String> moveToNotifications() {
         events.clear();
         setState(new Notifications(data));
         return events;
