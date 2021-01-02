@@ -103,4 +103,24 @@ public class ObservableModel {
     public ArrayList<Integer> numberOfBetsMonth() {
         return model.numberOfBetsMonth();
     }
+
+    public ArrayList<Float> getWonMoneyCurrentMonth() {
+        return model.getWonMoneyCurrentMonth();
+    }
+
+    public float getHighestWin() {
+        return model.getHighestWin();
+    }
+
+    public ArrayList<Float> getLostMoneyCurrentMonth() {
+        return model.getLostMoneyCurrentMonth();
+    }
+
+    public String getBestMonth() {
+        return model.getBestMonth();
+    }
+
+    public float getWinningPercentage() {
+        return model.getWinningPercentage();
+    }
 }

@@ -115,4 +115,24 @@ public class Model {
     public ArrayList<Integer> numberOfBetsMonth() {
         return data.numberOfBetsMonth();
     }
+
+    public ArrayList<Float> getWonMoneyCurrentMonth() {
+        return data.getWonMoneyCurrentMonth();
+    }
+
+    public float getHighestWin() {
+        return data.getHighestWin();
+    }
+
+    public ArrayList<Float> getLostMoneyCurrentMonth() {
+        return data.getLostMoneyCurrentMonth();
+    }
+
+    public String getBestMonth() {
+        return data.getBestMonth();
+    }
+
+    public float getWinningPercentage() {
+        return data.getWinningPercentage();
+    }
 }

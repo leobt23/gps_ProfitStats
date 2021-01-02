@@ -251,7 +251,7 @@ public class User {
         ArrayList<Float> arraySemanas = new ArrayList<>(4);
 
         for(int i=0; i < 4; i++)
-            arraySemanas.set(i,0.0f);
+            arraySemanas.add(0.0f);
 
         Date date = new Date();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -286,7 +286,7 @@ public class User {
         ArrayList<Float> arraySemanas = new ArrayList<>(4);
 
         for(int i=0; i < 4; i++)
-            arraySemanas.set(i,0.0f);
+            arraySemanas.add(0.0f);
 
         Date date = new Date();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -337,6 +337,22 @@ public class User {
         }
 
         return highestWinValue;
+    }
+
+    public float getWinningPercentage() {
+        int wins = 0, losses = 0;
+        for (Bet bet : betsHistory.getBets()) {
+            if (bet.result == EnumBetStatus.WON) {
+                wins++;
+            }
+            else if(bet.result == EnumBetStatus.LOST) {
+                losses++;
+            }
+        }
+        winningPercentage = (float) wins/(wins+losses)*100;
+        if (winningPercentage != winningPercentage) //To evaluate if percentage is NaN
+            return 0.0f;
+        return winningPercentage;
     }
 
     public void setBestMonth(String bestMonth) {
