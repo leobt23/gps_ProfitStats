@@ -116,6 +116,10 @@ public class ObservableModel {
         fireEvents(model.moveToBetRegistry());
     }
 
+    public void moveToNotifications() {
+        fireEvents(model.moveToNotifications());
+    }
+
     public ArrayList<Integer> numberOfBetsMonth() {
         return model.numberOfBetsMonth();
     }
@@ -148,7 +152,4 @@ public class ObservableModel {
         fireEvents(model.moveToBetsHistory());
     }
 
-    public void moveToNotifications() {
-        fireEvents(model.moveToNotifications());
-    }
 }

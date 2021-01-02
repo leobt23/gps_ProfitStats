@@ -327,9 +327,7 @@ public class User implements Serializable {
         for(int i=0; i < betsHistory.getBets().size(); i++){
             if(betsHistory.getBets().get(i).result == EnumBetStatus.WON)
                 totalProfit += betsHistory.getBets().get(i).possibleWinnings;
-            else
-                if(betsHistory.getBets().get(i).result == EnumBetStatus.LOST)
-                    totalProfit -= betsHistory.getBets().get(i).totalValueBetted;
+            totalProfit -= betsHistory.getBets().get(i).totalValueBetted;
         }
 
         return totalProfit;
