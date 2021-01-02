@@ -9,6 +9,7 @@ import java.util.Map;
 
 import static gui.resources.Constants.*;
 
+
 public class Images {
     private static final Map<String, Image> images = new HashMap<>();
 
@@ -31,5 +32,6 @@ public class Images {
         images.put(MARK_ICON,new Image(getResourceFile(ImagesPaths.MARK_ICON)));
         images.put(CROSS_ICON,new Image(getResourceFile(ImagesPaths.CROSS_ICON)));
         images.put(STATISTICS_BACKGROUND, new Image(getResourceFile(ImagesPaths.STATISTICS_BACKGROUND)));
+    //    images.put(NOTIFICATIONS_BACKGROUND, new Image(getResourceFile(NOTIFICATIONS_BACKGROUND)));
     }
 }

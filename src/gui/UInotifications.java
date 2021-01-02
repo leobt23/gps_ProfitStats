@@ -1,6 +1,7 @@
 package gui;
 
 import gui.resources.Constants;
+import gui.resources.Images;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -28,12 +29,19 @@ public class UInotifications extends BorderPane {
 }
 
     private void funToShowInCOnstructor(){
+      /*  BackgroundSize b1Size = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
+        this.setBackground(new Background(new BackgroundImage(Images.getImage(Constants.NOTIFICATIONS_BACKGROUND),
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                b1Size)));
+*/
         /*Label betRegistryTitle = new Label("NOTIFICATIONS");
         betRegistryTitle.setTextFill(Color.BLACK);
         betRegistryTitle.setFont(new Font( "Arial",30) );
         setTop(betRegistryTitle);*/
 
-        Label lTitle = new Label("Statistics");
+        Label lTitle = new Label("Notifications");
         lTitle.setTextFill(Color.BLACK);
         lTitle.setFont(new Font( "Arial",24) );
         lTitle.setAlignment(Pos.CENTER);
