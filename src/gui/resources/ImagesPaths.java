@@ -15,4 +15,6 @@ public interface ImagesPaths {
 
     String USER_PHOTO = "images/verissimo.jpg";
     String NOTIFICATIONS_BACKGROUND = "images/notificationsBackground.png";
+    String BET_REGISTRY_BACKGROUND = "images/bet_registry_background.png";
+    String USER_PROFILE_BACKGROUND = "images/user_profile_background.png";
 }

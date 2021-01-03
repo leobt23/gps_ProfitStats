@@ -39,6 +39,9 @@ public class Data implements Serializable {
     public Time getBetRegistryDate(int idx) {
         return user.betsHistory.getBets().get(idx).getBetRegisterDate();
     }
+    public String getBetRegistryDateWithBars(int idx) {
+        return user.betsHistory.getBets().get(idx).getBetRegisterDateWithBars();
+    }
 
     public int getBetNumberOfGames(int idx) {
         return user.betsHistory.getBets().get(idx).getNumberOfGames();
@@ -66,6 +69,9 @@ public class Data implements Serializable {
 
     public Time getBetCloseDate(int idx) {
         return user.betsHistory.getBets().get(idx).getBetCloseDate();
+    }
+    public String getBetCloseDateWithBars(int idx) {
+        return user.betsHistory.getBets().get(idx).getBetCloseDateWithBars();
     }
 
     public void setBetStatus(int betId, EnumBetStatus status) {
@@ -207,5 +213,22 @@ public class Data implements Serializable {
 
     public int getNumberOfBets() {
         return user.betsHistory.bets.size();
+    }
+
+    public void deleteBet(int idx) {
+        for(int i= 0; i<user.betsHistory.bets.size();i++) {
+            if(user.betsHistory.bets.get(i).getBetId()==idx) {
+                user.betsHistory.bets.remove(i);
+                System.out.println("chega ao remove");
+            }
+        }
+    }
+
+    public void deleteBetByIdx(int idx) {
+        user.betsHistory.bets.remove(idx);
+    }
+
+    public String getUserEmail() {
+        return user.email;
     }
 }

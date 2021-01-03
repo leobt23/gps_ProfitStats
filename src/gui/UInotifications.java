@@ -66,6 +66,11 @@ public class UInotifications extends BorderPane {
         BorderPane.setMargin(hbTitleContainer, new Insets(20,0,0,0));
 
         GridPane gridPane = new GridPane();
+        gridPane.setBackground(new Background(new BackgroundFill(
+                Color.rgb(255,255,255,0.55), new CornerRadii(5), Insets.EMPTY)
+        ));
+        gridPane.setMaxHeight(500);
+        gridPane.setMaxWidth(700);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);
         gridPane.setVgap(50);

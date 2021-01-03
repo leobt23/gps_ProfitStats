@@ -10,9 +10,11 @@ public class Constants {
     public static String WRONG_INPUT_BET_REGISTRY = "wrong-input-bet-registry";
 
     public static String STATISTICS_BACKGROUND = "statistics-background";
+    public static String BET_REGISTRY_BACKGROUND = "bet-registry-background";
     public static String APP_LOGO = "app-logo";
 
     public static String USER_PHOTO = "verissimo";
 
     public static String NOTIFICATIONS_BACKGROUND = "notifications-background";
+    public static String USER_PROFILE_BACKGROUND = "user_profile_background";
 }
