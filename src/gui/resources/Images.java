@@ -32,5 +32,6 @@ public class Images {
         images.put(CROSS_ICON,new Image(getResourceFile(ImagesPaths.CROSS_ICON)));
         images.put(STATISTICS_BACKGROUND, new Image(getResourceFile(ImagesPaths.STATISTICS_BACKGROUND)));
         images.put(APP_LOGO, new Image(getResourceFile(ImagesPaths.PROFIT_STATS_LOGO)));
+        images.put(BET_REGISTRY_BACKGROUND, new Image(getResourceFile(ImagesPaths.BET_REGISTRY_BACKGROUND)));
     }
 }

@@ -10,5 +10,6 @@ public class Constants {
     public static String WRONG_INPUT_BET_REGISTRY = "wrong-input-bet-registry";
 
     public static String STATISTICS_BACKGROUND = "statistics-background";
+    public static String BET_REGISTRY_BACKGROUND = "bet-registry-background";
     public static String APP_LOGO = "app-logo";
 }
