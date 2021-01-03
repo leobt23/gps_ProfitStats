@@ -182,4 +182,10 @@ public class Model implements Serializable {
     public String getUserTotalProfit() { return data.getUserTotalProfits(); }
 
     public String getUserHighestwin() { return data.getUserHighestWin(); }
+
+    public void editBet(int idx, String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        data.editBet(idx,numOfGamesBettedValue,registDateValue,
+                closeDateValue,totalValueBettedValue,possibleWinningsValue,
+                numberOfBetsValue,betNameValue, enumBetStatus);
+    }
 }

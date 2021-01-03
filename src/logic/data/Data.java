@@ -243,4 +243,39 @@ public class Data implements Serializable {
     public String getUserTotalProfits() { return "" + user.totalProfit; }
 
     public String getUserHighestWin() { return "" + user.highestWinValue;}
+
+    public void editBet(int idx,String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        int numOfGamesBetted,numberOfBets;
+        float totalValueBetted,possibleWinnings;
+        Time registDate,closeDate;
+        if(numOfGamesBettedValue.equals("")||numOfGamesBettedValue==null){
+            numOfGamesBetted=1;
+        }
+        else{
+            numOfGamesBetted=Integer.parseInt(numOfGamesBettedValue);
+        }
+        if(numberOfBetsValue.equals("")||numberOfBetsValue==null){
+            numberOfBets=1;
+        }
+        else{
+            numberOfBets=Integer.parseInt(numberOfBetsValue);
+        }
+        totalValueBetted = Float.parseFloat(totalValueBettedValue);
+        possibleWinnings = Float.parseFloat(possibleWinningsValue);
+        WeekFields weekFieldsRegistDate = WeekFields.of(Locale.getDefault());
+
+        registDate = new Time(registDateValue.getYear(),registDateValue.getMonthValue(),registDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),registDateValue.getDayOfMonth());
+        closeDate = new Time(closeDateValue.getYear(),closeDateValue.getMonthValue(),closeDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),closeDateValue.getDayOfMonth());
+
+        Bet bet = new Bet(numOfGamesBetted,numberOfBets,registDate,closeDate,totalValueBetted,possibleWinnings,betNameValue,enumBetStatus);
+        user.betsHistory.bets.get(idx).setNumberOfGames(numOfGamesBetted);
+        user.betsHistory.bets.get(idx).setNumberOfBets(numberOfBets);
+        user.betsHistory.bets.get(idx).setBetRegisterDate(registDate);
+        user.betsHistory.bets.get(idx).setBetCloseDate(closeDate);
+        user.betsHistory.bets.get(idx).setTotalValueBetted(totalValueBetted);
+        user.betsHistory.bets.get(idx).setPossibleWinnings(possibleWinnings);
+        user.betsHistory.bets.get(idx).setBetName(betNameValue);
+        user.betsHistory.bets.get(idx).setStatus(enumBetStatus);
+
+    }
 }

@@ -179,4 +179,16 @@ public class ObservableModel {
     public String getUserTotalProfit() { return model.getUserTotalProfit(); }
 
     public String getUserHightestWin() { return model.getUserHighestwin(); }
+
+    public void editBet(int idx, String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        model.editBet(idx,numOfGamesBettedValue,registDateValue,
+                closeDateValue,totalValueBettedValue,possibleWinningsValue,
+                numberOfBetsValue,betNameValue, enumBetStatus);
+        //TODO: Tratar excecao
+        try {
+            FileUtility.saveModelToFile(model);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

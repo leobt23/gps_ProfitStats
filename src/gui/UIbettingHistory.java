@@ -55,8 +55,9 @@ public class UIbettingHistory extends BorderPane {
         Label title = new Label("BETS HISTORY");
         title.setTextFill(Color.BLACK);
         title.setFont( new Font( "Arial", 30 ) );
-        setTop(title);
-
+        HBox hBoxTitle = new HBox(title);
+        hBoxTitle.setAlignment(Pos.CENTER);
+        setTop(hBoxTitle);
 
 
         //SCROLL PANE
@@ -512,7 +513,7 @@ public class UIbettingHistory extends BorderPane {
                 boolean input_result = obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                         , betNameValue, enumBetStatus);
                 if(input_result) {
-                    obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
+                    obsModel.editBet(idx,numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                             , betNameValue, enumBetStatus);
                     Alert a1 = new Alert(Alert.AlertType.NONE,
                             "Bet successfuly edited!", ButtonType.OK);
@@ -737,7 +738,7 @@ public class UIbettingHistory extends BorderPane {
                 boolean input_result = obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                         , betNameValue, enumBetStatus);
                 if(input_result) {
-                    obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
+                    obsModel.editBet(idx,numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                             , betNameValue, enumBetStatus);
                     Alert a1 = new Alert(Alert.AlertType.NONE,
                             "Bet successfuly edited!", ButtonType.OK);
