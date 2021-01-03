@@ -170,4 +170,10 @@ public class Model implements Serializable {
     public String getUserEmail() {
         return data.getUserEmail();
     }
+
+    public void editBet(int idx, String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        data.editBet(idx,numOfGamesBettedValue,registDateValue,
+                closeDateValue,totalValueBettedValue,possibleWinningsValue,
+                numberOfBetsValue,betNameValue, enumBetStatus);
+    }
 }
