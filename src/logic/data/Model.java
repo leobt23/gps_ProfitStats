@@ -2,13 +2,8 @@ package logic.data;
 
 import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
-import logic.FileUtility;
-import logic.states.*;
-import logic.states.BetRegistry;
-import logic.states.EnumStates;
-import logic.states.IState;
 import logic.states.Notifications;
-import logic.states.Statistics;
+import logic.states.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -45,6 +40,10 @@ public class Model implements Serializable {
         return data.getBetRegistryDate(idx);
     }
 
+    public String getBetRegistryDateWithBars(int idx) {
+        return data.getBetRegistryDateWithBars(idx);
+    }
+
     public int getBetNumberOfGames(int idx) {
         return data.getBetNumberOfGames(idx);
     }
@@ -71,6 +70,9 @@ public class Model implements Serializable {
 
     public Time getBetCloseDate(int idx) {
         return data.getBetCloseDate(idx);
+    }
+    public String getBetCloseDateWithBars(int idx) {
+        return data.getBetCloseDateWithBars(idx);
     }
 
     public void setBetStatus(int betId, EnumBetStatus enumBetStatus) {
@@ -155,6 +157,14 @@ public class Model implements Serializable {
 
     public int getNumberOfBets() {
         return data.getNumberOfBets();
+    }
+
+    public void deleteBet(int idx) {
+        data.deleteBet(idx);
+    }
+
+    public void deleteBetByIdx(int idx) {
+        data.deleteBetByIdx(idx);
     }
 
     public String getUserEmail() {

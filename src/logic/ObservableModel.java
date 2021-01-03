@@ -49,6 +49,10 @@ public class ObservableModel {
         return model.getBetRegistryDate(idx);
     }
 
+    public String getBetRegistryDateWithBars(int idx) {
+        return model.getBetRegistryDateWithBars(idx);
+    }
+
     public int getBetNumberOfGames(int idx) {
         return model.getBetNumberOfGames(idx);
     }
@@ -75,6 +79,10 @@ public class ObservableModel {
 
     public Time getBetCloseDate(int idx) {
         return model.getBetCloseDate(idx);
+    }
+
+    public String getBetCloseDateWithBars(int idx) {
+        return model.getBetCloseDateWithBars(idx);
     }
 
     public void setBetStatus(int betId, EnumBetStatus enumBetStatus) {
@@ -149,6 +157,13 @@ public class ObservableModel {
         fireEvents(model.moveToBetsHistory());
     }
 
+    public void deleteBet(int idx) {
+        model.deleteBet(idx);
+    }
+
+    public void deleteBetByIdx(int idx) {
+        model.deleteBetByIdx(idx);
+    }
     public String getUserEmail() {
         return model.getUserEmail();
     }
