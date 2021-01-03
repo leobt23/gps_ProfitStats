@@ -14,4 +14,5 @@ public interface ImagesPaths {
     String PROFIT_STATS_LOGO = "images/profitstats_logo.jpg";
 
     String USER_PHOTO = "images/varissimo.jpg";
+    String NOTIFICATIONS_BACKGROUND = "images/notificationsBackground.png";
 }

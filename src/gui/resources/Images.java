@@ -34,5 +34,6 @@ public class Images {
         images.put(APP_LOGO, new Image(getResourceFile(ImagesPaths.PROFIT_STATS_LOGO)));
 
         images.put(USER_PHOTO, new Image(getResourceFile((ImagesPaths.USER_PHOTO))));
+        images.put(NOTIFICATIONS_BACKGROUND, new Image(getResourceFile(ImagesPaths.NOTIFICATIONS_BACKGROUND)));
     }
 }
