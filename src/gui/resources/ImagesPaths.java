@@ -13,6 +13,6 @@ public interface ImagesPaths {
     String STATISTICS_BACKGROUND = "images/stonks.png";
     String PROFIT_STATS_LOGO = "images/profitstats_logo.jpg";
 
-    String USER_PHOTO = "images/varissimo.jpg";
+    String USER_PHOTO = "images/verissimo.jpg";
     String NOTIFICATIONS_BACKGROUND = "images/notificationsBackground.png";
 }
