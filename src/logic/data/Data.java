@@ -231,4 +231,16 @@ public class Data implements Serializable {
     public String getUserEmail() {
         return user.email;
     }
+
+    public String getUserName() { return user.name; }
+
+    public String getUserAge() { return "" + user.age; }
+
+    public String getUserTotalBets() { return "" + user.totalBets; }
+
+    public String getUserGender() { return "" + user.gender;}
+
+    public String getUserTotalProfits() { return "" + user.totalProfit; }
+
+    public String getUserHighestWin() { return "" + user.highestWinValue;}
 }

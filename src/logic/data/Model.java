@@ -170,4 +170,16 @@ public class Model implements Serializable {
     public String getUserEmail() {
         return data.getUserEmail();
     }
+
+    public String getUserName() { return data.getUserName(); }
+
+    public String getUserAge() { return data.getUserAge();}
+
+    public String getUserTotalBets() { return data.getUserTotalBets();}
+
+    public String getUserGender() { return data.getUserGender(); }
+
+    public String getUserTotalProfit() { return data.getUserTotalProfits(); }
+
+    public String getUserHighestwin() { return data.getUserHighestWin(); }
 }
