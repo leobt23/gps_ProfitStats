@@ -29,13 +29,13 @@ public class UInotifications extends BorderPane {
 }
 
     private void funToShowInCOnstructor(){
-      /*  BackgroundSize b1Size = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
+        BackgroundSize b1Size = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
         this.setBackground(new Background(new BackgroundImage(Images.getImage(Constants.NOTIFICATIONS_BACKGROUND),
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
                 b1Size)));
-*/
+
         /*Label betRegistryTitle = new Label("NOTIFICATIONS");
         betRegistryTitle.setTextFill(Color.BLACK);
         betRegistryTitle.setFont(new Font( "Arial",30) );
