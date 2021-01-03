@@ -149,5 +149,8 @@ public class Time implements Serializable {
                 ", seconds=" + seconds +
                 '}';
     }
+    public String withBars(){
+        return ""+day+'/'+month+'/'+year;
+    }
 
 }
