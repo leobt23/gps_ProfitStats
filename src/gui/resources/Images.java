@@ -33,5 +33,6 @@ public class Images {
         images.put(STATISTICS_BACKGROUND, new Image(getResourceFile(ImagesPaths.STATISTICS_BACKGROUND)));
         images.put(APP_LOGO, new Image(getResourceFile(ImagesPaths.PROFIT_STATS_LOGO)));
         images.put(BET_REGISTRY_BACKGROUND, new Image(getResourceFile(ImagesPaths.BET_REGISTRY_BACKGROUND)));
+        images.put(NOTIFICATIONS_BACKGROUND, new Image(getResourceFile(ImagesPaths.NOTIFICATIONS_BACKGROUND)));
     }
 }

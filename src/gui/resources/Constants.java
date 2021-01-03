@@ -12,4 +12,6 @@ public class Constants {
     public static String STATISTICS_BACKGROUND = "statistics-background";
     public static String BET_REGISTRY_BACKGROUND = "bet-registry-background";
     public static String APP_LOGO = "app-logo";
+
+    public static String NOTIFICATIONS_BACKGROUND = "notifications-background";
 }
