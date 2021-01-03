@@ -285,12 +285,6 @@ public class UIbettingHistory extends BorderPane {
             }
             itemList.setRight(statusVbox);
 
-
-
-
-
-
-
             //add borderpane to vbox
 
             scrollPaneVBox.getChildren().add(itemList);

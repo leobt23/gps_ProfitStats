@@ -14,4 +14,5 @@ public class Constants {
     public static String APP_LOGO = "app-logo";
 
     public static String NOTIFICATIONS_BACKGROUND = "notifications-background";
+    public static String USER_PROFILE_BACKGROUND = "user_profile_background";
 }

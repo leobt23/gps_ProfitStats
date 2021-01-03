@@ -208,4 +208,8 @@ public class Data implements Serializable {
     public int getNumberOfBets() {
         return user.betsHistory.bets.size();
     }
+
+    public String getUserEmail() {
+        return user.email;
+    }
 }

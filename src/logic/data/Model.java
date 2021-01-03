@@ -156,4 +156,8 @@ public class Model implements Serializable {
     public int getNumberOfBets() {
         return data.getNumberOfBets();
     }
+
+    public String getUserEmail() {
+        return data.getUserEmail();
+    }
 }

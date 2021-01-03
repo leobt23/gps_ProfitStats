@@ -212,15 +212,9 @@ public class UIbetRegistry extends BorderPane {
 
         gridPane.setMaxWidth(600);
         gridPane.setMaxHeight(500);
-        gridPane.setBackground(new Background( new BackgroundFill(
-                Color.LIGHTGRAY, new CornerRadii(5), Insets.EMPTY
-        )));
-        gridPane.setBorder(
-                new Border(
-                        new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID,
-                                new CornerRadii(5), new BorderWidths(2))
-                )
-        );
+        gridPane.setBackground(new Background(new BackgroundFill(
+                Color.rgb(255,255,255,0.55), new CornerRadii(5), Insets.EMPTY)
+        ));
 
         setCenter(gridPane);
         setBottom(containerButtons);

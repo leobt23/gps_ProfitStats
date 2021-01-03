@@ -149,4 +149,7 @@ public class ObservableModel {
         fireEvents(model.moveToBetsHistory());
     }
 
+    public String getUserEmail() {
+        return model.getUserEmail();
+    }
 }
