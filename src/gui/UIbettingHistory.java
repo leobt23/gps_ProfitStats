@@ -52,18 +52,52 @@ public class UIbettingHistory extends BorderPane {
         setTop(null);
         setLeft(null);
         setCenter(null);
-        Label title = new Label("BETS HISTORY");
-        title.setTextFill(Color.BLACK);
-        title.setFont( new Font( "Arial", 30 ) );
-        HBox hBoxTitle = new HBox(title);
-        hBoxTitle.setAlignment(Pos.CENTER);
-        setTop(hBoxTitle);
 
+        Label lTitle = new Label("Bets History");
+        lTitle.setTextFill(Color.BLACK);
+        lTitle.setFont(new Font( "Arial",24) );
+        lTitle.setAlignment(Pos.CENTER);
+
+        VBox hbTitleContainer = new VBox();
+        hbTitleContainer.setAlignment(Pos.CENTER);
+        hbTitleContainer.setPadding(new Insets(15));
+        hbTitleContainer.setMaxWidth(250);
+        hbTitleContainer.setBackground(new Background( new BackgroundFill(
+                Color.LIGHTGRAY, new CornerRadii(5), Insets.EMPTY
+        )));
+        hbTitleContainer.setBorder(
+                new Border(
+                        new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID,
+                                new CornerRadii(5), new BorderWidths(2))
+                )
+        );
+        hbTitleContainer.getChildren().add(lTitle);
+
+        setTop(hbTitleContainer);
+        BorderPane.setAlignment(hbTitleContainer, Pos.CENTER);
+        BorderPane.setMargin(hbTitleContainer, new Insets(20,0,0,0));
+
+
+        BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
+        this.setBackground(new Background(new BackgroundImage(Images.getImage(Constants.STATISTICS_BACKGROUND),
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                bSize)));
 
         //SCROLL PANE
         ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setPadding(new Insets(2));
+        scrollPane.setMaxWidth(800);
+        scrollPane.setMaxHeight(500);
+        scrollPane.setBackground(new Background(new BackgroundFill(
+                Color.rgb(255,255,255,0.7), new CornerRadii(5), Insets.EMPTY)
+        ));
+
         //SCROLL PANE VBOX
         VBox scrollPaneVBox = new VBox();
+        scrollPaneVBox.setSpacing(10);
+
         idx = 0;
         for(int i = 0; i < obsModel.getNumberOfBets(); i++){
             //idx
@@ -71,9 +105,16 @@ public class UIbettingHistory extends BorderPane {
             //Label info
             Label info = new Label("Info");
             info.setTextFill(Color.BLACK);
-            info.setFont( new Font( "Arial", 20 ) );
+            info.setFont( new Font( "Arial", 20 ));
             //borderpane itemlist
             BorderPane itemList = new BorderPane();
+            itemList.setBorder(
+                    new Border(
+                            new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID,
+                                    new CornerRadii(5), new BorderWidths(2))
+                    )
+            );
+
             //title(info)
             info.setAlignment(Pos.CENTER);
             HBox infoHbox = new HBox(info);
@@ -469,11 +510,30 @@ public class UIbettingHistory extends BorderPane {
 
         containerButtons.getChildren().addAll(btnCancel,btnSave);
 
-        HBox boxTitle = new HBox();
-        boxTitle.getChildren().add(betRegistryTitle);
-        boxTitle.setAlignment(Pos.TOP_CENTER);
-        boxTitle.setPadding(new Insets(20,0,0,0));
-        setTop(boxTitle);
+        Label lTitle = new Label("Edit Bet");
+        lTitle.setTextFill(Color.BLACK);
+        lTitle.setFont(new Font( "Arial",24) );
+        lTitle.setAlignment(Pos.CENTER);
+
+        VBox hbTitleContainer = new VBox();
+        hbTitleContainer.setAlignment(Pos.CENTER);
+        hbTitleContainer.setPadding(new Insets(15));
+        hbTitleContainer.setMaxWidth(250);
+        hbTitleContainer.setBackground(new Background( new BackgroundFill(
+                Color.LIGHTGRAY, new CornerRadii(5), Insets.EMPTY
+        )));
+        hbTitleContainer.setBorder(
+                new Border(
+                        new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID,
+                                new CornerRadii(5), new BorderWidths(2))
+                )
+        );
+        hbTitleContainer.getChildren().add(lTitle);
+
+        setTop(hbTitleContainer);
+        BorderPane.setAlignment(hbTitleContainer, Pos.CENTER);
+        BorderPane.setMargin(hbTitleContainer, new Insets(20,0,0,0));
+
         setCenter(gridPane);
         setBottom(containerButtons);
         containerButtons.setAlignment(Pos.CENTER);
