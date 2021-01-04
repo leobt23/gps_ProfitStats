@@ -1,5 +1,6 @@
 package logic;
 
+import logic.data.EnumGenders;
 import logic.data.Model;
 import logic.data.Time;
 import logic.states.EnumStates;
@@ -17,15 +18,9 @@ public class ObservableModel {
 
     public ObservableModel(){
         propertyChangeSupport = new PropertyChangeSupport(model);
-        try {
-            model = (Model) FileUtility.retrieveModelFromFile();
-            if (model == null) {
-                model = new Model();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        model = (Model) FileUtility.retrieveModelFromFile();
+        if (model == null) {
+            model = new Model();
         }
     }
 
@@ -87,6 +82,7 @@ public class ObservableModel {
 
     public void setBetStatus(int betId, EnumBetStatus enumBetStatus) {
         model.setBetStatus(betId, enumBetStatus);
+        FileUtility.saveModelToFile(model);
     }
 
     public EnumStates getState() {
@@ -104,12 +100,7 @@ public class ObservableModel {
         model.addNewBet(numOfGamesBettedValue,registDateValue,
                 closeDateValue,totalValueBettedValue,possibleWinningsValue,
                 numberOfBetsValue,betNameValue, enumBetStatus);
-        //TODO: Tratar excecao
-        try {
-            FileUtility.saveModelToFile(model);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileUtility.saveModelToFile(model);
     }
 
     public float getTotalProfit() {
@@ -163,10 +154,10 @@ public class ObservableModel {
 
     public void deleteBetByIdx(int idx) {
         model.deleteBetByIdx(idx);
+        FileUtility.saveModelToFile(model);
     }
-    public String getUserEmail() {
-        return model.getUserEmail();
-    }
+
+    public String getUserEmail() { return model.getUserEmail(); }
 
     public String getUserName() { return model.getUserName(); }
 
@@ -184,15 +175,48 @@ public class ObservableModel {
         model.editBet(idx,numOfGamesBettedValue,registDateValue,
                 closeDateValue,totalValueBettedValue,possibleWinningsValue,
                 numberOfBetsValue,betNameValue, enumBetStatus);
-        //TODO: Tratar excecao
-        try {
-            FileUtility.saveModelToFile(model);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileUtility.saveModelToFile(model);
     }
 
-    public void setBetStaticId() {
-        model.setBetStatidId();
+    public List<EnumWrongInputUserProfile> editProfile(String userName, String email, String age, EnumGenders gender) {
+        List<EnumWrongInputUserProfile> wrongInput = model.editProfile(userName, email, age, gender);
+        FileUtility.saveModelToFile(model);
+        return wrongInput;
     }
+
+    public float getLimitMoneyBettedToday() { return model.getLimitMoneyBettedToday(); }
+
+    public float getLimitLossWeek() { return model.getLimitLossWeek(); }
+
+    public float getMinBettedMoneyWeek() { return model.getMinBettedMoneyWeek(); }
+
+    public float getReminderToBetDay() { return model.getReminderToBetDay(); }
+
+    public boolean getLimitMoneyBettedTodayFlag() { return model.getLimitMoneyBettedTodayFlag(); }
+
+    public boolean getLimitLossWeekFlag() { return model.getLimitLossWeekFlag(); }
+
+    public boolean getMinBettedMoneyWeekFlag() { return model.getMinBettedMoneyWeekFlag(); }
+
+    public boolean getReminderToBetDayFlag() { return model.getReminderToBetDayFlag(); }
+
+    public boolean getResultsNotificationReminder() { return model.getResultsNotificationReminder(); }
+
+    public void setLimitMoneyDay(float value) {model.setLimitMoneyDay(value); }
+
+    public void setLimitLossWeek(float value) {model.setLimitLossWeek(value); }
+
+    public void setMinimumMoneyMonth(float value) { model.setMinimumMoneyMonth(value); }
+
+    public void setReminderBetDay(float value) { model.setReminderBetDay(value); }
+
+    public void setFlagLimitMoneyDay(boolean value) { model.setFlagLimitMoneyDay(value); }
+
+    public void setFlagLimitLossWeek(boolean value) { model.setFlagLimitLossWeek(value); }
+
+    public void setFlagMinimumMoneyMonth(boolean value) { model.setFlagMinimumMoneyMonth(value); }
+
+    public void setFlagReminderBetDay(boolean value) { model.setFlagReminderBetDay(value); }
+
+    public void setFlagResultsReminder(boolean value) { model.setFlagResultsReminder(value); }
 }

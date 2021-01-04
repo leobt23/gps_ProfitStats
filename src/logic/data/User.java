@@ -5,8 +5,7 @@ import logic.EnumBetStatus;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 import java.util.ArrayList;
 
@@ -17,8 +16,9 @@ public class User implements Serializable {
     String name, email, bestMonth;
     EnumGenders gender;
     int age, totalBets;
-    float totalProfit, highestWinValue, winningPercentage;
+    float totalProfit, winningPercentage;
     BettingHistory betsHistory;
+    Notifications notification;
 
     public User(String name, String email, EnumGenders gender, int age, int totalBets) {
         this.name = name;
@@ -62,7 +62,7 @@ public class User implements Serializable {
     }
 
     public int getTotalBets() {
-        return totalBets;
+        return betsHistory.bets.size();
     }
 
     public void setTotalBets(int totalBets) {
@@ -246,8 +246,6 @@ public class User implements Serializable {
                 arrayMeses.set(10,arrayMeses.get(10) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 12)
                 arrayMeses.set(11,arrayMeses.get(11) + 1);
-            if(betsHistory.bets.get(i).betRegisterDate.month == 12)
-                arrayMeses.set(12,arrayMeses.get(12) + 1);
         }
 
         return arrayMeses;
@@ -335,6 +333,7 @@ public class User implements Serializable {
     }
 
     public float getHighestWinValue() {
+        float highestWinValue = 0f;
         for(int i=0; i < betsHistory.bets.size(); i++){
             if(betsHistory.bets.get(i).result == EnumBetStatus.WON)
                 if(betsHistory.bets.get(i).possibleWinnings > highestWinValue)
@@ -368,11 +367,127 @@ public class User implements Serializable {
         this.totalProfit = totalProfit;
     }
 
-    public void setHighestWinValue(float highestWinValue) {
-        this.highestWinValue = highestWinValue;
+    // NOTIFICATIONS LOGIC
+
+    public boolean verifyLimitMoneyBettedToday(float bettedValue){
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        Date date = calendar.getTime();
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
+        int day = calendar.get(Calendar.DATE);
+        float totalValueBettedToday = bettedValue;
+
+        if(notification.isFlagLimitMoneyDay() == true) {
+            for (Bet bet : betsHistory.getBets()) {
+                if (bet.betRegisterDate.day == day && bet.betRegisterDate.month == month && bet.betRegisterDate.year == year) {
+                    totalValueBettedToday += bet.totalValueBetted;
+                }
+            }
+
+            if (totalValueBettedToday >= notification.limitMoneyDay)
+                return true;
+        }
+
+        return false;
     }
 
+    public boolean verifyLimitLossWeek(){
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        Date date = calendar.getTime();
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
+        int day = calendar.get(Calendar.DATE);
 
+        ArrayList<Float> arraySemanas = getLostMoneyCurrentMonth();
+
+        if(notification.isFlagLimitLossWeek() == true) {
+            if (day >= 1 && day <= 7)
+                if (arraySemanas.get(0) >= notification.limitLossWeek)
+                    return true;
+
+            if (day >= 8 && day <= 14)
+                if (arraySemanas.get(1) >= notification.limitLossWeek)
+                    return true;
+
+            if (day >= 15 && day <= 21)
+                if (arraySemanas.get(2) >= notification.limitLossWeek)
+                    return true;
+
+            if (day >= 22 && day <= 31)
+                if (arraySemanas.get(3) >= notification.limitLossWeek)
+                    return true;
+        }
+        return false;
+    }
+
+    public boolean verifyMinBettedWeek(){
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        Date date = calendar.getTime();
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
+        int day = calendar.get(Calendar.DATE);
+
+        ArrayList<Float> arraySemanas = getLostMoneyCurrentMonth();
+
+        if(notification.isFlagMinimumMoneyMonth() == true) {
+            if (day >= 1 && day <= 7)
+                if (arraySemanas.get(0) < notification.minimumMoneyMonth)
+                    return true;
+
+            if (day >= 8 && day <= 14)
+                if (arraySemanas.get(1) < notification.minimumMoneyMonth)
+                    return true;
+
+            if (day >= 15 && day <= 21)
+                if (arraySemanas.get(2) < notification.minimumMoneyMonth)
+                    return true;
+
+            if (day >= 22 && day <= 31)
+                if (arraySemanas.get(3) < notification.minimumMoneyMonth)
+                    return true;
+        }
+            return false;
+    }
+
+    public boolean verifyReminderToBetToday(float bettedValue){
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        Date date = calendar.getTime();
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
+        int day = calendar.get(Calendar.DATE);
+        float totalValueBettedToday = bettedValue;
+
+        if(notification.isFlagReminderBetDay() == true) {
+            for (Bet bet : betsHistory.getBets()) {
+                if (bet.betRegisterDate.day == day && bet.betRegisterDate.month == month && bet.betRegisterDate.year == year) {
+                    totalValueBettedToday += bet.totalValueBetted;
+                }
+            }
+
+            if (totalValueBettedToday < notification.reminderBetDay)
+                return true;
+        }
+
+        return false;
+    }
+
+    public boolean toggleResultsReminderNotification(){
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        Date date = calendar.getTime();
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
+        int day = calendar.get(Calendar.DATE);
+
+        if(notification.isFlagResultsReminder() == true) {
+            for (Bet bet : betsHistory.getBets()) {
+                if (bet.betRegisterDate.day <= day-1 && bet.betRegisterDate.month == month && bet.betRegisterDate.year == year && bet.getStatus() == EnumBetStatus.PENDENT) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
     public static void main(String[] args) {
         ArrayList<Bet> bets = new ArrayList<>();

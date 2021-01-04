@@ -1,5 +1,6 @@
 package gui;
 
+import gui.resources.Constants;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -8,17 +9,15 @@ import logic.ObservableModel;
 
 public class Main extends Application {
 
+    private static final String APP_NAME = "ProfitStats";
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage.setTitle("ProfitStats");
-        ObservableModel observableModel = new ObservableModel();
-        observableModel.setBetStaticId();
-        Root root = new Root(observableModel);
-
-        primaryStage.setTitle("Hello World");
+        Root root = new Root(new ObservableModel());
+        primaryStage.setTitle(APP_NAME);
         primaryStage.setScene(new Scene(root, 1280, 700));
         primaryStage.getIcons().add(
-                new Image( getClass().getResourceAsStream( "app-logo.png" )));
+                new Image( getClass().getResourceAsStream(Constants.APP_LOGO_PATH)));
         primaryStage.show();
     }
 

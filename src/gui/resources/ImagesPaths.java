@@ -11,7 +11,7 @@ public interface ImagesPaths {
     String MARK_ICON = "images/mark-icon.png";
     String CROSS_ICON = "images/cross-icon.jpg";
     String STATISTICS_BACKGROUND = "images/stonks.png";
-    String PROFIT_STATS_LOGO = "images/profitstatslogo.jpg";
+    String PROFIT_STATS_LOGO = "images/profitstats_logo.jpg";
     String NOTIFICATIONS_BACKGROUND = "images/notificationsBackground.png";
     String BET_REGISTRY_BACKGROUND = "images/bet_registry_background.png";
     String USER_PROFILE_BACKGROUND = "images/user_profile_background.png";

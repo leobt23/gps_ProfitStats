@@ -9,7 +9,7 @@ public class Bet implements Serializable {
     private static final long serialVersionUID = 1L;
 
     int numberOfGames, numberOfBets;
-    static int contador = 0;
+//    static int contador = 0;
     int betId;
     Time betRegisterDate;
     Time betCloseDate;
@@ -17,8 +17,8 @@ public class Bet implements Serializable {
     String betName;
     EnumBetStatus result;
 
-    public Bet(int numberOfGames, int numberOfBets, Time betRegisterDate, Time betCloseDate, float totalValueBetted, float possibleWinnings, String betName,EnumBetStatus result) {
-        this.betId = contador;
+    public Bet(int betId, int numberOfGames, int numberOfBets, Time betRegisterDate, Time betCloseDate, float totalValueBetted, float possibleWinnings, String betName,EnumBetStatus result) {
+        this.betId = betId;
         this.numberOfGames = numberOfGames;
         this.numberOfBets = numberOfBets;
         this.betRegisterDate = betRegisterDate;
@@ -26,12 +26,27 @@ public class Bet implements Serializable {
         this.totalValueBetted = totalValueBetted;
         this.possibleWinnings = possibleWinnings;
         this.betName = betName;
-        contador++;
         this.result = result;
     }
 
-    public int getBetId(){return betId; }
-    public void setStatic(int id){contador=id;}
+    public Bet(int numberOfGames, int numberOfBets, Time betRegisterDate, Time betCloseDate, float totalValueBetted, float possibleWinnings, String betName,EnumBetStatus result) {
+  /*      this.betId = contador;
+        contador++;*/
+        this.numberOfGames = numberOfGames;
+        this.numberOfBets = numberOfBets;
+        this.betRegisterDate = betRegisterDate;
+        this.betCloseDate = betCloseDate;
+        this.totalValueBetted = totalValueBetted;
+        this.possibleWinnings = possibleWinnings;
+        this.betName = betName;
+        this.result = result;
+    }
+
+    public int getBetId(){
+        return betId;
+    }
+
+//    public void setStatic(int id){contador=id;}
 
     public int getNumberOfGames() {
         return numberOfGames;
