@@ -9,6 +9,8 @@ import javafx.scene.layout.*;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import logic.ObservableModel;
+import logic.data.BettingHistory;
+import logic.data.EnumGenders;
 import logic.data.PropertyChanges;
 import logic.states.EnumStates;
 import logic.EnumBetStatus;
@@ -27,6 +29,12 @@ import static com.sun.glass.ui.Cursor.setVisible;
 
 public class UserInterface extends BorderPane{
     private ObservableModel obsModel;
+
+    String name, email, bestMonth;
+    EnumGenders gender;
+    int age, totalBets;
+    float totalProfit, highestWinValue, winningPercentage;
+    BettingHistory betsHistory;
 
     public UserInterface(ObservableModel obsModel) {
         this.obsModel = obsModel;
@@ -134,7 +142,10 @@ public class UserInterface extends BorderPane{
         imgView.setFitHeight(gui.left_panel.Constants.IMG_VIEW_HEIGHT);
         hBox.getChildren().add(imgView);
 
-        setBottom(hBox);
+        gridPane.add(hBox, 1, 15);
+
+        setBottom(null);
+
     }
 
     private void editProfile() {
@@ -204,26 +215,39 @@ public class UserInterface extends BorderPane{
         TextField highestWinValueBox = new TextField();
         gridPane.add(highestWinValueBox,1,7);
 
-/*        Button btnCancel = new Button("Cancel");
-        Button btnSave = new Button("Save");
-
-        HBox containerButtons = new HBox();
-
-        containerButtons.getChildren().addAll(btnCancel,btnSave);*/
 
         Button btnCancel = new Button("Cancel");
         Button btnSave = new Button("Save");
 
-        HBox containerButtons = new HBox();
+        btnCancel.setOnMouseClicked(e -> profile());
+
+       /* btnSave.setOnMouseClicked(event -> {
+
+            if (event.getButton() == MouseButton.PRIMARY) {
+
+                name = name.getText();
+                email
+                bestMonth
+                gender
+                age
+                totalBets
+                totalProfit
+                highestWinValue
+                winningPercentage
+                betsHistory
+
+                possibleWinningsValue = possibleWinningsField.getText();
+                numOfGamesBettedValue = numberOfGamesBettedField.getText();
+                betNameValue = betNameField.getText();
+                totalValueBettedValue = totalValueBettedField.getText();
+                numberOfBetsValue = numberOfBetsField.getText();
+                registDateValue = registDatePicker.getValue();
+                closeDateValue = closeDatePicker.getValue();
+            }*/
+
+                HBox containerButtons = new HBox();
 
         containerButtons.getChildren().addAll(btnCancel,btnSave);
-
-        //  HBox boxTitle = new HBox();
-       /* boxTitle.getChildren().add(betRegistryTitle);
-        boxTitle.setAlignment(Pos.TOP_CENTER);
-        boxTitle.setPadding(new Insets(20,0,0,0));
-        setTop(boxTitle); */
-//        setBottom(containerButtons);
 
         containerButtons.setAlignment(Pos.CENTER);
         btnCancel.setMinSize(100,20);
@@ -233,12 +257,6 @@ public class UserInterface extends BorderPane{
         containerButtons.setPadding(new Insets(20,20,20,20));
         containerButtons.setSpacing(20);
 
-      //  HBox boxTitle = new HBox();
-       /* boxTitle.getChildren().add(betRegistryTitle);
-        boxTitle.setAlignment(Pos.TOP_CENTER);
-        boxTitle.setPadding(new Insets(20,0,0,0));
-        setTop(boxTitle); */
-//        setBottom(containerButtons);
 
         containerButtons.setAlignment(Pos.CENTER);
         btnCancel.setMinSize(100,20);
