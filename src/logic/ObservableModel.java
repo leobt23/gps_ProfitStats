@@ -1,5 +1,6 @@
 package logic;
 
+import logic.data.EnumGenders;
 import logic.data.Model;
 import logic.data.Time;
 import logic.states.EnumStates;
@@ -81,6 +82,7 @@ public class ObservableModel {
 
     public void setBetStatus(int betId, EnumBetStatus enumBetStatus) {
         model.setBetStatus(betId, enumBetStatus);
+        FileUtility.saveModelToFile(model);
     }
 
     public EnumStates getState() {
@@ -176,7 +178,9 @@ public class ObservableModel {
         FileUtility.saveModelToFile(model);
     }
 
-    public void setBetStaticId() {
-        model.setBetStatidId();
+    public List<EnumWrongInputUserProfile> editProfile(String userName, String email, String age, EnumGenders gender) {
+        List<EnumWrongInputUserProfile> wrongInput = model.editProfile(userName, email, age, gender);
+        FileUtility.saveModelToFile(model);
+        return wrongInput;
     }
 }

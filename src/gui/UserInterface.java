@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import logic.EnumWrongInputUserProfile;
 import logic.ObservableModel;
 import logic.data.BettingHistory;
 import logic.data.EnumGenders;
@@ -25,11 +26,17 @@ import javafx.scene.text.Font;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 import static com.sun.glass.ui.Cursor.setVisible;
 
 public class UserInterface extends BorderPane{
     private ObservableModel obsModel;
+
+    private String userName, userEmail, userAge;
+    private EnumGenders userGender;
+
+    private TextField nameBoxEdit, emailBoxEdit, ageBoxEdit;
 
     public UserInterface(ObservableModel obsModel) {
         this.obsModel = obsModel;
@@ -90,13 +97,13 @@ public class UserInterface extends BorderPane{
         Label totalProfit = new Label("Total Profit: ");
         gridPane.add(totalProfit, 0, 6);
 
-        Label totalProfitBox = new Label(obsModel.getUserTotalProfit());
+        Label totalProfitBox = new Label(obsModel.getUserTotalProfit() + "€");
         gridPane.add(totalProfitBox,1,6 );
 
         Label highestWinValue = new Label("Highest Win: ");
         gridPane.add(highestWinValue, 0, 7);
 
-        Label highestWinValueBox = new Label(obsModel.getUserHightestWin());
+        Label highestWinValueBox = new Label(obsModel.getUserHightestWin() + "€");
         gridPane.add(highestWinValueBox,1,7);
 
         Label lTitle = new Label("User Profile");
@@ -163,29 +170,23 @@ public class UserInterface extends BorderPane{
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(25, 25, 25, 25));
 
-        Label nome = new Label("Name: ");
-        gridPane.add(nome,0,1);
+        Label name = new Label("Name: ");
+        gridPane.add(name,0,1);
 
-        TextField nameBox = new TextField();
-        gridPane.add(nameBox, 1, 1);
+        nameBoxEdit = new TextField(obsModel.getUserName());
+        gridPane.add(nameBoxEdit, 1, 1);
 
         Label email = new Label("Email: ");
         gridPane.add(email,0,2);
 
-        TextField  emailBox = new TextField();
-        gridPane.add(emailBox, 1, 2);
+        emailBoxEdit = new TextField(obsModel.getUserEmail());
+        gridPane.add(emailBoxEdit, 1, 2);
 
         Label age = new Label("Age: ");
         gridPane.add(age, 0, 3);
 
-        TextField  ageBox = new TextField();
-        gridPane.add(ageBox, 1, 3);
-
-        Label totalBets = new Label("Total Bets: ");
-        gridPane.add(totalBets, 0, 4);
-
-        TextField totalBetsBox = new TextField();
-        gridPane.add(totalBetsBox, 1,4);
+        ageBoxEdit = new TextField(obsModel.getUserAge());
+        gridPane.add(ageBoxEdit, 1, 3);
 
         Label spinnerGeneroBox = new Label("Gender: ");
         gridPane.add(spinnerGeneroBox, 0, 5);
@@ -196,20 +197,8 @@ public class UserInterface extends BorderPane{
                 "Male",
                 "Female",
                 "Other" );
+        spinnerGenero.setValue(obsModel.getUserGender());
         gridPane.add(spinnerGenero,1, 5);
-
-        Label totalProfit = new Label("Total Profit: ");
-        gridPane.add(totalProfit, 0, 6);
-
-        Label totalProfitValue = new Label(obsModel.getUserTotalProfit());
-        gridPane.add(totalProfitValue,1,6 );
-
-        Label highestWinValue = new Label("Highest Win: ");
-        gridPane.add(highestWinValue, 0, 7);
-
-        Label highestWinValueValue = new Label(obsModel.getUserHightestWin());
-        gridPane.add(highestWinValueValue,1,7);
-
 
         Button btnCancel = new Button("Cancel");
         Button btnSave = new Button("Save");
@@ -218,7 +207,28 @@ public class UserInterface extends BorderPane{
 
         btnSave.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
+                nameBoxEdit.setStyle("");
+                emailBoxEdit.setStyle("");
+                ageBoxEdit.setStyle("");
 
+                userName = nameBoxEdit.getText();
+                userEmail = emailBoxEdit.getText();
+                userAge = ageBoxEdit.getText();
+
+                switch ((String) spinnerGenero.getValue()) {
+                    case "Male" -> userGender = EnumGenders.MALE;
+                    case "Female" -> userGender = EnumGenders.FEMALE;
+                    default -> userGender = EnumGenders.OTHER;
+                }
+
+                List<EnumWrongInputUserProfile> wrongInputs = obsModel.editProfile(userName, userEmail
+                        , userAge, userGender);
+                if (wrongInputs.isEmpty()) {
+                    profile();
+                }
+                else {
+                    showWrongInputs(wrongInputs);
+                }
             }
         });
 
@@ -269,10 +279,24 @@ public class UserInterface extends BorderPane{
         setBottom(containerButtons);
     }
 
+    private void showWrongInputs(List<EnumWrongInputUserProfile> wrongInputs) {
+        for (EnumWrongInputUserProfile wrongInput : wrongInputs) {
+           switch (wrongInput) {
+               case USER_NAME -> nameBoxEdit.setStyle("-fx-border-color: red ; -fx-border-width: 2px " +
+                       ";-fx-focus-color: red ;");
+               case EMAIL -> emailBoxEdit.setStyle("-fx-border-color: red ; -fx-border-width: 2px " +
+                       ";-fx-focus-color: red ;");
+               case AGE -> ageBoxEdit.setStyle("-fx-border-color: red ; -fx-border-width: 2px " +
+                       ";-fx-focus-color: red ;");
+           }
+        }
+    }
+
     private void propsListener() {
         obsModel.addPropertyChangeListener(PropertyChanges.STATE_CHANGE,
                 evt -> {
                     setVisible(obsModel.getState() == EnumStates.USER_PROFILE);
+                    profile();
                 }
         );
     }

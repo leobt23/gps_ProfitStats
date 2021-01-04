@@ -2,6 +2,7 @@ package logic.data;
 
 import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
+import logic.EnumWrongInputUserProfile;
 import logic.states.Notifications;
 import logic.states.*;
 
@@ -189,7 +190,11 @@ public class Model implements Serializable {
                 numberOfBetsValue,betNameValue, enumBetStatus);
     }
 
-    public void setBetStatidId() {
-        data.setBetStaticId();
+//    public void setBetStatidId() {
+//        data.setBetStaticId();
+//    }
+
+    public List<EnumWrongInputUserProfile> editProfile(String userName, String email, String age, EnumGenders gender) {
+        return data.editProfile(userName, email, age, gender);
     }
 }

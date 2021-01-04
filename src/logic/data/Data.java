@@ -19,6 +19,7 @@ public class Data implements Serializable {
 
     private User user;
     private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry = new ArrayList<>();
+    private Integer betsIdCounter;
 
     /*public Data(User user, BettingHistory bettingHistory, Time time){
         this.user = user;
@@ -28,6 +29,7 @@ public class Data implements Serializable {
 
     public Data() {
         user = new User("", "", EnumGenders.OTHER, 18, 0);
+        betsIdCounter = 1;
     }
 
     public void setUser(User user) {
@@ -86,8 +88,7 @@ public class Data implements Serializable {
         );
     }
 
-    //TODO: ACABAR
-    public List<EnumWrongInputUserProfile> EditProfile(String userName, String email, String age, EnumGenders gender) {
+    public List<EnumWrongInputUserProfile> editProfile(String userName, String email, String age, EnumGenders gender) {
         List<EnumWrongInputUserProfile> wrongInput = new ArrayList<>();
 
         if (userName != null) {
@@ -123,7 +124,7 @@ public class Data implements Serializable {
             }
         }
 
-        //TODO: GENDER
+        user.setGender(gender);
 
         return wrongInput;
     }
@@ -223,7 +224,7 @@ public class Data implements Serializable {
         registDate = new Time(registDateValue.getYear(),registDateValue.getMonthValue(),registDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),registDateValue.getDayOfMonth());
         closeDate = new Time(closeDateValue.getYear(),closeDateValue.getMonthValue(),closeDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),closeDateValue.getDayOfMonth());
 
-        Bet bet = new Bet(numOfGamesBetted,numberOfBets,registDate,closeDate,totalValueBetted,possibleWinnings,betNameValue,enumBetStatus);
+        Bet bet = new Bet( betsIdCounter++, numOfGamesBetted,numberOfBets,registDate,closeDate,totalValueBetted,possibleWinnings,betNameValue,enumBetStatus);
         user.betsHistory.addBetToHistory(bet);
     }
 
@@ -280,13 +281,13 @@ public class Data implements Serializable {
 
     public String getUserAge() { return "" + user.age; }
 
-    public String getUserTotalBets() { return "" + user.totalBets; }
+    public String getUserTotalBets() { return "" + user.getTotalBets(); }
 
     public String getUserGender() { return "" + user.gender;}
 
-    public String getUserTotalProfits() { return "" + user.totalProfit; }
+    public String getUserTotalProfits() { return "" + user.getTotalProfit(); }
 
-    public String getUserHighestWin() { return "" + user.highestWinValue;}
+    public String getUserHighestWin() { return "" + user.getHighestWinValue();}
 
     public void editBet(int idx,String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
         int numOfGamesBetted,numberOfBets;
@@ -323,9 +324,9 @@ public class Data implements Serializable {
 
     }
 
-    public void setBetStaticId() {
+    /*public void setBetStaticId() {
         if(user.betsHistory.bets.size()<1)
             return;
         user.betsHistory.bets.get(user.betsHistory.bets.size()-1).setStatic(user.betsHistory.bets.get(user.betsHistory.bets.size()-1).betId+1);
-    }
+    }*/
 }
