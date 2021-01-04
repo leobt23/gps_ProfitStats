@@ -221,31 +221,13 @@ public class UserInterface extends BorderPane{
 
         btnCancel.setOnMouseClicked(e -> profile());
 
-       /* btnSave.setOnMouseClicked(event -> {
-
+        btnSave.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
 
-                name = name.getText();
-                email
-                bestMonth
-                gender
-                age
-                totalBets
-                totalProfit
-                highestWinValue
-                winningPercentage
-                betsHistory
+            }
+        });
 
-                possibleWinningsValue = possibleWinningsField.getText();
-                numOfGamesBettedValue = numberOfGamesBettedField.getText();
-                betNameValue = betNameField.getText();
-                totalValueBettedValue = totalValueBettedField.getText();
-                numberOfBetsValue = numberOfBetsField.getText();
-                registDateValue = registDatePicker.getValue();
-                closeDateValue = closeDatePicker.getValue();
-            }*/
-
-                HBox containerButtons = new HBox();
+        HBox containerButtons = new HBox();
 
         containerButtons.getChildren().addAll(btnCancel,btnSave);
 
@@ -256,7 +238,6 @@ public class UserInterface extends BorderPane{
         btnSave.setPadding(new Insets(5,5,5,5));
         containerButtons.setPadding(new Insets(20,20,20,20));
         containerButtons.setSpacing(20);
-
 
         containerButtons.setAlignment(Pos.CENTER);
         btnCancel.setMinSize(100,20);

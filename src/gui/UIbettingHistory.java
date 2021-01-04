@@ -24,6 +24,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 public class UIbettingHistory extends BorderPane {
@@ -158,13 +159,17 @@ public class UIbettingHistory extends BorderPane {
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
-                    //obsModel.deleteBet(obsModel.getBetId(idx));
-                    obsModel.deleteBetByIdx(idx);
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Delete bet confirmation");
+                    alert.setHeaderText("You're about to delete a bet. If you do this you \n" +
+                            "will lose it permanently");
+                    alert.setContentText("Are you ok with this?");
 
-                    drawView();
-                } else
-                {
-
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK){
+                        obsModel.deleteBetByIdx(idx);
+                        drawView();
+                    }
                 }
             });
 
@@ -835,12 +840,7 @@ public class UIbettingHistory extends BorderPane {
                 }
         );
         obsModel.addPropertyChangeListener(Constants.UPDATE_BETS_HISTORY,
-                new PropertyChangeListener() {
-                    @Override
-                    public void propertyChange(PropertyChangeEvent evt) {
-                        //TODO: SEE IF IT UPDATES WHEN DELETES OR IF IT NEEDS A NEW METHOD
-                        System.out.println("propertyChange");
-                    }
+                evt -> {
                 }
         );
     }

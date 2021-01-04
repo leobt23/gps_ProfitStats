@@ -152,6 +152,7 @@ public class ObservableModel {
 
     public void deleteBetByIdx(int idx) {
         model.deleteBetByIdx(idx);
+        FileUtility.saveModelToFile(model);
     }
     public String getUserEmail() {
         return model.getUserEmail();

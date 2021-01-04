@@ -2,12 +2,14 @@ package logic.data;
 
 import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
+import logic.EnumWrongInputUserProfile;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class Data implements Serializable {
@@ -82,6 +84,48 @@ public class Data implements Serializable {
                     }
                 }
         );
+    }
+
+    //TODO: ACABAR
+    public List<EnumWrongInputUserProfile> EditProfile(String userName, String email, String age, EnumGenders gender) {
+        List<EnumWrongInputUserProfile> wrongInput = new ArrayList<>();
+
+        if (userName != null) {
+            if (userName.length() < 1 || userName.length() > 20) {
+                wrongInput.add(EnumWrongInputUserProfile.USER_NAME);
+            }
+            else {
+                user.setName(userName);
+            }
+        }
+
+        if (email != null) {
+            if (!email.contains("@") || email.length() < 5) {
+                wrongInput.add(EnumWrongInputUserProfile.EMAIL);
+            }
+            else {
+                user.setEmail(email);
+            }
+        }
+
+        if (age != null) {
+            try {
+                int intAge = Integer.parseInt(age);
+                if (intAge < 18 || intAge > 120) {
+                    wrongInput.add(EnumWrongInputUserProfile.AGE);
+                }
+                else {
+                    user.setAge(intAge);
+                }
+            }
+            catch (NumberFormatException e) {
+                wrongInput.add(EnumWrongInputUserProfile.AGE);
+            }
+        }
+
+        //TODO: GENDER
+
+        return wrongInput;
     }
 
     public boolean verifyInputBetRegistry(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {

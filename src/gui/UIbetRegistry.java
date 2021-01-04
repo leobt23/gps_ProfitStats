@@ -295,7 +295,7 @@ public class UIbetRegistry extends BorderPane {
 
         TextField numberOfGamesBettedField= new TextField();
         if(wrong_input.contains(EnumWrongInputBetRegistry.NUMBER_OF_GAMES_BETTED))
-            numberOfGamesBettedField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: red ;");
+            numberOfGamesBettedField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;-fx-focus-color: #ff0000 ;");
         numberOfGamesBettedField.setText(numOfGamesBettedValue);
         gridPane.add(numberOfGamesBettedField, 1, 1);
 
@@ -508,13 +508,9 @@ public class UIbetRegistry extends BorderPane {
                 }
         );
         obsModel.addPropertyChangeListener(Constants.WRONG_INPUT_BET_REGISTRY,
-                new PropertyChangeListener() {
-                    @Override
-                    public void propertyChange(PropertyChangeEvent evt) {
-                        ArrayList<EnumWrongInputBetRegistry> wrong_input = obsModel.getWrongInputBetRegistry();
-                        ViewWithWrongInputs(wrong_input);
-                        System.out.println("propertyChange");
-                    }
+                evt -> {
+                    ArrayList<EnumWrongInputBetRegistry> wrong_input = obsModel.getWrongInputBetRegistry();
+                    ViewWithWrongInputs(wrong_input);
                 }
         );
     }

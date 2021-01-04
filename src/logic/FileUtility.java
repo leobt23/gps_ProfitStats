@@ -32,16 +32,18 @@ public class FileUtility {
     public static Object retrieveModelFromFile()
     {
         ObjectInputStream ois = null;
-        try{
+        try {
             File file = new File(FILE);
             if (!file.exists()) {
                 return null;
             }
             ois = new ObjectInputStream(new FileInputStream(file));
             return ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        }
+        catch (IOException | ClassNotFoundException e) {
             System.exit(-2);
-        } finally {
+        }
+        finally {
             if(ois != null) {
                 try {
                     ois.close();
