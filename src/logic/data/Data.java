@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class Data implements Serializable {
@@ -328,7 +329,7 @@ public class Data implements Serializable {
             return;
         user.betsHistory.bets.get(user.betsHistory.bets.size()-1).setStatic(user.betsHistory.bets.get(user.betsHistory.bets.size()-1).betId+1);
     }*/
-    }
+
 
     public float getLimitMoneyDay() {return user.notification.getLimitMoneyDay(); }
 
