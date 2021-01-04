@@ -55,7 +55,7 @@ public class UserInterface extends BorderPane{
         Label nome = new Label("Nome: ");
         gridPane.add(nome,0,1);
 
-        TextField nameBox = new TextField();
+        Label nameBox = new Label(obsModel.getUserName());
         gridPane.add(nameBox, 1, 1);
 
         Label email = new Label("Email: ");
@@ -67,36 +67,31 @@ public class UserInterface extends BorderPane{
         Label age = new Label("Idade: ");
         gridPane.add(age, 0, 3);
 
-        TextField  ageBox = new TextField();
+        Label ageBox = new Label(obsModel.getUserAge());
         gridPane.add(ageBox, 1, 3);
 
         Label totalBets = new Label("Total Apostas: ");
         gridPane.add(totalBets, 0, 4);
 
-        TextField totalBetsBox = new TextField();
+        Label totalBetsBox = new Label(obsModel.getUserTotalBets());
         gridPane.add(totalBetsBox, 1,4);
 
-        Label spinnerGeneroBox = new Label("Genero: ");
-        gridPane.add(spinnerGeneroBox, 0, 5);
+        Label spinnerGenero = new Label("Genero: ");
+        gridPane.add(spinnerGenero, 0, 5);
 
-        final ComboBox spinnerGenero = new ComboBox();
-
-        spinnerGenero.getItems().addAll(
-                "Male",
-                "Female",
-                "Other" );
-        gridPane.add(spinnerGenero,1, 5);
+        Label spinnerGeneroBox = new Label (obsModel.getUserGender());
+        gridPane.add(spinnerGeneroBox,1, 5);
 
         Label totalProfit = new Label("Total de Ganhos: ");
         gridPane.add(totalProfit, 0, 6);
 
-        TextField totalProfitBox = new TextField();
+        Label totalProfitBox = new Label(obsModel.getUserTotalProfit());
         gridPane.add(totalProfitBox,1,6 );
 
         Label highestWinValue = new Label("Maior Ganho: ");
         gridPane.add(highestWinValue, 0, 7);
 
-        TextField highestWinValueBox = new TextField();
+        Label highestWinValueBox = new Label(obsModel.getUserHightestWin());
         gridPane.add(highestWinValueBox,1,7);
 
         Label lTitle = new Label("User Profile");
@@ -192,6 +187,13 @@ public class UserInterface extends BorderPane{
         TextField highestWinValueBox = new TextField();
         gridPane.add(highestWinValueBox,1,7);
 
+/*        Button btnCancel = new Button("Cancel");
+        Button btnSave = new Button("Save");
+
+        HBox containerButtons = new HBox();
+
+        containerButtons.getChildren().addAll(btnCancel,btnSave);*/
+
         Button btnCancel = new Button("Cancel");
         Button btnSave = new Button("Save");
 
@@ -213,6 +215,20 @@ public class UserInterface extends BorderPane{
         btnSave.setPadding(new Insets(5,5,5,5));
         containerButtons.setPadding(new Insets(20,20,20,20));
         containerButtons.setSpacing(20);
+
+      //  HBox boxTitle = new HBox();
+       /* boxTitle.getChildren().add(betRegistryTitle);
+        boxTitle.setAlignment(Pos.TOP_CENTER);
+        boxTitle.setPadding(new Insets(20,0,0,0));
+        setTop(boxTitle); */
+//        setBottom(containerButtons);
+
+        containerButtons.setAlignment(Pos.CENTER);
+        btnCancel.setMinSize(100,20);
+        btnCancel.setPadding(new Insets(5,5,5,5));
+        btnSave.setMinSize(100,20);
+        btnSave.setPadding(new Insets(5,5,5,5));
+        containerButtons.setPadding(new Insets(20,20,20,20));
 
         Label lTitle = new Label("User Profile");
         lTitle.setTextFill(Color.BLACK);

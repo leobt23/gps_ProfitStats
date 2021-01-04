@@ -171,9 +171,25 @@ public class Model implements Serializable {
         return data.getUserEmail();
     }
 
+    public String getUserName() { return data.getUserName(); }
+
+    public String getUserAge() { return data.getUserAge();}
+
+    public String getUserTotalBets() { return data.getUserTotalBets();}
+
+    public String getUserGender() { return data.getUserGender(); }
+
+    public String getUserTotalProfit() { return data.getUserTotalProfits(); }
+
+    public String getUserHighestwin() { return data.getUserHighestWin(); }
+
     public void editBet(int idx, String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
         data.editBet(idx,numOfGamesBettedValue,registDateValue,
                 closeDateValue,totalValueBettedValue,possibleWinningsValue,
                 numberOfBetsValue,betNameValue, enumBetStatus);
+    }
+
+    public void setBetStatidId() {
+        data.setBetStaticId();
     }
 }
