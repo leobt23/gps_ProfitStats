@@ -95,5 +95,4 @@ public class Notifications implements Serializable {
         this.flagResultsReminder = flagResultsReminder;
     }
 
-
 }

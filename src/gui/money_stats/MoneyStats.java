@@ -100,9 +100,6 @@ public class MoneyStats extends BorderPane {
             incomeSeries.getData().add(new XYChart.Data(xAxis.getCategories().get(idx), incomePerWeek.get(idx)));
         }
 
-        //TODO: COMPLETAR
-        //        obsModel.
-
         XYChart.Series outcomeSeries = new XYChart.Series();
         outcomeSeries.setName("Loss");
 
@@ -112,24 +109,6 @@ public class MoneyStats extends BorderPane {
         }
 
         bcProfit.getData().addAll(incomeSeries, outcomeSeries);
-
-        /*final CategoryAxis xAxisBets = new CategoryAxis();
-        final NumberAxis yAxisBets = new NumberAxis();
-        final BarChart<String,Number> bcBets =
-                new BarChart<String,Number>(xAxis,yAxisProfit);
-
-        bcBets.setTitle("Profit");
-        xAxisBets.setLabel("Month");
-        yAxisBets.setLabel("Profit (€)");*/
-
-       /* XYChart.Series incomeSeries = new XYChart.Series();
-        incomeSeries.setName("Income");
-
-        //TODO: COMPLETAR
-        //        obsModel.
-
-        XYChart.Series outcomeSeries = new XYChart.Series();
-        outcomeSeries.setName("Outcome");*/
 
         hbGraphs.getChildren().add(bcProfit);
     }
@@ -170,7 +149,6 @@ public class MoneyStats extends BorderPane {
     private void textStatistics() {
         Font lFont = Font.font("Arial", FontWeight.BOLD, 16);
 
-        //TODO: Acabar de inserir as informacoes
         HBox hbWinPercentage = new HBox();
         hbWinPercentage.setSpacing(5);
         Label lWinPercentageTitle = new Label(String.format("Winning percentage: %.2f", obsModel.getWinningPercentage()) + "%");

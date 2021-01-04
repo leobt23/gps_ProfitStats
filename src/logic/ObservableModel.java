@@ -17,15 +17,9 @@ public class ObservableModel {
 
     public ObservableModel(){
         propertyChangeSupport = new PropertyChangeSupport(model);
-        try {
-            model = (Model) FileUtility.retrieveModelFromFile();
-            if (model == null) {
-                model = new Model();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        model = (Model) FileUtility.retrieveModelFromFile();
+        if (model == null) {
+            model = new Model();
         }
     }
 
@@ -104,12 +98,7 @@ public class ObservableModel {
         model.addNewBet(numOfGamesBettedValue,registDateValue,
                 closeDateValue,totalValueBettedValue,possibleWinningsValue,
                 numberOfBetsValue,betNameValue, enumBetStatus);
-        //TODO: Tratar excecao
-        try {
-            FileUtility.saveModelToFile(model);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileUtility.saveModelToFile(model);
     }
 
     public float getTotalProfit() {
@@ -184,12 +173,7 @@ public class ObservableModel {
         model.editBet(idx,numOfGamesBettedValue,registDateValue,
                 closeDateValue,totalValueBettedValue,possibleWinningsValue,
                 numberOfBetsValue,betNameValue, enumBetStatus);
-        //TODO: Tratar excecao
-        try {
-            FileUtility.saveModelToFile(model);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileUtility.saveModelToFile(model);
     }
 
     public void setBetStaticId() {
