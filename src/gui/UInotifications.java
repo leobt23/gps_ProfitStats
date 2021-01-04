@@ -20,6 +20,7 @@ import java.beans.PropertyChangeListener;
 public class UInotifications extends BorderPane {
     private ObservableModel obsModel;
 
+
     public UInotifications(ObservableModel obsModel) {
         this.obsModel=obsModel;
 
