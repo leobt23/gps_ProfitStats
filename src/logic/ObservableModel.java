@@ -153,9 +153,8 @@ public class ObservableModel {
     public void deleteBetByIdx(int idx) {
         model.deleteBetByIdx(idx);
     }
-    public String getUserEmail() {
-        return model.getUserEmail();
-    }
+
+    public String getUserEmail() { return model.getUserEmail(); }
 
     public String getUserName() { return model.getUserName(); }
 
