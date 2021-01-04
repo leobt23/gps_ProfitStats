@@ -19,7 +19,7 @@ public class Data implements Serializable {
 
     private User user;
     private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry = new ArrayList<>();
-    private ArrayList<EnumWrongInputNotifications> wrongInputNotifications = new ArrayList<EnumWrongInputNotifications>();
+    private ArrayList<EnumWrongInputNotifications> wrongInputNotifications = new ArrayList<>();
     private Integer betsIdCounter;
 
     /*public Data(User user, BettingHistory bettingHistory, Time time){
@@ -414,6 +414,7 @@ public class Data implements Serializable {
                 float minimumMoneyMonthValue = Float.parseFloat(minimumMoneyMonth);
                 if (minimumMoneyMonthValue < 0) {
                     wrongInputNotifications.add(EnumWrongInputNotifications.MIN_BET_WEEK);
+                    System.out.println("aqui");
                     flag = false;
                 }
             }catch (NumberFormatException e){

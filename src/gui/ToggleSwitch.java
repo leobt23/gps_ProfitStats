@@ -70,6 +70,17 @@ public class ToggleSwitch extends HBox {
     }
 
     public void setOnOrOff(boolean onOrOff) {
+        if(onOrOff) {
+            label.setText("ON");
+            setStyle("-fx-background-color: green;");
+            label.toFront();
+        }
+        else {
+            label.setText("OFF");
+            label.setText("OFF");
+            setStyle("-fx-background-color: grey;");
+            button.toFront();
+        }
         this.onOrOff = onOrOff;
     }
 }

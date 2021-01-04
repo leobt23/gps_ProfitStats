@@ -226,4 +226,7 @@ public class ObservableModel {
     public ArrayList<EnumWrongInputNotifications> getWrongInputNotifications() {
         return model.getWrongInputNotifications();
     }
+    public void saveModel(){
+        FileUtility.saveModelToFile(model);
+    }
 }

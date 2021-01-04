@@ -17,8 +17,6 @@ import logic.ObservableModel;
 import logic.data.PropertyChanges;
 import logic.states.EnumStates;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
