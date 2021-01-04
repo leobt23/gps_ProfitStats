@@ -125,6 +125,9 @@ public class Model implements Serializable {
     public ArrayList<EnumWrongInputBetRegistry> getWrongInputBetRegistry() {
         return data.getWrongInputBetRegistry();
     }
+    public ArrayList<EnumWrongInputNotifications> getWrongInputNotifications() {
+        return data.getWrongInputNotifications();
+    }
 
     public ArrayList<Integer> numberOfBetsMonth() {
         return data.numberOfBetsMonth();
@@ -233,4 +236,8 @@ public class Model implements Serializable {
     public void setFlagReminderBetDay(boolean value) { data.setFlagReminderBetDay(value); }
 
     public void setFlagResultsReminder(boolean value) { data.setFlagResultsReminder(value); }
+
+    public boolean verifyInputNotifications(String limitMoneyDay, String limitLossWeek, String minimumMoneyMonth, String reminderBetDay) {
+        return data.verifyInputNotifications(limitMoneyDay,limitLossWeek,minimumMoneyMonth,reminderBetDay);
+    }
 }

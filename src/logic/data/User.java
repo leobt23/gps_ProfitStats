@@ -27,6 +27,7 @@ public class User implements Serializable {
         this.age = age;
         this.totalBets = totalBets;
         this.betsHistory = new BettingHistory();
+        this.notification = new Notifications();
     }
 
     public String getName() {

@@ -19,6 +19,7 @@ public class Data implements Serializable {
 
     private User user;
     private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry = new ArrayList<>();
+    private ArrayList<EnumWrongInputNotifications> wrongInputNotifications = new ArrayList<EnumWrongInputNotifications>();
     private Integer betsIdCounter;
 
     /*public Data(User user, BettingHistory bettingHistory, Time time){
@@ -200,6 +201,9 @@ public class Data implements Serializable {
     public ArrayList<EnumWrongInputBetRegistry> getWrongInputBetRegistry(){
         return wrongInputBetRegistry;
     }
+    public ArrayList<EnumWrongInputNotifications> getWrongInputNotifications(){
+        return wrongInputNotifications;
+    }
 
     public void addNewBet(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
         int numOfGamesBetted,numberOfBets;
@@ -366,4 +370,72 @@ public class Data implements Serializable {
     public void setFlagReminderBetDay(boolean value) { user.notification.setFlagReminderBetDay(value); }
 
     public void setFlagResultsReminder(boolean value) { user.notification.setFlagResultsReminder(value); }
+
+    public boolean verifyInputNotifications(String limitMoneyDay, String limitLossWeek, String minimumMoneyMonth, String reminderBetDay) {
+        boolean flag=true;
+        if(wrongInputNotifications!=null)
+            wrongInputNotifications.clear();
+        if(limitMoneyDay.equals("")||limitMoneyDay==null){
+
+        }
+        else {
+            try {
+                float limitMoneyDayValue = Float.parseFloat(limitMoneyDay);
+                if (limitMoneyDayValue < 0) {
+                    wrongInputNotifications.add(EnumWrongInputNotifications.LIM_MONEY_BET_DAY);
+                    flag = false;
+                }
+            }catch (NumberFormatException e){
+                wrongInputNotifications.add(EnumWrongInputNotifications.LIM_MONEY_BET_DAY);
+                flag = false;
+            }
+        }
+
+        if(limitLossWeek.equals("")||limitLossWeek==null){
+
+        }
+        else {
+            try {
+                float limitLossWeekValue = Float.parseFloat(limitLossWeek);
+                if (limitLossWeekValue < 0) {
+                    wrongInputNotifications.add(EnumWrongInputNotifications.LIM_LOSS_WEEK);
+                    flag = false;
+                }
+            }catch (NumberFormatException e){
+                wrongInputNotifications.add(EnumWrongInputNotifications.LIM_LOSS_WEEK);
+                flag = false;
+            }
+        }
+        if(minimumMoneyMonth.equals("")||minimumMoneyMonth==null){
+
+        }
+        else {
+            try {
+                float minimumMoneyMonthValue = Float.parseFloat(minimumMoneyMonth);
+                if (minimumMoneyMonthValue < 0) {
+                    wrongInputNotifications.add(EnumWrongInputNotifications.MIN_BET_WEEK);
+                    flag = false;
+                }
+            }catch (NumberFormatException e){
+                wrongInputNotifications.add(EnumWrongInputNotifications.MIN_BET_WEEK);
+                flag = false;
+            }
+        }
+        if(reminderBetDay.equals("")||reminderBetDay==null){
+
+        }
+        else {
+            try {
+                float reminderBetDayValue = Float.parseFloat(reminderBetDay);
+                if (reminderBetDayValue < 0) {
+                    wrongInputNotifications.add(EnumWrongInputNotifications.REMINDER_BET_DAY);
+                    flag = false;
+                }
+            }catch (NumberFormatException e){
+                wrongInputNotifications.add(EnumWrongInputNotifications.REMINDER_BET_DAY);
+                flag = false;
+            }
+        }
+        return flag;
+    }
 }

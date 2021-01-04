@@ -9,7 +9,7 @@ public class Bet implements Serializable {
     private static final long serialVersionUID = 1L;
 
     int numberOfGames, numberOfBets;
-//    static int contador = 0;
+    static int contador = 0;
     int betId;
     Time betRegisterDate;
     Time betCloseDate;
@@ -46,7 +46,7 @@ public class Bet implements Serializable {
         return betId;
     }
 
-//    public void setStatic(int id){contador=id;}
+    public void setStatic(int id){contador=id;}
 
     public int getNumberOfGames() {
         return numberOfGames;

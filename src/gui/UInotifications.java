@@ -2,7 +2,6 @@ package gui;
 
 import gui.resources.Constants;
 import gui.resources.Images;
-import gui.ToggleSwitch;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -10,14 +9,9 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import logic.EnumBetStatus;
 import logic.ObservableModel;
 import logic.data.PropertyChanges;
 import logic.states.EnumStates;
-import logic.data.Notifications;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 public class UInotifications extends BorderPane {
     private ObservableModel obsModel;
@@ -100,6 +94,8 @@ public class UInotifications extends BorderPane {
         Label titulo = new Label("Limit monet betted / day:");
         TextField limitMoneyDayField= new TextField();
         vBox1.getChildren().addAll(titulo,limitMoneyDayField, flagLimitMoneyDaySwitch);
+        limitMoneyDayField.setText(String.valueOf(obsModel.getLimitMoneyBettedToday()));
+        flagLimitMoneyDaySwitch.setOnOrOff(obsModel.getLimitMoneyBettedTodayFlag());
         gridPane.add(vBox1, 0, 0);
 
         VBox vBox2 = new VBox();
@@ -107,6 +103,8 @@ public class UInotifications extends BorderPane {
         Label titulo1 = new Label("Limit loss / week:");
         TextField limitLossWeekField = new TextField();
         vBox2.getChildren().addAll(titulo1,limitLossWeekField, flagLimitLossWeekSwitch);
+        limitLossWeekField.setText(String.valueOf(obsModel.getLimitLossWeek()));
+        flagLimitLossWeekSwitch.setOnOrOff(obsModel.getLimitLossWeekFlag());
         gridPane.add(vBox2, 1, 0);
 
         VBox vBox3 = new VBox();
@@ -114,6 +112,8 @@ public class UInotifications extends BorderPane {
         Label titulo2 = new Label("Min. betted money / week:");
         TextField minimumMoneyMonthField = new TextField();
         vBox3.getChildren().addAll(titulo2,minimumMoneyMonthField, flagMinimumMoneyMonthSwitch);
+        minimumMoneyMonthField.setText(String.valueOf(obsModel.getMinBettedMoneyWeek()));
+        flagMinimumMoneyMonthSwitch.setOnOrOff(obsModel.getMinBettedMoneyWeekFlag());
         gridPane.add(vBox3, 2, 0);
 
 
@@ -123,12 +123,15 @@ public class UInotifications extends BorderPane {
         Label titulo3 = new Label("Reminder to bet €/day:");
         TextField reminderBetDayField = new TextField();
         vBox4.getChildren().addAll(titulo3,reminderBetDayField, flagReminderBetDaySwitch);
+        reminderBetDayField.setText(String.valueOf(obsModel.getReminderToBetDay()));
+        flagReminderBetDaySwitch.setOnOrOff(obsModel.getReminderToBetDayFlag());
         gridPane.add(vBox4, 0, 1);
 
         VBox vBox5 = new VBox();
         vBox5.setSpacing(22);
-        Label titulo4 = new Label("Reminder to bet €/day:");
+        Label titulo4 = new Label("Results update reminder:");
         vBox5.getChildren().addAll(titulo4, flagResultsReminderSwitch);
+        flagResultsReminderSwitch.setOnOrOff(obsModel.getResultsNotificationReminder());
         gridPane.add(vBox5, 1, 1);
 
 
@@ -151,7 +154,6 @@ public class UInotifications extends BorderPane {
 
         containerButtons.getChildren().addAll(btnReset,btnSave);
 
-        HBox boxTitle = new HBox();
         setBottom(containerButtons);
         containerButtons.setAlignment(Pos.CENTER);
         btnReset.setMinSize(100,20);
@@ -166,7 +168,7 @@ public class UInotifications extends BorderPane {
             }
         });
 
-     /*   btnSave.setOnMouseClicked(event -> {
+        btnSave.setOnMouseClicked(event -> {
 
             if (event.getButton() == MouseButton.PRIMARY) {
 
@@ -180,27 +182,29 @@ public class UInotifications extends BorderPane {
                 flagReminderBetDay = flagReminderBetDaySwitch.isOnOrOff();
                 flagResultsReminder = flagResultsReminderSwitch.isOnOrOff();
 
-                boolean input_result = obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
-                        , betNameValue, enumBetStatus);
-                if(input_result) {
-                    obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
-                            , betNameValue, enumBetStatus);
-                    Alert a1 = new Alert(Alert.AlertType.NONE,
-                            "Bet successfuly registered!", ButtonType.OK);
-                    // show the dialog
-                    a1.showAndWait();
+                if(obsModel.verifyInputNotifications(limitMoneyDay,limitLossWeek,minimumMoneyMonth,reminderBetDay)) {
+                    obsModel.setFlagLimitLossWeek(flagLimitLossWeek);
+                    obsModel.setLimitLossWeek(Float.parseFloat(limitLossWeek));
+                    obsModel.setLimitMoneyDay(Float.parseFloat(limitMoneyDay));
+                    obsModel.setFlagLimitMoneyDay(flagLimitMoneyDay);
+                    obsModel.setMinimumMoneyMonth(Float.parseFloat(minimumMoneyMonth));
+                    obsModel.setFlagMinimumMoneyMonth(flagMinimumMoneyMonth);
+                    obsModel.setFlagReminderBetDay(flagReminderBetDay);
+                    obsModel.setReminderBetDay(Float.parseFloat(reminderBetDay));
+                    obsModel.setFlagResultsReminder(flagResultsReminder);
                 }
                 else{
                     Alert a1 = new Alert(Alert.AlertType.NONE,
                             "Input error(s)!", ButtonType.OK);
                     // show the dialog
                     a1.showAndWait();
-                    ViewWithWrongInputs(obsModel.getWrongInputBetRegistry());
+                    //TODO: CHAMAR FUNÇAO WRONG INPUT
                 }
 
 
+
             }
-        });*/
+        });
     }
     private void propsListener() {
         obsModel.addPropertyChangeListener(PropertyChanges.STATE_CHANGE,

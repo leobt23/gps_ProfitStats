@@ -1,13 +1,13 @@
 package logic;
 
 import logic.data.EnumGenders;
+import logic.data.EnumWrongInputNotifications;
 import logic.data.Model;
 import logic.data.Time;
 import logic.states.EnumStates;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -219,4 +219,11 @@ public class ObservableModel {
     public void setFlagReminderBetDay(boolean value) { model.setFlagReminderBetDay(value); }
 
     public void setFlagResultsReminder(boolean value) { model.setFlagResultsReminder(value); }
+
+    public boolean verifyInputNotifications(String limitMoneyDay, String limitLossWeek, String minimumMoneyMonth, String reminderBetDay) {
+        return model.verifyInputNotifications(limitMoneyDay,limitLossWeek,minimumMoneyMonth,reminderBetDay);
+    }
+    public ArrayList<EnumWrongInputNotifications> getWrongInputNotifications() {
+        return model.getWrongInputNotifications();
+    }
 }
