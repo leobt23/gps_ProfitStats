@@ -243,8 +243,8 @@ public class UserInterface extends BorderPane{
                 else {
                     Alert a1 = new Alert(Alert.AlertType.NONE,
                             "Input error(s)!", ButtonType.OK);
-                    a1.showAndWait();
                     showWrongInputs(wrongInputs);
+                    a1.showAndWait();
                 }
             }
         });
