@@ -6,6 +6,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import logic.ObservableModel;
 import logic.data.PropertyChanges;
 import logic.states.EnumStates;
@@ -119,9 +121,24 @@ public class UserInterface extends BorderPane{
         BorderPane.setMargin(hbTitleContainer, new Insets(20,0,0,0));
 
         setCenter(gridPane);
+
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER_LEFT);
+        hBox.setSpacing(20);
+        hBox.setPadding(new Insets(0, 0, 0, 20));
+
+        hBox.setOnMouseClicked( e -> editProfile());
+
+        ImageView imgView = new ImageView(Images.getImage(Constants.EDIT_ICON));
+        imgView.setFitWidth(gui.left_panel.Constants.IMG_VIEW_WIDTH);
+        imgView.setFitHeight(gui.left_panel.Constants.IMG_VIEW_HEIGHT);
+        hBox.getChildren().add(imgView);
+
+        setBottom(hBox);
     }
 
     private void editProfile() {
+
         BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
         this.setBackground(new Background(new BackgroundImage(Images.getImage(Constants.USER_PROFILE_BACKGROUND),
                 BackgroundRepeat.NO_REPEAT,
