@@ -22,17 +22,13 @@ public class Root extends BorderPane {
         UInotifications notifications = new UInotifications(model);
         UserInterface userInterface = new UserInterface(model);
         UIbettingHistory uIbettingHistory = new UIbettingHistory(model);
-        betRegistry.setVisible(true);
-        statistics.setVisible(false);
-        userInterface.setVisible(false);
-        notifications.setVisible(false);
-        uIbettingHistory.setVisible(false);
         stack.getChildren().add(statistics);
         stack.getChildren().add(betRegistry);
         stack.getChildren().add(userInterface);
         stack.getChildren().add(notifications);
         stack.getChildren().add(uIbettingHistory);
         setCenter(stack);
+        model.moveToBetRegistry();
     }
 
     public Root() {

@@ -24,6 +24,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 public class UIbettingHistory extends BorderPane {
@@ -101,11 +102,15 @@ public class UIbettingHistory extends BorderPane {
         idx = 0;
         for(int i = 0; i < obsModel.getNumberOfBets(); i++){
             //idx
+            //WRONG
             idx = i;
+
+            //CORRECT
+            int listIdx = i;
             //Label info
             Label info = new Label("Info");
             info.setTextFill(Color.BLACK);
-            info.setFont( new Font( "Arial", 20 ));
+            info.setFont( new Font( "Arial", 24 ));
             //borderpane itemlist
             BorderPane itemList = new BorderPane();
             itemList.setBorder(
@@ -142,29 +147,31 @@ public class UIbettingHistory extends BorderPane {
             ImageView editImageView = new ImageView(imageEdit);
             editImageView.setFitHeight(30);
             editImageView.setFitWidth(30);
-            edit_button.getChildren().add(editImageView);
+            Pane imageWrapper = new Pane(editImageView);
+            edit_button.getChildren().add(imageWrapper);
 
-            editImageView.setOnMouseClicked(event ->
+            imageWrapper.setOnMouseClicked(event ->
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
-                    createView(idx);
-                } else
-                {
-
+                    createView(listIdx);
                 }
             });
             trashBinImageView.setOnMouseClicked(event ->
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
-                    //obsModel.deleteBet(obsModel.getBetId(idx));
-                    obsModel.deleteBetByIdx(idx);
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Delete bet confirmation");
+                    alert.setHeaderText("You're about to delete a bet. If you do this you \n" +
+                            "will lose it permanently");
+                    alert.setContentText("Are you ok with this?");
 
-                    drawView();
-                } else
-                {
-
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK){
+                        obsModel.deleteBetByIdx(listIdx);
+                        drawView();
+                    }
                 }
             });
 
@@ -214,6 +221,7 @@ public class UIbettingHistory extends BorderPane {
 
 
             //Set center using hbox with the vbox
+            hBox.setSpacing(20);
             hBox.setAlignment(Pos.CENTER);
             hBox.getChildren().addAll(vBoxLeft,vBoxRight);
             itemList.setCenter(hBox);
@@ -260,22 +268,16 @@ public class UIbettingHistory extends BorderPane {
                 {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
-                        obsModel.setBetStatus(obsModel.getBetId(idx), EnumBetStatus.WON);
+                        obsModel.setBetStatus(obsModel.getBetId(listIdx), EnumBetStatus.WON);
                         drawView();
-                    } else
-                    {
-
                     }
                 });
                 crossIV.setOnMouseClicked(event ->
                 {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
-                        obsModel.setBetStatus(obsModel.getBetId(idx), EnumBetStatus.LOST);
+                        obsModel.setBetStatus(obsModel.getBetId(listIdx), EnumBetStatus.LOST);
                         drawView();
-                    } else
-                    {
-
                     }
                 });
 
@@ -365,16 +367,16 @@ public class UIbettingHistory extends BorderPane {
         closeDateValue = LocalDate.of(closeDate.getYear(),closeDate.getMonth(),closeDate.getDay());
         enumBetStatus = obsModel.getBetStatus(idx);
 
-        //TITLE
-        Label betRegistryTitle = new Label("BET EDIT");
-        betRegistryTitle.setTextFill(Color.BLACK);
-        betRegistryTitle.setFont(new Font( "Arial",30) );
-
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(25, 25, 25, 25));
+        gridPane.setMaxHeight(500);
+        gridPane.setMaxWidth(400);
+        gridPane.setBackground(new Background(new BackgroundFill(
+                Color.rgb(255,255,255,0.7), new CornerRadii(5), Insets.EMPTY)
+        ));
         //FORM
 
         Label numberOfGamesBetted = new Label("Number of games betted:");
@@ -507,6 +509,7 @@ public class UIbettingHistory extends BorderPane {
         Button btnSave = new Button("Save");
 
         HBox containerButtons = new HBox();
+        containerButtons.setSpacing(20);
 
         containerButtons.getChildren().addAll(btnCancel,btnSave);
 
@@ -835,12 +838,7 @@ public class UIbettingHistory extends BorderPane {
                 }
         );
         obsModel.addPropertyChangeListener(Constants.UPDATE_BETS_HISTORY,
-                new PropertyChangeListener() {
-                    @Override
-                    public void propertyChange(PropertyChangeEvent evt) {
-                        //TODO: SEE IF IT UPDATES WHEN DELETES OR IF IT NEEDS A NEW METHOD
-                        System.out.println("propertyChange");
-                    }
+                evt -> {
                 }
         );
     }

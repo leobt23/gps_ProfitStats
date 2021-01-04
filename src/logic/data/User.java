@@ -16,7 +16,7 @@ public class User implements Serializable {
     String name, email, bestMonth;
     EnumGenders gender;
     int age, totalBets;
-    float totalProfit, highestWinValue, winningPercentage;
+    float totalProfit, winningPercentage;
     BettingHistory betsHistory;
     Notifications notification;
 
@@ -62,7 +62,7 @@ public class User implements Serializable {
     }
 
     public int getTotalBets() {
-        return totalBets;
+        return betsHistory.bets.size();
     }
 
     public void setTotalBets(int totalBets) {
@@ -333,6 +333,7 @@ public class User implements Serializable {
     }
 
     public float getHighestWinValue() {
+        float highestWinValue = 0f;
         for(int i=0; i < betsHistory.bets.size(); i++){
             if(betsHistory.bets.get(i).result == EnumBetStatus.WON)
                 if(betsHistory.bets.get(i).possibleWinnings > highestWinValue)
@@ -366,11 +367,7 @@ public class User implements Serializable {
         this.totalProfit = totalProfit;
     }
 
-    public void setHighestWinValue(float highestWinValue) {
-        this.highestWinValue = highestWinValue;
-    }
-
-        // NOTIFICATIONS LOGIC
+    // NOTIFICATIONS LOGIC
 
     public boolean verifyLimitMoneyBettedToday(float bettedValue){
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());

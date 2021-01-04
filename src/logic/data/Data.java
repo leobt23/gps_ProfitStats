@@ -2,6 +2,7 @@ package logic.data;
 
 import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
+import logic.EnumWrongInputUserProfile;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class Data implements Serializable {
 
     private User user;
     private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry = new ArrayList<>();
+    private Integer betsIdCounter;
 
     /*public Data(User user, BettingHistory bettingHistory, Time time){
         this.user = user;
@@ -26,6 +28,7 @@ public class Data implements Serializable {
 
     public Data() {
         user = new User("", "", EnumGenders.OTHER, 18, 0);
+        betsIdCounter = 1;
     }
 
     public void setUser(User user) {
@@ -82,6 +85,47 @@ public class Data implements Serializable {
                     }
                 }
         );
+    }
+
+    public List<EnumWrongInputUserProfile> editProfile(String userName, String email, String age, EnumGenders gender) {
+        List<EnumWrongInputUserProfile> wrongInput = new ArrayList<>();
+
+        if (userName != null) {
+            if (userName.length() < 1 || userName.length() > 20) {
+                wrongInput.add(EnumWrongInputUserProfile.USER_NAME);
+            }
+            else {
+                user.setName(userName);
+            }
+        }
+
+        if (email != null) {
+            if (!email.contains("@") || email.length() < 5) {
+                wrongInput.add(EnumWrongInputUserProfile.EMAIL);
+            }
+            else {
+                user.setEmail(email);
+            }
+        }
+
+        if (age != null) {
+            try {
+                int intAge = Integer.parseInt(age);
+                if (intAge < 18 || intAge > 120) {
+                    wrongInput.add(EnumWrongInputUserProfile.AGE);
+                }
+                else {
+                    user.setAge(intAge);
+                }
+            }
+            catch (NumberFormatException e) {
+                wrongInput.add(EnumWrongInputUserProfile.AGE);
+            }
+        }
+
+        user.setGender(gender);
+
+        return wrongInput;
     }
 
     public boolean verifyInputBetRegistry(String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
@@ -179,7 +223,7 @@ public class Data implements Serializable {
         registDate = new Time(registDateValue.getYear(),registDateValue.getMonthValue(),registDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),registDateValue.getDayOfMonth());
         closeDate = new Time(closeDateValue.getYear(),closeDateValue.getMonthValue(),closeDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),closeDateValue.getDayOfMonth());
 
-        Bet bet = new Bet(numOfGamesBetted,numberOfBets,registDate,closeDate,totalValueBetted,possibleWinnings,betNameValue,enumBetStatus);
+        Bet bet = new Bet( betsIdCounter++, numOfGamesBetted,numberOfBets,registDate,closeDate,totalValueBetted,possibleWinnings,betNameValue,enumBetStatus);
         user.betsHistory.addBetToHistory(bet);
     }
 
@@ -236,13 +280,13 @@ public class Data implements Serializable {
 
     public String getUserAge() { return "" + user.age; }
 
-    public String getUserTotalBets() { return "" + user.totalBets; }
+    public String getUserTotalBets() { return "" + user.getTotalBets(); }
 
     public String getUserGender() { return "" + user.gender;}
 
-    public String getUserTotalProfits() { return "" + user.totalProfit; }
+    public String getUserTotalProfits() { return "" + user.getTotalProfit(); }
 
-    public String getUserHighestWin() { return "" + user.highestWinValue;}
+    public String getUserHighestWin() { return "" + user.getHighestWinValue();}
 
     public void editBet(int idx,String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
         int numOfGamesBetted,numberOfBets;
@@ -279,10 +323,11 @@ public class Data implements Serializable {
 
     }
 
-    public void setBetStaticId() {
+    /*public void setBetStaticId() {
         if(user.betsHistory.bets.size()<1)
             return;
         user.betsHistory.bets.get(user.betsHistory.bets.size()-1).setStatic(user.betsHistory.bets.get(user.betsHistory.bets.size()-1).betId+1);
+    }*/
     }
 
     public float getLimitMoneyDay() {return user.notification.getLimitMoneyDay(); }
