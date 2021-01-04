@@ -1,6 +1,7 @@
 package gui;
 
 import gui.resources.Constants;
+import gui.resources.Images;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -39,6 +40,13 @@ public class UIbetRegistry extends BorderPane {
     }
 
     private void createView() {
+        BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
+        this.setBackground(new Background(new BackgroundImage(Images.getImage(Constants.BET_REGISTRY_BACKGROUND),
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                bSize)));
+
         //TITLE
         Label betRegistryTitle = new Label("BET REGISTRY");
         betRegistryTitle.setTextFill(Color.BLACK);
@@ -201,6 +209,12 @@ public class UIbetRegistry extends BorderPane {
         setTop(hbTitleContainer);
         BorderPane.setAlignment(hbTitleContainer, Pos.CENTER);
         BorderPane.setMargin(hbTitleContainer, new Insets(20,0,0,0));
+
+        gridPane.setMaxWidth(600);
+        gridPane.setMaxHeight(500);
+        gridPane.setBackground(new Background(new BackgroundFill(
+                Color.rgb(255,255,255,0.55), new CornerRadii(5), Insets.EMPTY)
+        ));
 
         setCenter(gridPane);
         setBottom(containerButtons);

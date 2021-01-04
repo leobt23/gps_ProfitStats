@@ -39,6 +39,9 @@ public class Data implements Serializable {
     public Time getBetRegistryDate(int idx) {
         return user.betsHistory.getBets().get(idx).getBetRegisterDate();
     }
+    public String getBetRegistryDateWithBars(int idx) {
+        return user.betsHistory.getBets().get(idx).getBetRegisterDateWithBars();
+    }
 
     public int getBetNumberOfGames(int idx) {
         return user.betsHistory.getBets().get(idx).getNumberOfGames();
@@ -66,6 +69,9 @@ public class Data implements Serializable {
 
     public Time getBetCloseDate(int idx) {
         return user.betsHistory.getBets().get(idx).getBetCloseDate();
+    }
+    public String getBetCloseDateWithBars(int idx) {
+        return user.betsHistory.getBets().get(idx).getBetCloseDateWithBars();
     }
 
     public void setBetStatus(int betId, EnumBetStatus status) {
@@ -207,5 +213,75 @@ public class Data implements Serializable {
 
     public int getNumberOfBets() {
         return user.betsHistory.bets.size();
+    }
+
+    public void deleteBet(int idx) {
+        for(int i= 0; i<user.betsHistory.bets.size();i++) {
+            if(user.betsHistory.bets.get(i).getBetId()==idx) {
+                user.betsHistory.bets.remove(i);
+                System.out.println("chega ao remove");
+            }
+        }
+    }
+
+    public void deleteBetByIdx(int idx) {
+        user.betsHistory.bets.remove(idx);
+    }
+
+    public String getUserEmail() {
+        return user.email;
+    }
+
+    public String getUserName() { return user.name; }
+
+    public String getUserAge() { return "" + user.age; }
+
+    public String getUserTotalBets() { return "" + user.totalBets; }
+
+    public String getUserGender() { return "" + user.gender;}
+
+    public String getUserTotalProfits() { return "" + user.totalProfit; }
+
+    public String getUserHighestWin() { return "" + user.highestWinValue;}
+
+    public void editBet(int idx,String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        int numOfGamesBetted,numberOfBets;
+        float totalValueBetted,possibleWinnings;
+        Time registDate,closeDate;
+        if(numOfGamesBettedValue.equals("")||numOfGamesBettedValue==null){
+            numOfGamesBetted=1;
+        }
+        else{
+            numOfGamesBetted=Integer.parseInt(numOfGamesBettedValue);
+        }
+        if(numberOfBetsValue.equals("")||numberOfBetsValue==null){
+            numberOfBets=1;
+        }
+        else{
+            numberOfBets=Integer.parseInt(numberOfBetsValue);
+        }
+        totalValueBetted = Float.parseFloat(totalValueBettedValue);
+        possibleWinnings = Float.parseFloat(possibleWinningsValue);
+        WeekFields weekFieldsRegistDate = WeekFields.of(Locale.getDefault());
+
+        registDate = new Time(registDateValue.getYear(),registDateValue.getMonthValue(),registDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),registDateValue.getDayOfMonth());
+        closeDate = new Time(closeDateValue.getYear(),closeDateValue.getMonthValue(),closeDateValue.get(weekFieldsRegistDate.weekOfWeekBasedYear()),closeDateValue.getDayOfMonth());
+
+        Bet bet = new Bet(numOfGamesBetted,numberOfBets,registDate,closeDate,totalValueBetted,possibleWinnings,betNameValue,enumBetStatus);
+        user.betsHistory.bets.get(idx).setNumberOfGames(numOfGamesBetted);
+        user.betsHistory.bets.get(idx).setNumberOfBets(numberOfBets);
+        user.betsHistory.bets.get(idx).setBetRegisterDate(registDate);
+        user.betsHistory.bets.get(idx).setBetCloseDate(closeDate);
+        user.betsHistory.bets.get(idx).setTotalValueBetted(totalValueBetted);
+        user.betsHistory.bets.get(idx).setPossibleWinnings(possibleWinnings);
+        user.betsHistory.bets.get(idx).setBetName(betNameValue);
+        user.betsHistory.bets.get(idx).setStatus(enumBetStatus);
+
+    }
+
+    public void setBetStaticId() {
+        if(user.betsHistory.bets.size()<1)
+            return;
+        user.betsHistory.bets.get(user.betsHistory.bets.size()-1).setStatic(user.betsHistory.bets.get(user.betsHistory.bets.size()-1).betId+1);
     }
 }

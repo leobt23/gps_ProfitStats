@@ -2,13 +2,8 @@ package logic.data;
 
 import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
-import logic.FileUtility;
-import logic.states.*;
-import logic.states.BetRegistry;
-import logic.states.EnumStates;
-import logic.states.IState;
 import logic.states.Notifications;
-import logic.states.Statistics;
+import logic.states.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -45,6 +40,10 @@ public class Model implements Serializable {
         return data.getBetRegistryDate(idx);
     }
 
+    public String getBetRegistryDateWithBars(int idx) {
+        return data.getBetRegistryDateWithBars(idx);
+    }
+
     public int getBetNumberOfGames(int idx) {
         return data.getBetNumberOfGames(idx);
     }
@@ -71,6 +70,9 @@ public class Model implements Serializable {
 
     public Time getBetCloseDate(int idx) {
         return data.getBetCloseDate(idx);
+    }
+    public String getBetCloseDateWithBars(int idx) {
+        return data.getBetCloseDateWithBars(idx);
     }
 
     public void setBetStatus(int betId, EnumBetStatus enumBetStatus) {
@@ -155,5 +157,39 @@ public class Model implements Serializable {
 
     public int getNumberOfBets() {
         return data.getNumberOfBets();
+    }
+
+    public void deleteBet(int idx) {
+        data.deleteBet(idx);
+    }
+
+    public void deleteBetByIdx(int idx) {
+        data.deleteBetByIdx(idx);
+    }
+
+    public String getUserEmail() {
+        return data.getUserEmail();
+    }
+
+    public String getUserName() { return data.getUserName(); }
+
+    public String getUserAge() { return data.getUserAge();}
+
+    public String getUserTotalBets() { return data.getUserTotalBets();}
+
+    public String getUserGender() { return data.getUserGender(); }
+
+    public String getUserTotalProfit() { return data.getUserTotalProfits(); }
+
+    public String getUserHighestwin() { return data.getUserHighestWin(); }
+
+    public void editBet(int idx, String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        data.editBet(idx,numOfGamesBettedValue,registDateValue,
+                closeDateValue,totalValueBettedValue,possibleWinningsValue,
+                numberOfBetsValue,betNameValue, enumBetStatus);
+    }
+
+    public void setBetStatidId() {
+        data.setBetStaticId();
     }
 }

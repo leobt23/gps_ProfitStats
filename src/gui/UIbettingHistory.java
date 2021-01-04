@@ -47,14 +47,17 @@ public class UIbettingHistory extends BorderPane {
 
     private void drawView(){
         //lABEL DO TITULO
+        setBottom(null);
+        setRight(null);
+        setTop(null);
+        setLeft(null);
+        setCenter(null);
         Label title = new Label("BETS HISTORY");
         title.setTextFill(Color.BLACK);
         title.setFont( new Font( "Arial", 30 ) );
-        setTop(title);
-        //Label info
-        Label info = new Label("Info");
-        info.setTextFill(Color.BLACK);
-        info.setFont( new Font( "Arial", 12 ) );
+        HBox hBoxTitle = new HBox(title);
+        hBoxTitle.setAlignment(Pos.CENTER);
+        setTop(hBoxTitle);
 
 
         //SCROLL PANE
@@ -65,20 +68,27 @@ public class UIbettingHistory extends BorderPane {
         for(int i = 0; i < obsModel.getNumberOfBets(); i++){
             //idx
             idx = i;
+            //Label info
+            Label info = new Label("Info");
+            info.setTextFill(Color.BLACK);
+            info.setFont( new Font( "Arial", 20 ) );
             //borderpane itemlist
             BorderPane itemList = new BorderPane();
             //title(info)
-            itemList.setTop(info);
+            info.setAlignment(Pos.CENTER);
+            HBox infoHbox = new HBox(info);
+            infoHbox.setAlignment(Pos.CENTER);
+            itemList.setTop(infoHbox);
             //Label id
             Label idLabel = new Label("ID: " + obsModel.getBetId(i));
             idLabel.setTextFill(Color.BLACK);
-            idLabel.setFont( new Font( "Arial", 12 ) );
+            idLabel.setFont( new Font( "Arial", 20 ) );
             //Image buttons panes creation
             Pane trash_bin = new Pane();
-            trash_bin.setPrefSize(30,30);
+            trash_bin.setPrefSize(50,50);
 
             Pane edit_button = new Pane();
-            edit_button.setPrefSize(30,30);
+            edit_button.setPrefSize(50,50);
 
             //Image trashbin
             Image imageTrashBin = Images.getImage(Constants.TRASH_BIN_ICON);
@@ -107,7 +117,10 @@ public class UIbettingHistory extends BorderPane {
             {
                 if (event.getButton() == MouseButton.PRIMARY)
                 {
-                    //         model.deleteBet(idx);
+                    //obsModel.deleteBet(obsModel.getBetId(idx));
+                    obsModel.deleteBetByIdx(idx);
+
+                    drawView();
                 } else
                 {
 
@@ -125,31 +138,31 @@ public class UIbettingHistory extends BorderPane {
             //Label betname
             Label betNameLabel = new Label("Bet name: " + obsModel.getBetName(i));
             betNameLabel.setTextFill(Color.BLACK);
-            betNameLabel.setFont( new Font( "Arial", 10 ) );
+            betNameLabel.setFont( new Font( "Arial", 22 ) );
             //Label betRegistryDate
-            Label betRegistryDateLabel = new Label("Registry date: " + obsModel.getBetRegistryDate(i));
+            Label betRegistryDateLabel = new Label("Registry date: " + obsModel.getBetRegistryDateWithBars(i));
             betRegistryDateLabel.setTextFill(Color.BLACK);
-            betRegistryDateLabel.setFont( new Font( "Arial", 10 ) );
+            betRegistryDateLabel.setFont( new Font( "Arial", 22 ) );
             //Label betRegistryDate
-            Label betCloseDateLabel = new Label("Close date: " + obsModel.getBetCloseDate(i));
+            Label betCloseDateLabel = new Label("Close date: " + obsModel.getBetCloseDateWithBars(i));
             betCloseDateLabel.setTextFill(Color.BLACK);
-            betCloseDateLabel.setFont( new Font( "Arial", 10 ) );
+            betCloseDateLabel.setFont( new Font( "Arial", 22 ) );
             //Label numberOfGames
             Label betNumberOfGamesLable = new Label("Number of games: " + obsModel.getBetNumberOfGames(i));
             betNumberOfGamesLable.setTextFill(Color.BLACK);
-            betNumberOfGamesLable.setFont( new Font( "Arial", 10 ) );
+            betNumberOfGamesLable.setFont( new Font( "Arial", 22 ) );
             //Label numberOfBets
             Label betNumberOfBets = new Label("Number of bets(qty): " + obsModel.getBetNumberOfBets(i));
             betNumberOfBets.setTextFill(Color.BLACK);
-            betNumberOfBets.setFont( new Font( "Arial", 10 ) );
+            betNumberOfBets.setFont( new Font( "Arial", 22 ) );
             //Label ValueBetted
             Label betValueBetted = new Label("Value betted: " + obsModel.getBetValueBetted(i));
             betValueBetted.setTextFill(Color.BLACK);
-            betValueBetted.setFont( new Font( "Arial", 10 ) );
+            betValueBetted.setFont( new Font( "Arial", 22 ) );
             //Label possibleWinnings
             Label betPossibleWinnings = new Label("Possible winnings: " + obsModel.getBetPossibleWinnings(i));
             betPossibleWinnings.setTextFill(Color.BLACK);
-            betPossibleWinnings.setFont( new Font( "Arial", 10 ) );
+            betPossibleWinnings.setFont( new Font( "Arial", 22 ) );
             //Container Center
             HBox hBox = new HBox();
             //Containers left and right sides
@@ -160,6 +173,7 @@ public class UIbettingHistory extends BorderPane {
 
 
             //Set center using hbox with the vbox
+            hBox.setAlignment(Pos.CENTER);
             hBox.getChildren().addAll(vBoxLeft,vBoxRight);
             itemList.setCenter(hBox);
             //Vbox to status
@@ -284,12 +298,6 @@ public class UIbettingHistory extends BorderPane {
 
             }
             itemList.setRight(statusVbox);
-
-
-
-
-
-
 
             //add borderpane to vbox
 
@@ -505,7 +513,7 @@ public class UIbettingHistory extends BorderPane {
                 boolean input_result = obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                         , betNameValue, enumBetStatus);
                 if(input_result) {
-                    obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
+                    obsModel.editBet(idx,numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                             , betNameValue, enumBetStatus);
                     Alert a1 = new Alert(Alert.AlertType.NONE,
                             "Bet successfuly edited!", ButtonType.OK);
@@ -730,12 +738,13 @@ public class UIbettingHistory extends BorderPane {
                 boolean input_result = obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                         , betNameValue, enumBetStatus);
                 if(input_result) {
-                    obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
+                    obsModel.editBet(idx,numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                             , betNameValue, enumBetStatus);
                     Alert a1 = new Alert(Alert.AlertType.NONE,
                             "Bet successfuly edited!", ButtonType.OK);
                     // show the dialog
                     a1.showAndWait();
+                    drawView();
                 }
                 else{
                     Alert a1 = new Alert(Alert.AlertType.NONE,

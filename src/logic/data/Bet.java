@@ -31,6 +31,7 @@ public class Bet implements Serializable {
     }
 
     public int getBetId(){return betId; }
+    public void setStatic(int id){contador=id;}
 
     public int getNumberOfGames() {
         return numberOfGames;
@@ -52,6 +53,8 @@ public class Bet implements Serializable {
         return betRegisterDate;
     }
 
+    public String getBetRegisterDateWithBars(){return betRegisterDate.withBars();}
+
     public void setBetRegisterDate(Time date) {
         if(date == null){
             Time tAux = null;
@@ -63,6 +66,9 @@ public class Bet implements Serializable {
 
     public Time getBetCloseDate() {
         return betCloseDate;
+    }
+    public String getBetCloseDateWithBars(){
+        return betCloseDate.withBars();
     }
 
     public void setBetCloseDate(Time betCloseDate) {

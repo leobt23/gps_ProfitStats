@@ -49,6 +49,10 @@ public class ObservableModel {
         return model.getBetRegistryDate(idx);
     }
 
+    public String getBetRegistryDateWithBars(int idx) {
+        return model.getBetRegistryDateWithBars(idx);
+    }
+
     public int getBetNumberOfGames(int idx) {
         return model.getBetNumberOfGames(idx);
     }
@@ -75,6 +79,10 @@ public class ObservableModel {
 
     public Time getBetCloseDate(int idx) {
         return model.getBetCloseDate(idx);
+    }
+
+    public String getBetCloseDateWithBars(int idx) {
+        return model.getBetCloseDateWithBars(idx);
     }
 
     public void setBetStatus(int betId, EnumBetStatus enumBetStatus) {
@@ -149,4 +157,42 @@ public class ObservableModel {
         fireEvents(model.moveToBetsHistory());
     }
 
+    public void deleteBet(int idx) {
+        model.deleteBet(idx);
+    }
+
+    public void deleteBetByIdx(int idx) {
+        model.deleteBetByIdx(idx);
+    }
+    public String getUserEmail() {
+        return model.getUserEmail();
+    }
+
+    public String getUserName() { return model.getUserName(); }
+
+    public String getUserAge() { return model.getUserAge();}
+
+    public String getUserTotalBets() { return model.getUserTotalBets();}
+
+    public String getUserGender() { return model.getUserGender();}
+
+    public String getUserTotalProfit() { return model.getUserTotalProfit(); }
+
+    public String getUserHightestWin() { return model.getUserHighestwin(); }
+
+    public void editBet(int idx, String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        model.editBet(idx,numOfGamesBettedValue,registDateValue,
+                closeDateValue,totalValueBettedValue,possibleWinningsValue,
+                numberOfBetsValue,betNameValue, enumBetStatus);
+        //TODO: Tratar excecao
+        try {
+            FileUtility.saveModelToFile(model);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setBetStaticId() {
+        model.setBetStatidId();
+    }
 }
