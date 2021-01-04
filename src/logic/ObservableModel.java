@@ -191,4 +191,8 @@ public class ObservableModel {
             e.printStackTrace();
         }
     }
+
+    public void setBetStaticId() {
+        model.setBetStatidId();
+    }
 }

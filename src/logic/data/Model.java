@@ -188,4 +188,8 @@ public class Model implements Serializable {
                 closeDateValue,totalValueBettedValue,possibleWinningsValue,
                 numberOfBetsValue,betNameValue, enumBetStatus);
     }
+
+    public void setBetStatidId() {
+        data.setBetStaticId();
+    }
 }
