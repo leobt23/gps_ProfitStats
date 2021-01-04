@@ -153,9 +153,8 @@ public class ObservableModel {
     public void deleteBetByIdx(int idx) {
         model.deleteBetByIdx(idx);
     }
-    public String getUserEmail() {
-        return model.getUserEmail();
-    }
+
+    public String getUserEmail() { return model.getUserEmail(); }
 
     public String getUserName() { return model.getUserName(); }
 
@@ -179,4 +178,40 @@ public class ObservableModel {
     public void setBetStaticId() {
         model.setBetStatidId();
     }
+
+    public float getLimitMoneyBettedToday() { return model.getLimitMoneyBettedToday(); }
+
+    public float getLimitLossWeek() { return model.getLimitLossWeek(); }
+
+    public float getMinBettedMoneyWeek() { return model.getMinBettedMoneyWeek(); }
+
+    public float getReminderToBetDay() { return model.getReminderToBetDay(); }
+
+    public boolean getLimitMoneyBettedTodayFlag() { return model.getLimitMoneyBettedTodayFlag(); }
+
+    public boolean getLimitLossWeekFlag() { return model.getLimitLossWeekFlag(); }
+
+    public boolean getMinBettedMoneyWeekFlag() { return model.getMinBettedMoneyWeekFlag(); }
+
+    public boolean getReminderToBetDayFlag() { return model.getReminderToBetDayFlag(); }
+
+    public boolean getResultsNotificationReminder() { return model.getResultsNotificationReminder(); }
+
+    public void setLimitMoneyDay(float value) {model.setLimitMoneyDay(value); }
+
+    public void setLimitLossWeek(float value) {model.setLimitLossWeek(value); }
+
+    public void setMinimumMoneyMonth(float value) { model.setMinimumMoneyMonth(value); }
+
+    public void setReminderBetDay(float value) { model.setReminderBetDay(value); }
+
+    public void setFlagLimitMoneyDay(boolean value) { model.setFlagLimitMoneyDay(value); }
+
+    public void setFlagLimitLossWeek(boolean value) { model.setFlagLimitLossWeek(value); }
+
+    public void setFlagMinimumMoneyMonth(boolean value) { model.setFlagMinimumMoneyMonth(value); }
+
+    public void setFlagReminderBetDay(boolean value) { model.setFlagReminderBetDay(value); }
+
+    public void setFlagResultsReminder(boolean value) { model.setFlagResultsReminder(value); }
 }
