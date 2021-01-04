@@ -197,4 +197,40 @@ public class Model implements Serializable {
     public List<EnumWrongInputUserProfile> editProfile(String userName, String email, String age, EnumGenders gender) {
         return data.editProfile(userName, email, age, gender);
     }
+
+    public float getLimitMoneyBettedToday() {return data.getLimitMoneyDay(); }
+
+    public float getLimitLossWeek() { return data.getLimitLossWeek(); }
+
+    public float getMinBettedMoneyWeek() { return data.getMinimumMoneyMonth(); }
+
+    public float getReminderToBetDay() { return data.getReminderBetDay(); }
+
+    public boolean getLimitMoneyBettedTodayFlag() { return data.getFlagLimitMoneyDay(); }
+
+    public boolean getLimitLossWeekFlag() { return data.getFlagLimitLossWeek(); }
+
+    public boolean getMinBettedMoneyWeekFlag() { return data.getFlagMinimumMoneyMonth(); }
+
+    public boolean getReminderToBetDayFlag() { return data.getFlagReminderBetDay(); }
+
+    public boolean getResultsNotificationReminder() { return data.getFlagResultsReminder(); }
+
+    public void setLimitMoneyDay(float value) {data.setLimitMoneyDay(value); }
+
+    public void setLimitLossWeek(float value) {data.setLimitLossWeek(value); }
+
+    public void setMinimumMoneyMonth(float value) { data.setMinimumMoneyMonth(value); }
+
+    public void setReminderBetDay(float value) { data.setReminderBetDay(value); }
+
+    public void setFlagLimitMoneyDay(boolean value) { data.setFlagLimitMoneyDay(value); }
+
+    public void setFlagLimitLossWeek(boolean value) { data.setFlagLimitLossWeek(value); }
+
+    public void setFlagMinimumMoneyMonth(boolean value) { data.setFlagMinimumMoneyMonth(value); }
+
+    public void setFlagReminderBetDay(boolean value) { data.setFlagReminderBetDay(value); }
+
+    public void setFlagResultsReminder(boolean value) { data.setFlagResultsReminder(value); }
 }

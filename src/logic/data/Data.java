@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class Data implements Serializable {
@@ -329,4 +328,41 @@ public class Data implements Serializable {
             return;
         user.betsHistory.bets.get(user.betsHistory.bets.size()-1).setStatic(user.betsHistory.bets.get(user.betsHistory.bets.size()-1).betId+1);
     }*/
+    }
+
+    public float getLimitMoneyDay() {return user.notification.getLimitMoneyDay(); }
+
+    public float getLimitLossWeek() { return user.notification.getLimitLossWeek(); }
+
+    public float getMinimumMoneyMonth() { return user.notification.getMinimumMoneyMonth(); }
+
+    public float getReminderBetDay() { return user.notification.getReminderBetDay(); }
+
+    public boolean getFlagLimitMoneyDay() { return user.notification.isFlagLimitMoneyDay(); }
+
+    public boolean getFlagLimitLossWeek() { return user.notification.isFlagLimitLossWeek(); }
+
+    public boolean getFlagMinimumMoneyMonth() { return user.notification.isFlagMinimumMoneyMonth(); }
+
+    public boolean getFlagReminderBetDay() { return user.notification.isFlagReminderBetDay(); }
+
+    public boolean getFlagResultsReminder() { return user.notification.isFlagResultsReminder(); }
+
+    public void setLimitMoneyDay(float value) {user.notification.setLimitMoneyDay(value); }
+
+    public void setLimitLossWeek(float value) {user.notification.setLimitLossWeek(value); }
+
+    public void setMinimumMoneyMonth(float value) { user.notification.setMinimumMoneyMonth(value); }
+
+    public void setReminderBetDay(float value) { user.notification.setReminderBetDay(value); }
+
+    public void setFlagLimitMoneyDay(boolean value) { user.notification.setFlagLimitMoneyDay(value); }
+
+    public void setFlagLimitLossWeek(boolean value) { user.notification.setFlagLimitLossWeek(value); }
+
+    public void setFlagMinimumMoneyMonth(boolean value) { user.notification.setFlagMinimumMoneyMonth(value); }
+
+    public void setFlagReminderBetDay(boolean value) { user.notification.setFlagReminderBetDay(value); }
+
+    public void setFlagResultsReminder(boolean value) { user.notification.setFlagResultsReminder(value); }
 }
