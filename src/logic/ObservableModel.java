@@ -17,15 +17,9 @@ public class ObservableModel {
 
     public ObservableModel(){
         propertyChangeSupport = new PropertyChangeSupport(model);
-        try {
-            model = (Model) FileUtility.retrieveModelFromFile();
-            if (model == null) {
-                model = new Model();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        model = (Model) FileUtility.retrieveModelFromFile();
+        if (model == null) {
+            model = new Model();
         }
     }
 
@@ -47,6 +41,10 @@ public class ObservableModel {
 
     public Time getBetRegistryDate(int idx) {
         return model.getBetRegistryDate(idx);
+    }
+
+    public String getBetRegistryDateWithBars(int idx) {
+        return model.getBetRegistryDateWithBars(idx);
     }
 
     public int getBetNumberOfGames(int idx) {
@@ -77,6 +75,10 @@ public class ObservableModel {
         return model.getBetCloseDate(idx);
     }
 
+    public String getBetCloseDateWithBars(int idx) {
+        return model.getBetCloseDateWithBars(idx);
+    }
+
     public void setBetStatus(int betId, EnumBetStatus enumBetStatus) {
         model.setBetStatus(betId, enumBetStatus);
     }
@@ -96,12 +98,7 @@ public class ObservableModel {
         model.addNewBet(numOfGamesBettedValue,registDateValue,
                 closeDateValue,totalValueBettedValue,possibleWinningsValue,
                 numberOfBetsValue,betNameValue, enumBetStatus);
-        //TODO: Tratar excecao
-        try {
-            FileUtility.saveModelToFile(model);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileUtility.saveModelToFile(model);
     }
 
     public float getTotalProfit() {
@@ -149,4 +146,37 @@ public class ObservableModel {
         fireEvents(model.moveToBetsHistory());
     }
 
+    public void deleteBet(int idx) {
+        model.deleteBet(idx);
+    }
+
+    public void deleteBetByIdx(int idx) {
+        model.deleteBetByIdx(idx);
+    }
+    public String getUserEmail() {
+        return model.getUserEmail();
+    }
+
+    public String getUserName() { return model.getUserName(); }
+
+    public String getUserAge() { return model.getUserAge();}
+
+    public String getUserTotalBets() { return model.getUserTotalBets();}
+
+    public String getUserGender() { return model.getUserGender();}
+
+    public String getUserTotalProfit() { return model.getUserTotalProfit(); }
+
+    public String getUserHightestWin() { return model.getUserHighestwin(); }
+
+    public void editBet(int idx, String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
+        model.editBet(idx,numOfGamesBettedValue,registDateValue,
+                closeDateValue,totalValueBettedValue,possibleWinningsValue,
+                numberOfBetsValue,betNameValue, enumBetStatus);
+        FileUtility.saveModelToFile(model);
+    }
+
+    public void setBetStaticId() {
+        model.setBetStatidId();
+    }
 }
