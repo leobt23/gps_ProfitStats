@@ -154,9 +154,8 @@ public class ObservableModel {
         model.deleteBetByIdx(idx);
         FileUtility.saveModelToFile(model);
     }
-    public String getUserEmail() {
-        return model.getUserEmail();
-    }
+
+    public String getUserEmail() { return model.getUserEmail(); }
 
     public String getUserName() { return model.getUserName(); }
 

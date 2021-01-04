@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import logic.ObservableModel;
 import logic.data.BettingHistory;
 import logic.data.EnumGenders;
+import logic.data.Notifications;
 import logic.data.PropertyChanges;
 import logic.states.EnumStates;
 import logic.EnumBetStatus;
@@ -29,12 +30,6 @@ import static com.sun.glass.ui.Cursor.setVisible;
 
 public class UserInterface extends BorderPane{
     private ObservableModel obsModel;
-
-    String name, email, bestMonth;
-    EnumGenders gender;
-    int age, totalBets;
-    float totalProfit, highestWinValue, winningPercentage;
-    BettingHistory betsHistory;
 
     public UserInterface(ObservableModel obsModel) {
         this.obsModel = obsModel;
@@ -62,7 +57,7 @@ public class UserInterface extends BorderPane{
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(25, 25, 25, 25));
 
-        Label nome = new Label("Nome: ");
+        Label nome = new Label("Name: ");
         gridPane.add(nome,0,1);
 
         Label nameBox = new Label(obsModel.getUserName());
@@ -74,31 +69,31 @@ public class UserInterface extends BorderPane{
         Label  emailBox = new Label(obsModel.getUserEmail());
         gridPane.add(emailBox, 1, 2);
 
-        Label age = new Label("Idade: ");
+        Label age = new Label("Age: ");
         gridPane.add(age, 0, 3);
 
         Label ageBox = new Label(obsModel.getUserAge());
         gridPane.add(ageBox, 1, 3);
 
-        Label totalBets = new Label("Total Apostas: ");
+        Label totalBets = new Label("Total Bets: ");
         gridPane.add(totalBets, 0, 4);
 
         Label totalBetsBox = new Label(obsModel.getUserTotalBets());
         gridPane.add(totalBetsBox, 1,4);
 
-        Label spinnerGenero = new Label("Genero: ");
+        Label spinnerGenero = new Label("Gender: ");
         gridPane.add(spinnerGenero, 0, 5);
 
         Label spinnerGeneroBox = new Label (obsModel.getUserGender());
         gridPane.add(spinnerGeneroBox,1, 5);
 
-        Label totalProfit = new Label("Total de Ganhos: ");
+        Label totalProfit = new Label("Total Profit: ");
         gridPane.add(totalProfit, 0, 6);
 
         Label totalProfitBox = new Label(obsModel.getUserTotalProfit());
         gridPane.add(totalProfitBox,1,6 );
 
-        Label highestWinValue = new Label("Maior Ganho: ");
+        Label highestWinValue = new Label("Highest Win: ");
         gridPane.add(highestWinValue, 0, 7);
 
         Label highestWinValueBox = new Label(obsModel.getUserHightestWin());
@@ -168,7 +163,7 @@ public class UserInterface extends BorderPane{
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(25, 25, 25, 25));
 
-        Label nome = new Label("Nome: ");
+        Label nome = new Label("Name: ");
         gridPane.add(nome,0,1);
 
         TextField nameBox = new TextField();
@@ -180,19 +175,19 @@ public class UserInterface extends BorderPane{
         TextField  emailBox = new TextField();
         gridPane.add(emailBox, 1, 2);
 
-        Label age = new Label("Idade: ");
+        Label age = new Label("Age: ");
         gridPane.add(age, 0, 3);
 
         TextField  ageBox = new TextField();
         gridPane.add(ageBox, 1, 3);
 
-        Label totalBets = new Label("Total Apostas: ");
+        Label totalBets = new Label("Total Bets: ");
         gridPane.add(totalBets, 0, 4);
 
         TextField totalBetsBox = new TextField();
         gridPane.add(totalBetsBox, 1,4);
 
-        Label spinnerGeneroBox = new Label("Genero: ");
+        Label spinnerGeneroBox = new Label("Gender: ");
         gridPane.add(spinnerGeneroBox, 0, 5);
 
         final ComboBox spinnerGenero = new ComboBox();
@@ -203,17 +198,17 @@ public class UserInterface extends BorderPane{
                 "Other" );
         gridPane.add(spinnerGenero,1, 5);
 
-        Label totalProfit = new Label("Total de Ganhos: ");
+        Label totalProfit = new Label("Total Profit: ");
         gridPane.add(totalProfit, 0, 6);
 
-        TextField totalProfitBox = new TextField();
-        gridPane.add(totalProfitBox,1,6 );
+        Label totalProfitValue = new Label(obsModel.getUserTotalProfit());
+        gridPane.add(totalProfitValue,1,6 );
 
-        Label highestWinValue = new Label("Maior Ganho: ");
+        Label highestWinValue = new Label("Highest Win: ");
         gridPane.add(highestWinValue, 0, 7);
 
-        TextField highestWinValueBox = new TextField();
-        gridPane.add(highestWinValueBox,1,7);
+        Label highestWinValueValue = new Label(obsModel.getUserHightestWin());
+        gridPane.add(highestWinValueValue,1,7);
 
 
         Button btnCancel = new Button("Cancel");
