@@ -246,8 +246,6 @@ public class User implements Serializable {
                 arrayMeses.set(10,arrayMeses.get(10) + 1);
             if(betsHistory.bets.get(i).betRegisterDate.month == 12)
                 arrayMeses.set(11,arrayMeses.get(11) + 1);
-            if(betsHistory.bets.get(i).betRegisterDate.month == 12)
-                arrayMeses.set(12,arrayMeses.get(12) + 1);
         }
 
         return arrayMeses;
