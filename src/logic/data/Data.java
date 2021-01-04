@@ -232,6 +232,18 @@ public class Data implements Serializable {
         return user.email;
     }
 
+    public String getUserName() { return user.name; }
+
+    public String getUserAge() { return "" + user.age; }
+
+    public String getUserTotalBets() { return "" + user.totalBets; }
+
+    public String getUserGender() { return "" + user.gender;}
+
+    public String getUserTotalProfits() { return "" + user.totalProfit; }
+
+    public String getUserHighestWin() { return "" + user.highestWinValue;}
+
     public void editBet(int idx,String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
         int numOfGamesBetted,numberOfBets;
         float totalValueBetted,possibleWinnings;

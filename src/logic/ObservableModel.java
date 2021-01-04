@@ -168,6 +168,18 @@ public class ObservableModel {
         return model.getUserEmail();
     }
 
+    public String getUserName() { return model.getUserName(); }
+
+    public String getUserAge() { return model.getUserAge();}
+
+    public String getUserTotalBets() { return model.getUserTotalBets();}
+
+    public String getUserGender() { return model.getUserGender();}
+
+    public String getUserTotalProfit() { return model.getUserTotalProfit(); }
+
+    public String getUserHightestWin() { return model.getUserHighestwin(); }
+
     public void editBet(int idx, String numOfGamesBettedValue, LocalDate registDateValue, LocalDate closeDateValue, String totalValueBettedValue, String possibleWinningsValue, String numberOfBetsValue, String betNameValue, EnumBetStatus enumBetStatus) {
         model.editBet(idx,numOfGamesBettedValue,registDateValue,
                 closeDateValue,totalValueBettedValue,possibleWinningsValue,
