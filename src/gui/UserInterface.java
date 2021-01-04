@@ -65,45 +65,59 @@ public class UserInterface extends BorderPane{
         gridPane.setPadding(new Insets(25, 25, 25, 25));
 
         Label name = new Label("Name: ");
+        name.setFont(Font.font("Arial", FontWeight.BOLD,16));
         gridPane.add(name,0,1);
 
         Label nameBox = new Label(obsModel.getUserName());
+        nameBox.setFont(new Font( "Arial",14));
         gridPane.add(nameBox, 1, 1);
 
         Label email = new Label("Email: ");
+        email.setFont(Font.font("Arial", FontWeight.BOLD,16));
         gridPane.add(email,0,2);
 
         Label  emailBox = new Label(obsModel.getUserEmail());
+        emailBox.setFont(new Font( "Arial",14));
         gridPane.add(emailBox, 1, 2);
 
         Label age = new Label("Age: ");
+        age.setFont(Font.font("Arial", FontWeight.BOLD,16));
         gridPane.add(age, 0, 3);
 
         Label ageBox = new Label(obsModel.getUserAge());
+        ageBox.setFont(new Font( "Arial",14));
         gridPane.add(ageBox, 1, 3);
 
         Label totalBets = new Label("Total Bets: ");
+        totalBets.setFont(Font.font("Arial", FontWeight.BOLD,16));
         gridPane.add(totalBets, 0, 4);
 
         Label totalBetsBox = new Label(obsModel.getUserTotalBets());
+        totalBetsBox.setFont(new Font( "Arial",14));
         gridPane.add(totalBetsBox, 1,4);
 
         Label spinnerGenero = new Label("Gender: ");
+        spinnerGenero.setFont(Font.font("Arial", FontWeight.BOLD,16));
         gridPane.add(spinnerGenero, 0, 5);
 
         Label spinnerGeneroBox = new Label (obsModel.getUserGender());
+        spinnerGeneroBox.setFont(new Font( "Arial",14));
         gridPane.add(spinnerGeneroBox,1, 5);
 
         Label totalProfit = new Label("Total Profit: ");
+        totalProfit.setFont(Font.font("Arial", FontWeight.BOLD,16));
         gridPane.add(totalProfit, 0, 6);
 
         Label totalProfitBox = new Label(obsModel.getUserTotalProfit() + "€");
+        totalProfitBox.setFont(new Font( "Arial", 14));
         gridPane.add(totalProfitBox,1,6 );
 
         Label highestWinValue = new Label("Highest Win: ");
+        highestWinValue.setFont(Font.font("Arial", FontWeight.BOLD,16));
         gridPane.add(highestWinValue, 0, 7);
 
         Label highestWinValueBox = new Label(obsModel.getUserHightestWin() + "€");
+        highestWinValueBox.setFont(new Font( "Arial",14));
         gridPane.add(highestWinValueBox,1,7);
 
         Label lTitle = new Label("User Profile");
