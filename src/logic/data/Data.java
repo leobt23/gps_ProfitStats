@@ -266,4 +266,10 @@ public class Data implements Serializable {
         user.betsHistory.bets.get(idx).setStatus(enumBetStatus);
 
     }
+
+    public void setBetStaticId() {
+        if(user.betsHistory.bets.size()<1)
+            return;
+        user.betsHistory.bets.get(user.betsHistory.bets.size()-1).setStatic(user.betsHistory.bets.get(user.betsHistory.bets.size()-1).betId+1);
+    }
 }

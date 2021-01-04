@@ -31,6 +31,7 @@ public class Bet implements Serializable {
     }
 
     public int getBetId(){return betId; }
+    public void setStatic(int id){contador=id;}
 
     public int getNumberOfGames() {
         return numberOfGames;

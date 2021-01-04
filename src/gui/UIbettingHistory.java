@@ -744,6 +744,7 @@ public class UIbettingHistory extends BorderPane {
                             "Bet successfuly edited!", ButtonType.OK);
                     // show the dialog
                     a1.showAndWait();
+                    drawView();
                 }
                 else{
                     Alert a1 = new Alert(Alert.AlertType.NONE,

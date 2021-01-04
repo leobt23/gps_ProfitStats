@@ -9,7 +9,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Root root = new Root(new ObservableModel());
+        ObservableModel observableModel = new ObservableModel();
+        observableModel.setBetStaticId();
+        Root root = new Root(observableModel);
+
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 1280, 700));
         primaryStage.show();
