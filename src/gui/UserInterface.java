@@ -64,8 +64,8 @@ public class UserInterface extends BorderPane{
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(25, 25, 25, 25));
 
-        Label nome = new Label("Name: ");
-        gridPane.add(nome,0,1);
+        Label name = new Label("Name: ");
+        gridPane.add(name,0,1);
 
         Label nameBox = new Label(obsModel.getUserName());
         gridPane.add(nameBox, 1, 1);
@@ -227,6 +227,9 @@ public class UserInterface extends BorderPane{
                     profile();
                 }
                 else {
+                    Alert a1 = new Alert(Alert.AlertType.NONE,
+                            "Input error(s)!", ButtonType.OK);
+                    a1.showAndWait();
                     showWrongInputs(wrongInputs);
                 }
             }
