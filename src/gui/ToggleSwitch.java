@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 
 
 public class ToggleSwitch extends HBox {
+    boolean onOrOff;
 
     private final Label label = new Label();
     private final Button button = new Button();
@@ -25,6 +26,7 @@ public class ToggleSwitch extends HBox {
         });
         label.setOnMouseClicked((e) -> {
             switchedOn.set(!switchedOn.get());
+
         });
         setStyle();
         bindProperties();
@@ -52,12 +54,22 @@ public class ToggleSwitch extends HBox {
                 label.setText("ON");
                 setStyle("-fx-background-color: green;");
                 label.toFront();
+                onOrOff = true;
             }
             else {
                 label.setText("OFF");
                 setStyle("-fx-background-color: grey;");
                 button.toFront();
+                onOrOff = false;
             }
         });
+    }
+
+    public boolean isOnOrOff() {
+        return onOrOff;
+    }
+
+    public void setOnOrOff(boolean onOrOff) {
+        this.onOrOff = onOrOff;
     }
 }
