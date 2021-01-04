@@ -3,6 +3,7 @@ package logic.data;
 import logic.EnumBetStatus;
 import logic.EnumWrongInputBetRegistry;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
@@ -11,11 +12,11 @@ import java.util.Locale;
 
 public class Data implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private User user;
     private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry = new ArrayList<>();
-//    BettingHistory bettingHistory = new BettingHistory();
 
     /*public Data(User user, BettingHistory bettingHistory, Time time){
         this.user = user;
@@ -31,7 +32,6 @@ public class Data implements Serializable {
         this.user = user;
     }
 
-    //TODO: fazer funções
     public String getBetName(int idx) {
         return user.betsHistory.getBets().get(idx).getBetName();
     }
