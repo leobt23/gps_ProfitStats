@@ -167,6 +167,11 @@ public class UInotifications extends BorderPane {
 
         btnReset.setOnMouseClicked(event->{
             if(event.getButton() == MouseButton.PRIMARY){
+                obsModel.setFlagMinimumMoneyMonth(false);
+                obsModel.setFlagLimitLossWeek(false);
+                obsModel.setFlagReminderBetDay(false);
+                obsModel.setFlagLimitMoneyDay(false);
+                obsModel.setFlagResultsReminder(false);
                 funToShowInCOnstructor();
             }
         });
@@ -342,6 +347,12 @@ public class UInotifications extends BorderPane {
 
         btnReset.setOnMouseClicked(event->{
             if(event.getButton() == MouseButton.PRIMARY){
+                obsModel.setFlagMinimumMoneyMonth(false);
+                obsModel.setFlagLimitLossWeek(false);
+                obsModel.setFlagReminderBetDay(false);
+                obsModel.setFlagLimitMoneyDay(false);
+                obsModel.setFlagResultsReminder(false);
+
                 funToShowInCOnstructor();
             }
         });

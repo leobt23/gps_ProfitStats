@@ -212,13 +212,41 @@ public class ObservableModel {
 
     public void setReminderBetDay(float value) { model.setReminderBetDay(value); }
 
-    public void setFlagLimitMoneyDay(boolean value) { model.setFlagLimitMoneyDay(value); }
+    public void setFlagLimitMoneyDay(boolean value) {
+        if(value)
+             model.setFlagLimitMoneyDay(value);
+        else{
+            model.setLimitMoneyDay(0.0f);
+            model.setFlagLimitMoneyDay(value);
+        }
+    }
 
-    public void setFlagLimitLossWeek(boolean value) { model.setFlagLimitLossWeek(value); }
+    public void setFlagLimitLossWeek(boolean value) {
+        if(value)
+            model.setFlagLimitLossWeek(value);
+        else{
+            model.setLimitLossWeek(0.0f);
+            model.setFlagLimitLossWeek(value);
+        }
+    }
 
-    public void setFlagMinimumMoneyMonth(boolean value) { model.setFlagMinimumMoneyMonth(value); }
+    public void setFlagMinimumMoneyMonth(boolean value) {
+        if(value)
+            model.setFlagMinimumMoneyMonth(value);
+        else{
+            model.setMinimumMoneyMonth(0.0f);
+            model.setFlagLimitLossWeek(value);
+        }
+    }
 
-    public void setFlagReminderBetDay(boolean value) { model.setFlagReminderBetDay(value); }
+    public void setFlagReminderBetDay(boolean value) {
+        if(value)
+            model.setFlagReminderBetDay(value);
+        else{
+            model.setFlagReminderBetDay(value);
+            model.setReminderBetDay(0.0f);
+        }
+    }
 
     public void setFlagResultsReminder(boolean value) { model.setFlagResultsReminder(value); }
 
