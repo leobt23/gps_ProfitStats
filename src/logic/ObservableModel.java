@@ -241,6 +241,7 @@ public class ObservableModel {
         if(value)
             model.setFlagReminderBetDay(value);
         else{
+            model.setFlagReminderBetDay(value);
             model.setReminderBetDay(0.0f);
         }
     }
