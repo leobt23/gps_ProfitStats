@@ -257,4 +257,5 @@ public class ObservableModel {
     public void saveModel(){
         FileUtility.saveModelToFile(model);
     }
+    public boolean getNotificationRemindMinBetDay(){ return model.getNotificationRemindMinBetDay();}
 }

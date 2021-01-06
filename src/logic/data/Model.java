@@ -240,4 +240,5 @@ public class Model implements Serializable {
     public boolean verifyInputNotifications(String limitMoneyDay, String limitLossWeek, String minimumMoneyMonth, String reminderBetDay) {
         return data.verifyInputNotifications(limitMoneyDay,limitLossWeek,minimumMoneyMonth,reminderBetDay);
     }
+    public boolean getNotificationRemindMinBetDay(){ return data.getNotificationRemindMinBetDay();}
 }

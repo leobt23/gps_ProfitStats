@@ -21,6 +21,8 @@ public class Data implements Serializable {
     private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry = new ArrayList<>();
     private ArrayList<EnumWrongInputNotifications> wrongInputNotifications = new ArrayList<>();
     private Integer betsIdCounter;
+    LocalDate notificationDate;
+
 
     /*public Data(User user, BettingHistory bettingHistory, Time time){
         this.user = user;
@@ -438,5 +440,13 @@ public class Data implements Serializable {
             }
         }
         return flag;
+    }
+    public boolean getNotificationRemindMinBetDay(){
+        LocalDate date = LocalDate.now();
+        if(date.compareTo(notificationDate)!=0&&user.notification.isFlagReminderBetDay()){
+            notificationDate=date;
+            return true;
+        }
+        return false;
     }
 }

@@ -38,6 +38,7 @@ public class UIbetRegistry extends BorderPane {
     }
 
     private void createView() {
+
         BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
         this.setBackground(new Background(new BackgroundImage(Images.getImage(Constants.BET_REGISTRY_BACKGROUND),
                 BackgroundRepeat.NO_REPEAT,
@@ -271,6 +272,12 @@ public class UIbetRegistry extends BorderPane {
                 createView();
             }
         });
+        if(obsModel.getNotificationRemindMinBetDay()){
+            Alert a1 = new Alert(Alert.AlertType.NONE,
+                    "Don't forget to bet " +obsModel.getReminderToBetDay() + " !", ButtonType.OK);
+            // show the dialog
+            a1.showAndWait();
+        }
     }
 
     private void ViewWithWrongInputs(ArrayList<EnumWrongInputBetRegistry> wrong_input){
