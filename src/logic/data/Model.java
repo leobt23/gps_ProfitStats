@@ -219,9 +219,9 @@ public class Model implements Serializable {
 
     public boolean getResultsNotificationReminder() { return data.getFlagResultsReminder(); }
 
-    public void setLimitMoneyDay(float value) {data.setLimitMoneyDay(value); }
+    public void setLimitMoneyDay(float value) { data.setLimitMoneyDay(value); }
 
-    public void setLimitLossWeek(float value) {data.setLimitLossWeek(value); }
+    public void setLimitLossWeek(float value) { data.setLimitLossWeek(value); }
 
     public void setMinimumMoneyMonth(float value) { data.setMinimumMoneyMonth(value); }
 

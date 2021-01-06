@@ -108,7 +108,14 @@ public class LeftPanel extends Pane {
         ImageView ivAppLogo = new ImageView(Images.getImage(gui.resources.Constants.APP_LOGO));
         ivAppLogo.setFitWidth(Constants.PANEL_WIDTH);
         ivAppLogo.setFitHeight(Constants.IMG_VIEW_HEIGHT*2.5);
-        panelContainer.getChildren().addAll(separator ,ivAppLogo);
+        VBox imgContainer = new VBox(ivAppLogo);
+        imgContainer.setBorder(
+                new Border(
+                        new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID,
+                                CornerRadii.EMPTY, new BorderWidths(2))
+                )
+        );
+        panelContainer.getChildren().addAll(separator, imgContainer);
     }
 
     private void setActiveElement(HBox element) {

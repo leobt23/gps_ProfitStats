@@ -202,9 +202,11 @@ public class ObservableModel {
 
     public boolean getResultsNotificationReminder() { return model.getResultsNotificationReminder(); }
 
-    public void setLimitMoneyDay(float value) {model.setLimitMoneyDay(value); }
+    public void setLimitMoneyDay(float value) {
+        model.setLimitMoneyDay(value);
+    }
 
-    public void setLimitLossWeek(float value) {model.setLimitLossWeek(value); }
+    public void setLimitLossWeek(float value) { model.setLimitLossWeek(value); }
 
     public void setMinimumMoneyMonth(float value) { model.setMinimumMoneyMonth(value); }
 

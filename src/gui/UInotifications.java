@@ -154,7 +154,7 @@ public class UInotifications extends BorderPane {
         Button btnSave = new Button("Save");
 
         HBox containerButtons = new HBox();
-
+        containerButtons.setSpacing(20);
         containerButtons.getChildren().addAll(btnReset,btnSave);
 
         setBottom(containerButtons);
@@ -209,9 +209,6 @@ public class UInotifications extends BorderPane {
                     a1.showAndWait();
                     viewWithWrongInputs();
                 }
-
-
-
             }
         });
     }
@@ -223,11 +220,6 @@ public class UInotifications extends BorderPane {
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
                 b1Size)));
-
-        /*Label betRegistryTitle = new Label("NOTIFICATIONS");
-        betRegistryTitle.setTextFill(Color.BLACK);
-        betRegistryTitle.setFont(new Font( "Arial",30) );
-        setTop(betRegistryTitle);*/
 
         Label lTitle = new Label("Notifications");
         lTitle.setTextFill(Color.BLACK);
@@ -304,8 +296,6 @@ public class UInotifications extends BorderPane {
         flagMinimumMoneyMonthSwitch.setOnOrOff(obsModel.getMinBettedMoneyWeekFlag());
         gridPane.add(vBox3, 2, 0);
 
-
-
         VBox vBox4 = new VBox();
         vBox4.setSpacing(22);
         Label titulo3 = new Label("Reminder to bet €/day:");
@@ -324,8 +314,6 @@ public class UInotifications extends BorderPane {
         flagResultsReminderSwitch.setOnOrOff(obsModel.getResultsNotificationReminder());
         gridPane.add(vBox5, 1, 1);
 
-
-
         /*Label titulo2 = new Label("Notifications:");
         gridPane.add(titulo2, 0, 1);
         TextField asasas2= new TextField();
@@ -334,13 +322,13 @@ public class UInotifications extends BorderPane {
         gridPane.add(asasas2, 2, 1);*/
         setCenter(gridPane);
 
-
         //botão reset
 
         Button btnReset = new Button("Reset");
         Button btnSave = new Button("Save");
 
         HBox containerButtons = new HBox();
+        containerButtons.setSpacing(20);
 
         containerButtons.getChildren().addAll(btnReset,btnSave);
 
