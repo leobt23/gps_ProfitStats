@@ -235,7 +235,7 @@ public class ObservableModel {
             model.setFlagMinimumMoneyMonth(value);
         else{
             model.setMinimumMoneyMonth(0.0f);
-            model.setFlagLimitLossWeek(value);
+            model.setFlagMinimumMoneyMonth(value);
         }
     }
 
@@ -259,6 +259,7 @@ public class ObservableModel {
     public void saveModel(){
         FileUtility.saveModelToFile(model);
     }
+    public boolean getNotificationRemindMinBetDay(){ return model.getNotificationRemindMinBetDay();}
 
     public boolean verifyLimitMoneyBettedToday(float valueBetted) {
         return model.verifyLimitMoneyBettedToday(valueBetted);

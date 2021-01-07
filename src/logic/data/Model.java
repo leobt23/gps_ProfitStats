@@ -30,6 +30,7 @@ public class Model implements Serializable {
         state = next;
         if (previous != next) {
             events.add(PropertyChanges.STATE_CHANGE);
+            events.add(PropertyChanges.ALERT_REMINDER);
         }
     }
 
@@ -240,6 +241,7 @@ public class Model implements Serializable {
     public boolean verifyInputNotifications(String limitMoneyDay, String limitLossWeek, String minimumMoneyMonth, String reminderBetDay) {
         return data.verifyInputNotifications(limitMoneyDay,limitLossWeek,minimumMoneyMonth,reminderBetDay);
     }
+    public boolean getNotificationRemindMinBetDay(){ return data.getNotificationRemindMinBetDay();}
 
     public boolean verifyLimitMoneyBettedToday(float valueBetted) {
         return data.verifyLimitMoneyBettedToday(valueBetted);

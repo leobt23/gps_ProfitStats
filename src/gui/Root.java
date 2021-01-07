@@ -2,6 +2,8 @@ package gui;
 
 import gui.left_panel.LeftPanel;
 import gui.money_stats.MoneyStats;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import logic.ObservableModel;
@@ -29,6 +31,14 @@ public class Root extends BorderPane {
         stack.getChildren().add(uIbettingHistory);
         setCenter(stack);
         model.moveToBetRegistry();
+        if(model.getNotificationRemindMinBetDay()){
+            Alert a1bet = new Alert(Alert.AlertType.NONE,
+                    "Don't forget to bet " +model.getReminderToBetDay() + "€! Good luck!", ButtonType.OK);
+            a1bet.setTitle("Welcome to a new day!");
+            // show the dialog
+            a1bet.showAndWait();
+            model.saveModel();
+        }
     }
 
     public Root() {
