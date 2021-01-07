@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class UIbetRegistry extends BorderPane {
     private ObservableModel obsModel;
+
     String possibleWinningsValue;
     String numOfGamesBettedValue;
     String betNameValue;
@@ -272,12 +273,7 @@ public class UIbetRegistry extends BorderPane {
                 createView();
             }
         });
-        if(obsModel.getNotificationRemindMinBetDay()){
-            Alert a1 = new Alert(Alert.AlertType.NONE,
-                    "Don't forget to bet " +obsModel.getReminderToBetDay() + " !", ButtonType.OK);
-            // show the dialog
-            a1.showAndWait();
-        }
+
     }
 
     private void ViewWithWrongInputs(ArrayList<EnumWrongInputBetRegistry> wrong_input){
@@ -510,12 +506,20 @@ public class UIbetRegistry extends BorderPane {
                 evt -> {
                     setVisible(obsModel.getState() == EnumStates.BET_REGISTRY);
                     System.out.println("propertyChange");
+
+                    if(obsModel.getNotificationRemindMinBetDay()){
+                        Alert a1bet = new Alert(Alert.AlertType.NONE,
+                                "Don't forget to bet " +obsModel.getReminderToBetDay() + "€! Good luck!", ButtonType.OK);
+                        a1bet.setTitle("Welcome to a new day!");
+                        // show the dialog
+                        a1bet.showAndWait();
+                        obsModel.saveModel();
+                    }
                 }
         );
-        obsModel.addPropertyChangeListener(Constants.WRONG_INPUT_BET_REGISTRY,
+        obsModel.addPropertyChangeListener(PropertyChanges.ALERT_REMINDER,
                 evt -> {
-                    ArrayList<EnumWrongInputBetRegistry> wrong_input = obsModel.getWrongInputBetRegistry();
-                    ViewWithWrongInputs(wrong_input);
+
                 }
         );
     }

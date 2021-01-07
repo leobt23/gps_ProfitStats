@@ -233,7 +233,7 @@ public class ObservableModel {
             model.setFlagMinimumMoneyMonth(value);
         else{
             model.setMinimumMoneyMonth(0.0f);
-            model.setFlagLimitLossWeek(value);
+            model.setFlagMinimumMoneyMonth(value);
         }
     }
 

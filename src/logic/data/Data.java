@@ -441,11 +441,23 @@ public class Data implements Serializable {
         }
         return flag;
     }
-    public boolean getNotificationRemindMinBetDay(){
+    public boolean getNotificationRemindMinBetDay() {
         LocalDate date = LocalDate.now();
-        if(date.compareTo(notificationDate)!=0&&user.notification.isFlagReminderBetDay()){
-            notificationDate=date;
+        System.out.println(date.toString());
+        if (notificationDate == null && user.notification.isFlagReminderBetDay()) {
+            notificationDate = date;
+            System.out.println("AQUI");
             return true;
+        } else {
+
+            if (user.notification.isFlagReminderBetDay()) {
+                if (date.compareTo(notificationDate) != 0 && user.notification.isFlagReminderBetDay()) {
+                    notificationDate = date;
+                    System.out.println("AQUI");
+                    return true;
+                }
+                return false;
+            }
         }
         return false;
     }

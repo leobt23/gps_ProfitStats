@@ -30,6 +30,7 @@ public class Model implements Serializable {
         state = next;
         if (previous != next) {
             events.add(PropertyChanges.STATE_CHANGE);
+            events.add(PropertyChanges.ALERT_REMINDER);
         }
     }
 
