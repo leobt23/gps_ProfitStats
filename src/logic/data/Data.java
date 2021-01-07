@@ -250,6 +250,10 @@ public class Data implements Serializable {
         return user.getHighestWinValue();
     }
 
+    public ArrayList<Float> getLostMoneyCurrentWeek() {
+        return user.getLostMoneyCurrentWeek();
+    }
+
     public ArrayList<Float> getLostMoneyCurrentMonth() {
         return user.getLostMoneyCurrentMonth();
     }

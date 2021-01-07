@@ -535,22 +535,26 @@ public class UIbetRegistry extends BorderPane {
         );
     }
 
-    //TODO: TESTAR
     private void verifyMoneyLimits() {
         String warning = "";
         if(obsModel.verifyLimitMoneyBettedToday(Float.parseFloat(totalValueBettedValue))) {
-            warning += "You have exceeded the money limit to bet per day (limit = "
-                    + obsModel.getLimitMoneyBettedToday() + ") .\n";
+            warning += "You have exceeded the money limit to bet " +
+                    "per day (limit = "
+                    + obsModel.getLimitMoneyBettedToday() + "€) .\n";
         }
         if(obsModel.verifyLimitLossWeek()) {
             warning += "You have exceeded the money limit to lose in a week (limit = "
-                    + obsModel.getLimitLossWeek() + "), " +
-                    "you should consider to take a break in betting :)\n";
+                    + obsModel.getLimitLossWeek() + "€), " +
+                    "you should consider taking a break in betting :)\n";
         }
         if (warning.isBlank()) {
             return;
         }
-        Alert aMoneyLimit = new Alert(Alert.AlertType.WARNING, warning, ButtonType.OK);
+        Label text = new Label(warning);
+        text.setWrapText(true);
+        Alert aMoneyLimit = new Alert(Alert.AlertType.WARNING);
+        aMoneyLimit.getButtonTypes().set(0, ButtonType.OK);
+        aMoneyLimit.getDialogPane().setContent(text);
         aMoneyLimit.showAndWait();
     }
 }

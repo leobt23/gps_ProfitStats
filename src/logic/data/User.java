@@ -317,7 +317,42 @@ public class User implements Serializable {
                     && betsHistory.bets.get(i).betRegisterDate.month == month){
                 arraySemanas.set(3, arraySemanas.get(3) - betsHistory.bets.get(i).totalValueBetted);
             }
+        }
+        return arraySemanas;
+    }
 
+    public ArrayList<Float> getLostMoneyCurrentWeek(){
+        ArrayList<Float> arraySemanas = new ArrayList<>(4);
+
+        for(int i=0; i < 4; i++)
+            arraySemanas.add(0.0f);
+
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int month = localDate.getMonthValue();
+
+        for(int i=0; i < betsHistory.bets.size(); i++){
+            float moneyWon = betsHistory.bets.get(i).getStatus() == EnumBetStatus.WON ?
+                    betsHistory.bets.get(i).possibleWinnings : 0f;
+            if(betsHistory.bets.get(i).betRegisterDate.day >= 1 && betsHistory.bets.get(i).betRegisterDate.day <= 7
+                    && betsHistory.bets.get(i).betRegisterDate.month == month){
+                arraySemanas.set(0, arraySemanas.get(0) + moneyWon - betsHistory.bets.get(i).totalValueBetted);
+            }
+
+            if(betsHistory.bets.get(i).betRegisterDate.day >= 8 && betsHistory.bets.get(i).betRegisterDate.day <= 14
+                    && betsHistory.bets.get(i).betRegisterDate.month == month){
+                arraySemanas.set(1, arraySemanas.get(1) + moneyWon - betsHistory.bets.get(i).totalValueBetted);
+            }
+
+            if(betsHistory.bets.get(i).betRegisterDate.day >= 15 && betsHistory.bets.get(i).betRegisterDate.day <= 21
+                    && betsHistory.bets.get(i).betRegisterDate.month == month){
+                arraySemanas.set(2, arraySemanas.get(2) + moneyWon - betsHistory.bets.get(i).totalValueBetted);
+            }
+
+            if(betsHistory.bets.get(i).betRegisterDate.day >= 22 && betsHistory.bets.get(i).betRegisterDate.day <= 31
+                    && betsHistory.bets.get(i).betRegisterDate.month == month){
+                arraySemanas.set(3, arraySemanas.get(3) + moneyWon - betsHistory.bets.get(i).totalValueBetted);
+            }
         }
         return arraySemanas;
     }
@@ -400,6 +435,10 @@ public class User implements Serializable {
         int day = calendar.get(Calendar.DATE);
 
         ArrayList<Float> arraySemanas = getLostMoneyCurrentMonth();
+
+        arraySemanas = getLostMoneyCurrentMonth();
+        for(int i=0; i < 4; i++)
+            arraySemanas.set(i, -arraySemanas.get(i));
 
         if(notification.isFlagLimitLossWeek()) {
             if (day >= 1 && day <= 7)
