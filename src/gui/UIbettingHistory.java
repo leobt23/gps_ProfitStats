@@ -24,6 +24,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Optional;
 
 
@@ -277,6 +278,24 @@ public class UIbettingHistory extends BorderPane {
                     if (event.getButton() == MouseButton.PRIMARY)
                     {
                         obsModel.setBetStatus(obsModel.getBetId(listIdx), EnumBetStatus.LOST);
+                        LocalDate data = LocalDate.of(obsModel.getBetRegistryDate(listIdx).getYear(),obsModel.getBetRegistryDate(listIdx).getMonth(),obsModel.getBetRegistryDate(listIdx).getDay());
+                        int day = LocalDate.now().getDayOfMonth();
+                        if(obsModel.getLimitLossWeekFlag() == true) {
+                            if (day >= 1 && day <= 7 && data.getDayOfMonth() >= 1 && data.getDayOfMonth() <= 7)
+                                //TODO - CHAMAR A FUNÇÃO QUE VERIFICA O LIMITLOSS E DEPOIS MANDAR O ALERTA CASO TENHA RETORNADO TRUE
+                                // if(obsModel.verify)
+
+                            if (day >= 8 && day <= 14 && data.getDayOfMonth() >= 1 && data.getDayOfMonth() <= 7)
+
+
+                            if (day >= 15 && day <= 21 && data.getDayOfMonth() >= 1 && data.getDayOfMonth() <= 7)
+
+
+                            if (day >= 22 && day <= 31 && data.getDayOfMonth() >= 1 && data.getDayOfMonth() <= 7){
+
+                            }
+
+                        }
                         drawView();
                     }
                 });
