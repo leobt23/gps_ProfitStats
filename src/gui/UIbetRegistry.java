@@ -508,8 +508,14 @@ public class UIbetRegistry extends BorderPane {
                     System.out.println("propertyChange");
 
                     if(obsModel.getNotificationRemindMinBetDay()){
+                        String str ="";
+                        if(obsModel.getNotificationRemindMinBetDay())
+                            str = "Don't forget to bet " +obsModel.getReminderToBetDay() + "€!\n";
+                        if(obsModel.toggleResultsReminderNotification())
+                            str = str + "You've got results to update!\n";
+                        str = str + "Good luck!";
                         Alert a1bet = new Alert(Alert.AlertType.NONE,
-                                "Don't forget to bet " +obsModel.getReminderToBetDay() + "€! Good luck!", ButtonType.OK);
+                                str, ButtonType.OK);
                         a1bet.setTitle("Welcome to a new day!");
                         // show the dialog
                         a1bet.showAndWait();

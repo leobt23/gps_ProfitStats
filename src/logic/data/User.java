@@ -473,15 +473,13 @@ public class User implements Serializable {
     }
 
     public boolean toggleResultsReminderNotification(){
-        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-        Date date = calendar.getTime();
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int year = calendar.get(Calendar.YEAR);
-        int day = calendar.get(Calendar.DATE);
+
+        LocalDate dateCloseBet;
 
         if(notification.isFlagResultsReminder() == true) {
             for (Bet bet : betsHistory.getBets()) {
-                if (bet.betRegisterDate.day <= day-1 && bet.betRegisterDate.month == month && bet.betRegisterDate.year == year && bet.getStatus() == EnumBetStatus.PENDENT) {
+                dateCloseBet = LocalDate.of(bet.betCloseDate.getYear(),bet.betCloseDate.getMonth(),bet.betCloseDate.getDay());
+                if ( dateCloseBet.compareTo(LocalDate.now()) < 0 && bet.getStatus() == EnumBetStatus.PENDENT) {
                     return true;
                 }
             }

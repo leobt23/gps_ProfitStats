@@ -461,4 +461,5 @@ public class Data implements Serializable {
         }
         return false;
     }
+    public boolean toggleResultsReminderNotification(){ return user.toggleResultsReminderNotification();}
 }

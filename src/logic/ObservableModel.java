@@ -258,4 +258,5 @@ public class ObservableModel {
         FileUtility.saveModelToFile(model);
     }
     public boolean getNotificationRemindMinBetDay(){ return model.getNotificationRemindMinBetDay();}
+    public boolean toggleResultsReminderNotification(){ return model.toggleResultsReminderNotification();}
 }
