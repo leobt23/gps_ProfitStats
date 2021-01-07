@@ -36,6 +36,24 @@ public class UIbetRegistry extends BorderPane {
         this.obsModel=obsModel;
         createView();
         propsListener();
+
+        if(!obsModel.getShown()) {
+            StringBuilder str = new StringBuilder();
+            if (obsModel.getNotificationRemindMinBetDay()) {
+                str.append("Don't forget to bet " + obsModel.getReminderToBetDay() + "€!\n");
+            }
+            if (obsModel.toggleResultsReminderNotification()) {
+                str.append("You've got results to update!\n");
+            }
+            str.append("Good luck!");
+            Alert a1bet = new Alert(Alert.AlertType.NONE,
+                    str.toString(), ButtonType.OK);
+            a1bet.setTitle("WELCOME TO A NEW DAY!");
+            // show the dialog
+            a1bet.showAndWait();
+            obsModel.setShown(true);
+            obsModel.saveModel();
+        }
     }
 
     private void createView() {
@@ -518,15 +536,7 @@ public class UIbetRegistry extends BorderPane {
                     setVisible(obsModel.getState() == EnumStates.BET_REGISTRY);
                     System.out.println("propertyChange");
 
-                    if(obsModel.getNotificationRemindMinBetDay()){
-                        Alert a1bet = new Alert(Alert.AlertType.NONE,
-                                "Don't forget to bet " +obsModel.getReminderToBetDay() + "€! Good luck!", ButtonType.OK);
-                        a1bet.setTitle("Welcome to a new day!");
-                        // show the dialog
-                        a1bet.showAndWait();
-                        obsModel.saveModel();
                     }
-                }
         );
         obsModel.addPropertyChangeListener(PropertyChanges.ALERT_REMINDER,
                 evt -> {

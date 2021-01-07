@@ -22,6 +22,11 @@ public class ObservableModel {
         if (model == null) {
             model = new Model();
         }
+        else{
+            if(LocalDate.now().compareTo(model.getNotificationDate())>0){
+                model.setShown(false);
+            }
+        }
     }
 
     private void fireEvents(List<String> events) {
@@ -260,6 +265,13 @@ public class ObservableModel {
         FileUtility.saveModelToFile(model);
     }
     public boolean getNotificationRemindMinBetDay(){ return model.getNotificationRemindMinBetDay();}
+    public boolean toggleResultsReminderNotification(){ return model.toggleResultsReminderNotification();}
+    public void setShown(boolean shown) {
+        model.setShown(shown);
+    }
+    public boolean getShown(){
+        return  model.getShown();
+    }
 
     public boolean verifyLimitMoneyBettedToday(float valueBetted) {
         return model.verifyLimitMoneyBettedToday(valueBetted);

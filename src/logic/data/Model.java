@@ -242,6 +242,17 @@ public class Model implements Serializable {
         return data.verifyInputNotifications(limitMoneyDay,limitLossWeek,minimumMoneyMonth,reminderBetDay);
     }
     public boolean getNotificationRemindMinBetDay(){ return data.getNotificationRemindMinBetDay();}
+    public boolean toggleResultsReminderNotification(){ return data.toggleResultsReminderNotification();}
+
+    public void setShown(boolean shown) {
+        data.setShown(shown);
+    }
+    public boolean getShown(){
+        return  data.getShow();
+    }
+    public LocalDate getNotificationDate(){
+        return data.getNotificationDate();
+    }
 
     public boolean verifyLimitMoneyBettedToday(float valueBetted) {
         return data.verifyLimitMoneyBettedToday(valueBetted);
