@@ -434,7 +434,10 @@ public class User implements Serializable {
         int year = calendar.get(Calendar.YEAR);
         int day = calendar.get(Calendar.DATE);
 
-        ArrayList<Float> arraySemanas = getLostMoneyCurrentMonth();
+        ArrayList<Float> arraySemanas;
+        arraySemanas = getLostMoneyCurrentMonth();
+        for(int i=0; i < 4; i++)
+            System.out.println(arraySemanas.get(i));
 
         arraySemanas = getLostMoneyCurrentMonth();
         for(int i=0; i < 4; i++)
