@@ -439,4 +439,16 @@ public class Data implements Serializable {
         }
         return flag;
     }
+
+    public boolean verifyLimitMoneyBettedToday(float valueBetted) {
+        return user.verifyLimitMoneyBettedToday(valueBetted);
+    }
+
+    public boolean verifyLimitLossWeek() {
+        return user.verifyLimitLossWeek();
+    }
+
+    public float getLimitMoneyBettedDay() {
+        return user.getLimitMoneyBettedDay();
+    }
 }

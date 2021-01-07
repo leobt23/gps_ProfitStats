@@ -259,4 +259,12 @@ public class ObservableModel {
     public void saveModel(){
         FileUtility.saveModelToFile(model);
     }
+
+    public boolean verifyLimitMoneyBettedToday(float valueBetted) {
+        return model.verifyLimitMoneyBettedToday(valueBetted);
+    }
+
+    public boolean verifyLimitLossWeek() {
+        return model.verifyLimitLossWeek();
+    }
 }

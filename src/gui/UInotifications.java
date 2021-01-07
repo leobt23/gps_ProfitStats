@@ -395,11 +395,7 @@ public class UInotifications extends BorderPane {
                     // show the dialog
                     a1.showAndWait();
                     viewWithWrongInputs();
-
                 }
-
-
-
             }
         });
     }
@@ -407,6 +403,8 @@ public class UInotifications extends BorderPane {
         obsModel.addPropertyChangeListener(PropertyChanges.STATE_CHANGE,
                 evt -> {
                     setVisible(obsModel.getState() == EnumStates.NOTIFICATIONS);
+                    if (isVisible())
+                        funToShowInCOnstructor();
                 }
         );
 

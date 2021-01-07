@@ -370,15 +370,15 @@ public class User implements Serializable {
 
     // NOTIFICATIONS LOGIC
 
-    public boolean verifyLimitMoneyBettedToday(float bettedValue){
+    public boolean verifyLimitMoneyBettedToday(float valueBetted){
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         Date date = calendar.getTime();
         int month = calendar.get(Calendar.MONTH) + 1;
         int year = calendar.get(Calendar.YEAR);
         int day = calendar.get(Calendar.DATE);
-        float totalValueBettedToday = bettedValue;
+        float totalValueBettedToday = valueBetted;
 
-        if(notification.isFlagLimitMoneyDay() == true) {
+        if(notification.isFlagLimitMoneyDay()) {
             for (Bet bet : betsHistory.getBets()) {
                 if (bet.betRegisterDate.day == day && bet.betRegisterDate.month == month && bet.betRegisterDate.year == year) {
                     totalValueBettedToday += bet.totalValueBetted;
@@ -401,7 +401,7 @@ public class User implements Serializable {
 
         ArrayList<Float> arraySemanas = getLostMoneyCurrentMonth();
 
-        if(notification.isFlagLimitLossWeek() == true) {
+        if(notification.isFlagLimitLossWeek()) {
             if (day >= 1 && day <= 7)
                 if (arraySemanas.get(0) >= notification.limitLossWeek)
                     return true;
@@ -518,6 +518,10 @@ public class User implements Serializable {
         for(int i=0; i < 4; i++)
             System.out.println(LostMoney.get(i));
         //System.out.println("Username: " + a.getName());*/
+    }
+
+    public float getLimitMoneyBettedDay() {
+        return notification.limitMoneyDay;
     }
 }
 

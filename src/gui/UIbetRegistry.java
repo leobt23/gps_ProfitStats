@@ -248,6 +248,7 @@ public class UIbetRegistry extends BorderPane {
                 boolean input_result = obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                         , betNameValue, enumBetStatus);
                 if(input_result) {
+                    verifyMoneyLimits();
                     obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                             , betNameValue, enumBetStatus);
                     Alert a1 = new Alert(Alert.AlertType.NONE,
@@ -286,6 +287,13 @@ public class UIbetRegistry extends BorderPane {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(25, 25, 25, 25));
+
+        gridPane.setMaxWidth(600);
+        gridPane.setMaxHeight(500);
+        gridPane.setBackground(new Background(new BackgroundFill(
+                Color.rgb(255,255,255,0.55), new CornerRadii(5), Insets.EMPTY)
+        ));
+
         //FORM
 
         Label numberOfGamesBetted = new Label("Number of games betted:");
@@ -472,8 +480,11 @@ public class UIbetRegistry extends BorderPane {
                 boolean input_result = obsModel.verifyInputBetRegistry(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                         , betNameValue, enumBetStatus);
                 if(input_result) {
+                    verifyMoneyLimits();
+
                     obsModel.addNewBet(numOfGamesBettedValue, registDateValue, closeDateValue, totalValueBettedValue, possibleWinningsValue, numberOfBetsValue
                             , betNameValue, enumBetStatus);
+                    createView();
                     Alert a1 = new Alert(Alert.AlertType.NONE,
                             "Bet successfuly registered!", ButtonType.OK);
                     // show the dialog
@@ -496,8 +507,8 @@ public class UIbetRegistry extends BorderPane {
                 createView();
             }
         });
-
     }
+
     private void propsListener() {
         obsModel.addPropertyChangeListener(PropertyChanges.STATE_CHANGE,
                 evt -> {
@@ -511,5 +522,24 @@ public class UIbetRegistry extends BorderPane {
                     ViewWithWrongInputs(wrong_input);
                 }
         );
+    }
+
+    //TODO: TESTAR
+    private void verifyMoneyLimits() {
+        String warning = "";
+        if(obsModel.verifyLimitMoneyBettedToday(Float.parseFloat(totalValueBettedValue))) {
+            warning += "You have exceeded the money limit to bet per day (limit = "
+                    + obsModel.getLimitMoneyBettedToday() + ") .\n";
+        }
+        if(obsModel.verifyLimitLossWeek()) {
+            warning += "You have exceeded the money limit to lose in a week (limit = "
+                    + obsModel.getLimitLossWeek() + "), " +
+                    "you should consider to take a break in betting :)\n";
+        }
+        if (warning.isBlank()) {
+            return;
+        }
+        Alert aMoneyLimit = new Alert(Alert.AlertType.WARNING, warning, ButtonType.OK);
+        aMoneyLimit.showAndWait();
     }
 }
