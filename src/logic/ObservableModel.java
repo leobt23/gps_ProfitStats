@@ -23,9 +23,10 @@ public class ObservableModel {
             model = new Model();
         }
         else{
-            if(LocalDate.now().compareTo(model.getNotificationDate())>0){
-                model.setShown(false);
-            }
+            if(model.getNotificationDate() != null)
+                if(LocalDate.now().compareTo(model.getNotificationDate())>0){
+                    model.setShown(false);
+                }
         }
     }
 

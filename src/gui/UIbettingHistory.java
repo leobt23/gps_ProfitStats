@@ -280,20 +280,19 @@ public class UIbettingHistory extends BorderPane {
                         obsModel.setBetStatus(obsModel.getBetId(listIdx), EnumBetStatus.LOST);
                         LocalDate data = LocalDate.of(obsModel.getBetRegistryDate(listIdx).getYear(),obsModel.getBetRegistryDate(listIdx).getMonth(),obsModel.getBetRegistryDate(listIdx).getDay());
                         int day = LocalDate.now().getDayOfMonth();
+
                         if(obsModel.getLimitLossWeekFlag() == true) {
                             if (day >= 1 && day <= 7 && data.getDayOfMonth() >= 1 && data.getDayOfMonth() <= 7)
-                                //TODO - CHAMAR A FUNÇÃO QUE VERIFICA O LIMITLOSS E DEPOIS MANDAR O ALERTA CASO TENHA RETORNADO TRUE
-                                // if(obsModel.verify)
+                                verifyMoneyLimits();
 
-                            if (day >= 8 && day <= 14 && data.getDayOfMonth() >= 1 && data.getDayOfMonth() <= 7)
+                            if (day >= 8 && day <= 14 && data.getDayOfMonth() >= 8 && data.getDayOfMonth() <= 14)
+                                verifyMoneyLimits();
 
+                            if (day >= 15 && day <= 21 && data.getDayOfMonth() >= 15 && data.getDayOfMonth() <= 21)
+                                verifyMoneyLimits();
 
-                            if (day >= 15 && day <= 21 && data.getDayOfMonth() >= 1 && data.getDayOfMonth() <= 7)
-
-
-                            if (day >= 22 && day <= 31 && data.getDayOfMonth() >= 1 && data.getDayOfMonth() <= 7){
-
-                            }
+                            if (day >= 22 && day <= 31 && data.getDayOfMonth() >= 22 && data.getDayOfMonth() <= 31)
+                                verifyMoneyLimits();
 
                         }
                         drawView();
@@ -861,5 +860,22 @@ public class UIbettingHistory extends BorderPane {
                 }
         );
     }
+    private void verifyMoneyLimits() {
+        String warning = "";
 
+        if(obsModel.verifyLimitLossWeek()) {
+            warning += "You have exceeded the money limit to lose in a week (limit = "
+                    + obsModel.getLimitLossWeek() + "€), " +
+                    "you should consider taking a break in betting :)\n";
+        }
+        if (warning.isBlank()) {
+            return;
+        }
+        Label text = new Label(warning);
+        text.setWrapText(true);
+        Alert aMoneyLimit = new Alert(Alert.AlertType.WARNING);
+        aMoneyLimit.getButtonTypes().set(0, ButtonType.OK);
+        aMoneyLimit.getDialogPane().setContent(text);
+        aMoneyLimit.showAndWait();
+    }
 }
