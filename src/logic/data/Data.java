@@ -21,7 +21,9 @@ public class Data implements Serializable {
     private ArrayList<EnumWrongInputBetRegistry> wrongInputBetRegistry = new ArrayList<>();
     private ArrayList<EnumWrongInputNotifications> wrongInputNotifications = new ArrayList<>();
     private Integer betsIdCounter;
-    LocalDate notificationDate;
+    private LocalDate notificationDate;
+    private boolean shown;
+
 
 
     /*public Data(User user, BettingHistory bettingHistory, Time time){
@@ -443,17 +445,14 @@ public class Data implements Serializable {
     }
     public boolean getNotificationRemindMinBetDay() {
         LocalDate date = LocalDate.now();
-        System.out.println(date.toString());
         if (notificationDate == null && user.notification.isFlagReminderBetDay()) {
             notificationDate = date;
-            System.out.println("AQUI");
             return true;
         } else {
 
             if (user.notification.isFlagReminderBetDay()) {
                 if (date.compareTo(notificationDate) != 0 && user.notification.isFlagReminderBetDay()) {
                     notificationDate = date;
-                    System.out.println("AQUI");
                     return true;
                 }
                 return false;
@@ -462,4 +461,14 @@ public class Data implements Serializable {
         return false;
     }
     public boolean toggleResultsReminderNotification(){ return user.toggleResultsReminderNotification();}
+
+    public void setShown(boolean shown) {
+        this.shown = shown;
+    }
+    public boolean getShow(){
+        return shown;
+    }
+    public LocalDate getNotificationDate(){
+        return notificationDate;
+    }
 }

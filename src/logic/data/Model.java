@@ -243,4 +243,14 @@ public class Model implements Serializable {
     }
     public boolean getNotificationRemindMinBetDay(){ return data.getNotificationRemindMinBetDay();}
     public boolean toggleResultsReminderNotification(){ return data.toggleResultsReminderNotification();}
+
+    public void setShown(boolean shown) {
+        data.setShown(shown);
+    }
+    public boolean getShown(){
+        return  data.getShow();
+    }
+    public LocalDate getNotificationDate(){
+        return data.getNotificationDate();
+    }
 }
